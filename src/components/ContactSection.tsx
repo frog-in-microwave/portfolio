@@ -13,25 +13,51 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { portfolioData } from '../data/portfolioData';
-import { GithubIcon, LinkedinIcon, TwitterIcon } from './Icons';
+import { GithubIcon, LinkedinIcon } from './Icons';
 
+/**
+ * ContactSection Component
+ * 
+ * Provides an interactive communication gateway for recruiters and technical collaborators.
+ * 
+ * Key Technologies & Mechanisms:
+ * 1. Asynchronous Next.js API Submission:
+ *    Sends payload to the backend route handler `/api/contact` via HTTP POST.
+ * 2. Canvas Confetti Particle Blast:
+ *    On successful form submission, launches a 2D physics celebration blast using `canvas-confetti`.
+ * 3. Clipboard API with Auto-Revert Feedback:
+ *    Uses `navigator.clipboard.writeText()` to copy Yousef's email directly to clipboard,
+ *    toggling a temporary 'Copied!' badge that reverts after 2.5 seconds.
+ */
 export const ContactSection: React.FC = () => {
+  // Form input state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     topic: 'Job Opportunity',
     message: '',
   });
+
+  // Feedback states
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
+  /**
+   * One-Click Email Copy Handler:
+   * Writes email to user's system clipboard and reveals the green checkmark badge.
+   */
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(portfolioData.profile.email);
     setCopied(true);
+    // Auto-revert back to the copy icon after 2500ms
     setTimeout(() => setCopied(false), 2500);
   };
 
+  /**
+   * Asynchronous Form Submission:
+   * Dispatches data to `/api/contact`, sets loading state, and fires confetti on completion.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
@@ -39,17 +65,19 @@ export const ContactSection: React.FC = () => {
     setSubmitting(true);
 
     try {
+      // POST request to Next.js API Route Handler
       await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
     } catch {
-      // Fallback
+      // Graceful fallback: UI still displays success message for seamless UX
     } finally {
       setSubmitting(false);
       setSubmitted(true);
 
+      // Trigger multi-color celebratory confetti particles
       confetti({
         particleCount: 80,
         spread: 70,
@@ -79,10 +107,10 @@ export const ContactSection: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-6xl mx-auto">
           
-          {/* Left Column: Direct Info & Channels */}
+          {/* Left Column: Direct Contact Information */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Direct Email Card */}
+            {/* Direct Email & Phone Card */}
             <div className="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
               <h3 className="font-heading font-bold text-white text-lg">
                 Direct Contact Channels
@@ -91,7 +119,7 @@ export const ContactSection: React.FC = () => {
                 You can reach me directly via email or phone:
               </p>
 
-              {/* Email */}
+              {/* Email with Copy Action */}
               <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs text-slate-200">
                 <span className="truncate mr-2">{portfolioData.profile.email}</span>
                 <button
@@ -103,7 +131,7 @@ export const ContactSection: React.FC = () => {
                 </button>
               </div>
 
-              {/* Phone & Location */}
+              {/* Phone & Location Metadata */}
               <div className="space-y-2 pt-1 font-mono text-xs text-slate-300">
                 <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
                   <Phone className="w-4 h-4 text-cyan-400" />
@@ -130,7 +158,7 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Social Channels */}
+            {/* Social Profiles Grid */}
             <div className="glass-panel p-6 rounded-2xl border border-slate-800 space-y-3">
               <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
                 Social Profiles & Code:
@@ -159,10 +187,11 @@ export const ContactSection: React.FC = () => {
 
           </div>
 
-          {/* Right Column: Interactive Form */}
+          {/* Right Column: Contact Transmission Form */}
           <div className="lg:col-span-7">
             <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl">
               {submitted ? (
+                // Success State View
                 <div className="text-center py-12 space-y-4">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-950/80 border border-emerald-600/50 text-emerald-400 mb-2">
                     <Check className="w-8 h-8" />
@@ -184,8 +213,10 @@ export const ContactSection: React.FC = () => {
                   </button>
                 </div>
               ) : (
+                // Active Interactive Form
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Name */}
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono text-slate-300 font-medium">
                         Your Name
@@ -200,6 +231,7 @@ export const ContactSection: React.FC = () => {
                       />
                     </div>
 
+                    {/* Email */}
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono text-slate-300 font-medium">
                         Email Address
@@ -215,6 +247,7 @@ export const ContactSection: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Inquiry Topic Dropdown */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono text-slate-300 font-medium">
                       Inquiry Type
@@ -231,6 +264,7 @@ export const ContactSection: React.FC = () => {
                     </select>
                   </div>
 
+                  {/* Message Body */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono text-slate-300 font-medium">
                       Message
@@ -245,6 +279,7 @@ export const ContactSection: React.FC = () => {
                     />
                   </div>
 
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={submitting}

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Bot, 
-  Terminal, 
   FileText, 
   Menu, 
   X, 
@@ -14,14 +13,35 @@ import { portfolioData } from '../data/portfolioData';
 
 interface NavbarProps {
   onOpenCopilot: () => void;
-  onOpenTerminal: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal }) => {
+/**
+ * Navbar Component
+ * 
+ * Provides responsive, glassmorphic navigation pinned to the top of the viewport.
+ * 
+ * Key Features:
+ * 1. Scroll-Triggered Glassmorphism:
+ *    When `window.scrollY > 30`, adds a backdrop blur and border to avoid obscuring content.
+ * 2. Real-Time Scroll-Spy:
+ *    Inspects section elements via `getBoundingClientRect()` to illuminate the active nav link
+ *    as the visitor scrolls down the page.
+ * 3. Quick Action Hub:
+ *    Direct triggers for the AI Copilot modal and direct resume PDF download.
+ * 4. Responsive Mobile Drawer:
+ *    Slide-down mobile menu for phones and tablets.
+ */
+export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
+  // Flag indicating if the user has scrolled past the top threshold
   const [scrolled, setScrolled] = useState(false);
+
+  // Mobile drawer state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Active section identifier ('about', 'skills', 'projects', 'experience', 'contact')
   const [activeSection, setActiveSection] = useState('about');
 
+  // Navigation targets mapping to DOM element IDs
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
@@ -30,6 +50,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
     { name: 'Contact', href: '#contact' },
   ];
 
+  /**
+   * Scroll listener with passive flag for 60fps performance.
+   * Calculates which section is currently centered in the viewport.
+   */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -61,7 +85,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo */}
+          
+          {/* Brand Logo & Title */}
           <a 
             href="#" 
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg"
@@ -106,23 +131,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
             })}
           </nav>
 
-          {/* Quick Actions */}
+          {/* Desktop Quick Action Buttons */}
           <div className="hidden sm:flex items-center gap-2.5">
-            {/* Terminal Button */}
-            <button
-              onClick={onOpenTerminal}
-              title="Open CLI Terminal (Ctrl+K or Cmd+K)"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-cyan-300 hover:border-slate-700 hover:bg-slate-800/70 transition-all cursor-pointer"
-            >
-              <Terminal className="w-3.5 h-3.5 text-slate-400" />
-              <span>CLI</span>
-              <kbd className="text-[10px] px-1 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">⌘K</kbd>
-            </button>
-
-            {/* AI Copilot Button */}
+            {/* AI Copilot Trigger */}
             <button
               onClick={onOpenCopilot}
-              className="relative group flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-600/20 border border-cyan-500/30 text-cyan-300 hover:border-cyan-400/60 hover:from-cyan-500/30 hover:to-purple-600/30 transition-all cursor-pointer shadow-sm shadow-cyan-950"
+              className="relative group flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-600/20 border border-cyan-500/30 text-cyan-300 hover:border-cyan-400/60 hover:from-cyan-500/30 hover:to-purple-600/30 transition-all cursor-pointer shadow-sm shadow-cyan-950"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -133,19 +147,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
               <Sparkles className="w-3 h-3 text-purple-400 animate-pulse" />
             </button>
 
-            {/* Resume Button */}
+            {/* Direct Resume PDF Link */}
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 text-slate-200 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 text-slate-200 hover:text-white transition-colors"
             >
               <FileText className="w-3.5 h-3.5 text-cyan-400" />
               <span>Resume PDF</span>
             </a>
           </div>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Menu Hamburger Trigger */}
           <div className="flex sm:hidden items-center gap-2">
             <button
               onClick={onOpenCopilot}
@@ -166,7 +180,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Slide-Down Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="sm:hidden bg-[#0a0e1a]/95 backdrop-blur-2xl border-b border-slate-800 px-4 pt-4 pb-6 space-y-3">
           <nav className="flex flex-col space-y-1">
@@ -192,17 +206,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
               <FileText className="w-4 h-4 text-cyan-400" />
               <span>View Resume (PDF)</span>
             </a>
-
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenTerminal();
-              }}
-              className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-slate-900 border border-slate-800 text-sm font-mono text-slate-300"
-            >
-              <Terminal className="w-4 h-4 text-cyan-400" />
-              <span>Open Developer CLI Terminal</span>
-            </button>
 
             <button
               onClick={() => {

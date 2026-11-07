@@ -11,6 +11,10 @@ import {
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
+/**
+ * Message Model
+ * Represents a single turn in the conversation between user and AI Copilot.
+ */
 interface Message {
   id: string;
   sender: 'user' | 'assistant';
@@ -23,7 +27,26 @@ interface AiCopilotModalProps {
   onClose: () => void;
 }
 
+/**
+ * AiCopilotModal Component
+ * 
+ * Provides an interactive, in-portfolio conversational assistant trained on Yousef's
+ * background, technical stack, university curriculum, and internships.
+ * 
+ * Key Engineering Mechanisms:
+ * 1. Realistic Token Streaming Simulation:
+ *    Instead of instantly dumping text onto the screen, it simulates an LLM response
+ *    stream using a high-frequency interval (`setInterval`), slicing and appending chunks
+ *    every 20ms to mimic an OpenAI/Anthropic Server-Sent Events (SSE) streaming API.
+ * 2. Smart Query Pattern Matching:
+ *    Matches user queries against semantic keyword patterns (e.g., Codebrave, Agile Labs,
+ *    Computer Engineering, MERN, Terraform, contact channels).
+ * 3. Accessibility & Keyboard Traps:
+ *    Listens for 'Escape' to dismiss, locks background body scrolling when open,
+ *    and auto-scrolls down as new tokens stream in.
+ */
 export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose }) => {
+  // Array of conversational messages
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
@@ -32,10 +55,17 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
       timestamp: 'Just now',
     },
   ]);
+
+  // Current text typed into the chat input
   const [inputValue, setInputValue] = useState('');
+
+  // Flag indicating whether the assistant is currently streaming characters
   const [isTyping, setIsTyping] = useState(false);
+
+  // Reference to the bottom of the message container to handle auto-scrolling
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  // Suggested quick prompts shown above the input bar
   const quickPrompts = [
     "What did Yousef build at Codebrave?",
     "What is Yousef's experience at The Agile Labs?",
@@ -44,10 +74,17 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
     "How can I contact or hire Yousef?",
   ];
 
+  /**
+   * Smoothly scrolls the chat viewport to the newest message.
+   */
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  /**
+   * Lifecycle & Body Scroll Lock:
+   * Disables background page scrolling when the modal is open.
+   */
   useEffect(() => {
     if (isOpen) {
       scrollToBottom();
@@ -57,6 +94,9 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
     }
   }, [isOpen, messages, isTyping]);
 
+  /**
+   * Escape key listener to close modal.
+   */
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) onClose();
@@ -65,6 +105,12 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  /**
+   * KNOWLEDGE BASE RETRIEVAL ENGINE:
+   * 
+   * Compares the input prompt against Yousef's authentic background and returns
+   * tailored, factual responses.
+   */
   const generateResponse = (prompt: string): string => {
     const lower = prompt.toLowerCase();
 
@@ -98,10 +144,20 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
     return `Yousef Abdallah is a Computer Engineering student and Full-Stack Developer with hands-on experience in Next.js, React, React Native, Node.js, GraphQL, PostgreSQL, Prisma, GCP, and Terraform. Would you like to know more about his work at Codebrave, The Agile Labs, or his contact information?`;
   };
 
+  /**
+   * TOKEN STREAM SIMULATOR:
+   * 
+   * 1. Records the user message immediately into state.
+   * 2. Retrieves full answer text from knowledge base.
+   * 3. Uses an incremental timer slice (`slice(0, currentIdx)`) every 20ms to emit
+   *    5 characters per tick, creating a realistic generative typing feel.
+   * 4. Updates or appends to a temporary streaming message item in state.
+   */
   const handleSend = (textToSend?: string) => {
     const query = textToSend || inputValue;
     if (!query.trim() || isTyping) return;
 
+    // 1. Post user message
     const userMsg: Message = {
       id: Date.now().toString(),
       sender: 'user',
@@ -115,6 +171,7 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
 
     const fullResponse = generateResponse(query);
 
+    // 2. Stream tokens in small chunks
     let currentIdx = 0;
     const interval = setInterval(() => {
       currentIdx += 5;
@@ -123,11 +180,13 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
       setMessages((prev) => {
         const last = prev[prev.length - 1];
         if (last && last.sender === 'assistant' && last.id === 'streaming-temp') {
+          // Replace content of active temporary message
           return [
             ...prev.slice(0, -1),
             { ...last, text: partial },
           ];
         } else {
+          // First token received: initialize temporary message entry
           return [
             ...prev,
             {
@@ -140,8 +199,10 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
         }
       });
 
+      // Stream completion check
       if (currentIdx >= fullResponse.length) {
         clearInterval(interval);
+        // Finalize temporary message with permanent ID and full text
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === 'streaming-temp' ? { ...msg, id: Date.now().toString(), text: fullResponse } : msg
@@ -152,6 +213,9 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
     }, 20);
   };
 
+  /**
+   * Resets chat history back to initial greeting.
+   */
   const handleReset = () => {
     setMessages([
       {
@@ -167,11 +231,13 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8">
+      {/* Dimmed Backdrop with Blur */}
       <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
 
+      {/* Modal Dialog Box */}
       <div className="relative w-full max-w-2xl h-[620px] bg-[#0c111c] border border-cyan-800/40 rounded-2xl shadow-2xl flex flex-col z-10 overflow-hidden">
         
-        {/* Header */}
+        {/* Header Bar */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-slate-900/90 border-b border-slate-800">
           <div className="flex items-center gap-2.5">
             <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-500/40 text-cyan-400">
@@ -196,7 +262,7 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
           <div className="flex items-center gap-1.5">
             <button
               onClick={handleReset}
-              className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+              className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
               title="Reset conversation"
             >
               <RotateCcw className="w-4 h-4" />
@@ -211,7 +277,7 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
           </div>
         </div>
 
-        {/* Messages Body */}
+        {/* Scrollable Messages Stream */}
         <div className="flex-1 p-4 sm:p-5 overflow-y-auto space-y-4">
           {messages.map((msg) => (
             <div
@@ -220,6 +286,7 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
                 msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
               }`}
             >
+              {/* Avatar Icon */}
               <div
                 className={`w-7 h-7 rounded-lg shrink-0 flex items-center justify-center text-xs ${
                   msg.sender === 'user'
@@ -230,6 +297,7 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
                 {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
               </div>
 
+              {/* Message Bubble */}
               <div
                 className={`max-w-[82%] rounded-2xl p-3.5 text-xs sm:text-sm leading-relaxed ${
                   msg.sender === 'user'
@@ -245,6 +313,7 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
             </div>
           ))}
 
+          {/* Typing Indicator Banner */}
           {isTyping && messages[messages.length - 1]?.sender === 'user' && (
             <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs pl-10">
               <Sparkles className="w-3.5 h-3.5 animate-spin" />
@@ -271,7 +340,7 @@ export const AiCopilotModal: React.FC<AiCopilotModalProps> = ({ isOpen, onClose 
           </div>
         </div>
 
-        {/* Input Bar */}
+        {/* Prompt Input Form */}
         <div className="p-3 bg-slate-900/90 border-t border-slate-800">
           <form
             onSubmit={(e) => {

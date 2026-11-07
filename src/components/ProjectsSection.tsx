@@ -14,8 +14,26 @@ import { portfolioData, Project } from '../data/portfolioData';
 import { ProjectDetailModal } from './ProjectDetailModal';
 import { GithubIcon } from './Icons';
 
+/**
+ * ProjectsSection Component
+ * 
+ * Manages the presentation of engineering case studies and applications.
+ * 
+ * Architectural Highlights:
+ * 1. Safe Empty-State Fallback:
+ *    When `portfolioData.projects` is empty, it renders an intentional "Projects Currently Being Documented"
+ *    slate with direct call-to-actions to GitHub and the Contact form, preventing awkward blank spaces.
+ * 2. Category Filtering:
+ *    When projects are added, allows filtering by 'all', 'fullstack', and 'ai'.
+ * 3. Deep Dive Case Study Modal:
+ *    Clicking any project card reveals a full architectural breakdown with problem, solution,
+ *    and quantifiable metrics via `ProjectDetailModal`.
+ */
 export const ProjectsSection: React.FC = () => {
+  // Category filter state
   const [filter, setFilter] = useState<'all' | 'ai' | 'fullstack' | 'systems'>('all');
+
+  // Currently inspected project for modal view (null = modal closed)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filterTabs = [
@@ -24,6 +42,7 @@ export const ProjectsSection: React.FC = () => {
     { id: 'ai', label: 'AI & Systems' },
   ] as const;
 
+  // Filter project dataset based on active tab
   const filteredProjects = portfolioData.projects.filter((p) => {
     if (filter === 'all') return true;
     return p.category === filter;
@@ -48,6 +67,7 @@ export const ProjectsSection: React.FC = () => {
             </p>
           </div>
 
+          {/* Render category filter buttons only if projects exist */}
           {portfolioData.projects.length > 0 && (
             <div className="flex flex-wrap items-center gap-2">
               {filterTabs.map((tab) => {
@@ -70,7 +90,7 @@ export const ProjectsSection: React.FC = () => {
           )}
         </div>
 
-        {/* Empty State / Projects in Progress */}
+        {/* 1. Empty State Placeholder: Displayed when `projects.length === 0` */}
         {portfolioData.projects.length === 0 ? (
           <div className="glass-panel rounded-2xl p-8 sm:p-14 border border-slate-800 text-center max-w-3xl mx-auto space-y-6 shadow-2xl">
             <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-cyan-950/80 border border-cyan-700/50 text-cyan-400 mx-auto">
@@ -108,6 +128,7 @@ export const ProjectsSection: React.FC = () => {
             </div>
           </div>
         ) : (
+          /* 2. Grid of Projects: Displayed whenever projects are added to `portfolioData.projects` */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
               <div
@@ -130,6 +151,7 @@ export const ProjectsSection: React.FC = () => {
                       <button
                         onClick={() => setSelectedProject(project)}
                         className="text-slate-500 hover:text-cyan-400 p-1 cursor-pointer"
+                        title="View Case Study"
                       >
                         <ArrowUpRight className="w-4 h-4" />
                       </button>
@@ -146,6 +168,7 @@ export const ProjectsSection: React.FC = () => {
 
       </div>
 
+      {/* Case Study Deep-Dive Modal */}
       <ProjectDetailModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
