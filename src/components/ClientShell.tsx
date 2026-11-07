@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { PlayfulBackground } from './PlayfulBackground';
-import { PlayfulCursor } from './PlayfulCursor';
 import { Navbar } from './Navbar';
 import { Hero } from './Hero';
 import { SkillsSection } from './SkillsSection';
@@ -25,10 +24,7 @@ export const ClientShell: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#090D16] text-slate-100 relative overflow-x-hidden selection:bg-amber-400 selection:text-slate-950 font-sans">
-      {/* 1. Fluid Custom Blob Cursor (desktop only) */}
-      <PlayfulCursor />
-
-      {/* 2. Warm Colorful Ambient Background */}
+      {/* 1. Warm Colorful Ambient Background */}
       <PlayfulBackground />
 
       {/* 3. Navigation Header */}
