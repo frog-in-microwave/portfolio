@@ -28,8 +28,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot }) => {
   const phrases = [
     "Next.js 16 Web Applications",
     "React Native Mobile Apps",
-    "GCP Cloud Run & Terraform (IaC)",
-    "PostgreSQL, Prisma & GraphQL APIs"
+    "GCP / AWS and Cloud Terraform (IaC)",
+    "PostgreSQL & MongoDB APIs"
   ];
 
   useEffect(() => {
@@ -77,17 +77,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot }) => {
             Yousef Abdallah
           </h1>
 
-          {/* Professional Tech Tag Pills with Icons (No Emojis) */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-1">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-sm">
+          {/* Professional Tech Tag Pills with Icons & Rotations */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-2">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm rotate-[-2deg] shadow-md shadow-amber-400/20 transform hover:scale-105 transition-transform">
               <Code2 className="w-3.5 h-3.5 text-slate-950" />
               <span>Full-Stack Developer</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500 text-white font-bold text-xs sm:text-sm shadow-sm">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-rose-500 text-white font-bold text-xs sm:text-sm rotate-[1.5deg] shadow-md shadow-rose-500/20 transform hover:scale-105 transition-transform">
               <Bot className="w-3.5 h-3.5 text-white" />
               <span>AI Systems Engineer</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-violet-600 text-white font-bold text-xs sm:text-sm shadow-sm">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-violet-600 text-white font-bold text-xs sm:text-sm rotate-[-1deg] shadow-md shadow-violet-600/20 transform hover:scale-105 transition-transform">
               <Cloud className="w-3.5 h-3.5 text-white" />
               <span>GCP & Terraform</span>
             </span>

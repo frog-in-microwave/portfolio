@@ -59,7 +59,7 @@ export const portfolioData = {
     resumeUrl: "/resume.pdf",
     statusBadge: "Available for Full-Stack & AI Engineering Opportunities",
     isAvailable: true,
-    bio: "Computer Engineering student and Full-Stack Developer crafting fast, scalable web and mobile applications with Next.js, React Native, and GCP cloud infrastructure.",
+    bio: "Computer Engineering student and Full-Stack Developer crafting fast, scalable web and mobile applications with Next.js, React Native, and GCP or AWS cloud infrastructure.",
     stats: [
       { label: "Completed Projects & Deployments", value: "8+" },
       { label: "Engineering Disciplines", value: "Full-Stack & Cloud" },

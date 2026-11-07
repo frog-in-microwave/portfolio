@@ -112,9 +112,8 @@ export const SkillsSection: React.FC = () => {
                         key={skill.name}
                         className={`p-3 rounded-2xl border transition-all ${theme.tagBg}`}
                       >
-                        <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
-                          <span>{skill.name}</span>
-                          <span className="font-mono text-xs opacity-75">{skill.level}%</span>
+                        <div className="text-xs sm:text-sm font-bold text-slate-100">
+                          {skill.name}
                         </div>
                         {skill.highlight && (
                           <div className="text-[11px] font-mono text-slate-400 mt-1">

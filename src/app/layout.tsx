@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F59E0B'><circle cx='12' cy='12' r='10'/><path d='M8 14s1.5 2 4 2 4-2 4-2' stroke='%23000' stroke-width='2' stroke-linecap='round'/><circle cx='9' cy='9' r='1.5' fill='%23000'/><circle cx='15' cy='9' r='1.5' fill='%23000'/></svg>",
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F59E0B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m18 16 4-4-4-4'/><path d='m6 8-4 4 4 4'/><path d='m14.5 4-5 16'/></svg>",
   },
 };
 
