@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Smile, Sparkles, FileText, Heart } from 'lucide-react';
+import { ArrowUp, Code2, Sparkles, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface FooterProps {
@@ -9,7 +9,7 @@ interface FooterProps {
 }
 
 /**
- * Footer Component - Colorful & Tactile
+ * Footer Component - Clean & Professional
  */
 export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
   const [currentTime, setCurrentTime] = useState<string>('');
@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
           {/* Logo & Headline */}
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-amber-400/15 border border-amber-400/30 text-amber-400 flex items-center justify-center">
-              <Smile className="w-5 h-5" />
+              <Code2 className="w-5 h-5" />
             </div>
             <div>
               <span className="font-heading font-extrabold text-white text-base">
@@ -99,11 +99,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
         {/* Bottom Colophon */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
           <p>
-            © {new Date().getFullYear()} {portfolioData.profile.name}. Handcrafted with passion.
+            © {new Date().getFullYear()} {portfolioData.profile.name}. All rights reserved.
           </p>
 
           <p className="flex items-center gap-1">
-            Built with Next.js 16, React 19, TypeScript & Tailwind CSS
+            Engineered with Next.js 16, React 19, TypeScript & Tailwind CSS
           </p>
         </div>
 

@@ -53,8 +53,9 @@ export const ProjectsSection: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            <div className="inline-block px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-xs font-mono font-bold text-amber-300">
-              ⚡ LIVE WORKSHOP
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-xs font-mono font-bold text-amber-300">
+              <FolderGit2 className="w-3.5 h-3.5 text-amber-400" />
+              <span>LIVE WORKSHOP</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               Projects Currently in the Lab

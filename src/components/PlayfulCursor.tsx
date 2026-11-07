@@ -5,15 +5,14 @@ import React, { useEffect, useState, useRef } from 'react';
 /**
  * PlayfulCursor Component
  * 
- * Replaces the default system arrow with a goofy, squishy, expressive blob
- * that reacts to hovering and clicking.
+ * Replaces the system pointer with a tactile, fluid blob that follows the cursor
+ * with physics-based linear interpolation (lerp).
  * 
  * Features:
- * 1. Smooth Spring Physics: Uses linear interpolation (lerp) to follow mouse movement with buoyant inertia.
- * 2. Expressive Face & Morphing Blob: Animated squishy geometry with two playful eye dots that blink.
- * 3. Hover Reaction: Expands and changes color when hovering clickable elements (`a`, `button`, inputs).
- * 4. Click Squish: Compresses (`scale: 0.75`) on mousedown.
- * 5. Touch Friendly: Completely disabled on phones/touchscreens to preserve 100% natural touch scrolling.
+ * 1. Fluid Inertia: Lerps towards cursor coordinates at 60 FPS.
+ * 2. Morphing Geometry: Organic blob shape with smooth breathing animations.
+ * 3. Element Reaction: Expands smoothly on clickable elements and compresses on mousedown.
+ * 4. Zero Mobile Interference: Automatically disabled on touch screens.
  */
 export const PlayfulCursor: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -29,7 +28,7 @@ export const PlayfulCursor: React.FC = () => {
   const trailingPos = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
-    // Check if device supports fine hover (desktop/laptop with mouse)
+    // Only mount on devices with a mouse/trackpad
     const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (!hasMouse) return;
 
@@ -44,7 +43,7 @@ export const PlayfulCursor: React.FC = () => {
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
-    // Detect clickable elements for goofy expansion
+    // Detect clickable elements for fluid expansion
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (
@@ -71,14 +70,13 @@ export const PlayfulCursor: React.FC = () => {
     window.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseleave', handleMouseLeave);
 
-    // Animation frame loop for buttery smooth 60fps tracking
     let frameId: number;
     const render = () => {
       // Lerp main blob
       cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * 0.25;
       cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * 0.25;
 
-      // Slower lerp for playful trailing aura
+      // Trailing glow ring
       trailingPos.current.x += (mousePos.current.x - trailingPos.current.x) * 0.12;
       trailingPos.current.y += (mousePos.current.y - trailingPos.current.y) * 0.12;
 
@@ -109,24 +107,24 @@ export const PlayfulCursor: React.FC = () => {
 
   return (
     <>
-      {/* Playful Trailing Halo */}
+      {/* Fluid Trailing Ring */}
       <div
         ref={trailingRef}
         className={`fixed top-0 left-0 pointer-events-none z-[9998] transition-opacity duration-300 ${
-          isVisible ? 'opacity-40' : 'opacity-0'
+          isVisible ? 'opacity-35' : 'opacity-0'
         }`}
         style={{ willChange: 'transform' }}
       >
         <div
           className={`rounded-full blur-md transition-all duration-300 ${
             isHovering
-              ? 'w-14 h-14 bg-gradient-to-tr from-rose-500 to-amber-400'
-              : 'w-10 h-10 bg-gradient-to-tr from-amber-400 to-cyan-400'
+              ? 'w-12 h-12 bg-gradient-to-tr from-rose-500 to-amber-400'
+              : 'w-8 h-8 bg-gradient-to-tr from-amber-400 to-cyan-400'
           }`}
         />
       </div>
 
-      {/* Main Goofy Squishy Blob Cursor */}
+      {/* Main Fluid Blob Cursor */}
       <div
         ref={cursorRef}
         className={`fixed top-0 left-0 pointer-events-none z-[9999] transition-opacity duration-200 ${
@@ -135,7 +133,7 @@ export const PlayfulCursor: React.FC = () => {
         style={{ willChange: 'transform' }}
       >
         <div
-          className={`relative flex items-center justify-center transition-all duration-200 ${
+          className={`relative transition-all duration-200 ${
             isClicking
               ? 'scale-75'
               : isHovering
@@ -143,27 +141,13 @@ export const PlayfulCursor: React.FC = () => {
               : 'scale-100'
           }`}
         >
-          {/* Morphing Blob Body */}
           <div
-            className={`animate-blob-wobble shadow-lg transition-colors duration-300 flex items-center justify-center ${
+            className={`animate-blob-wobble shadow-lg transition-colors duration-300 ${
               isHovering
-                ? 'w-9 h-9 bg-gradient-to-br from-rose-400 to-amber-400 text-slate-950 shadow-rose-500/40'
-                : 'w-7 h-7 bg-gradient-to-br from-amber-300 to-amber-500 text-slate-950 shadow-amber-500/40'
+                ? 'w-7 h-7 bg-gradient-to-br from-rose-400 to-amber-400 shadow-rose-500/40'
+                : 'w-5 h-5 bg-gradient-to-br from-amber-300 to-amber-500 shadow-amber-500/40'
             }`}
-          >
-            {/* Goofy Mini Face */}
-            <div className="flex items-center gap-1">
-              <span className="w-1 h-1.5 bg-slate-950 rounded-full animate-pulse" />
-              <span className="w-1 h-1.5 bg-slate-950 rounded-full animate-pulse" />
-            </div>
-          </div>
-
-          {/* Mini Cute Hover Tag */}
-          {isHovering && (
-            <span className="absolute -top-3 left-6 px-1.5 py-0.2 text-[9px] font-bold rounded-full bg-amber-400 text-slate-950 shadow-sm whitespace-nowrap">
-              tap!
-            </span>
-          )}
+          />
         </div>
       </div>
     </>

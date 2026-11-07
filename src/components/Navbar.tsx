@@ -7,7 +7,7 @@ import {
   Menu, 
   X, 
   Sparkles,
-  Smile
+  Code2
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -16,13 +16,7 @@ interface NavbarProps {
 }
 
 /**
- * Navbar Component - Colorful & Ultra-Mobile-Responsive
- * 
- * Features:
- * - Playful branding with colorful emoji badge
- * - Tactile floating pill navigation
- * - Thumb-friendly tap targets for mobile phones
- * - Real-time active section indicator
+ * Navbar Component - Clean, Professional & Separated Sections
  */
 export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -34,6 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -41,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ['about', 'skills', 'projects', 'experience', 'contact'];
+      const sections = ['about', 'skills', 'projects', 'experience', 'education', 'contact'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
@@ -69,14 +64,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           
-          {/* Brand Logo with Playful Pop Dot */}
+          {/* Brand Logo & Name */}
           <a 
             href="#" 
             className="flex items-center gap-2.5 group focus:outline-none rounded-xl"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 via-rose-500 to-violet-500 p-[2px] shadow-md shadow-amber-500/20 group-hover:rotate-6 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 via-rose-500 to-violet-500 p-[1.5px] shadow-sm group-hover:scale-105 transition-transform">
               <div className="w-full h-full bg-[#0E1424] rounded-[10px] flex items-center justify-center text-amber-400">
-                <Smile className="w-5 h-5" />
+                <Code2 className="w-4 h-4" />
               </div>
             </div>
             <div>
@@ -100,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
                     isActive
                       ? 'text-slate-950 bg-amber-400 shadow-sm shadow-amber-400/30'
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
@@ -114,7 +109,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
 
           {/* Action Hub */}
           <div className="hidden sm:flex items-center gap-2.5">
-            {/* Ask Copilot Button with Gradient */}
             <button
               onClick={onOpenCopilot}
               className="group flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-xl bg-gradient-to-r from-amber-400 via-rose-500 to-violet-600 text-slate-950 hover:brightness-110 shadow-md shadow-rose-500/20 transition-all cursor-pointer"
@@ -124,7 +118,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
               <Sparkles className="w-3 h-3 text-slate-950 animate-pulse" />
             </button>
 
-            {/* Resume Link */}
             <a
               href="/resume.pdf"
               target="_blank"
@@ -136,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
             </a>
           </div>
 
-          {/* Mobile Right Controls: Copilot & Hamburger */}
+          {/* Mobile Right Controls */}
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={onOpenCopilot}
@@ -158,7 +151,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
         </div>
       </div>
 
-      {/* Slide-Down Mobile Drawer (Large Thumb-Friendly Buttons) */}
+      {/* Slide-Down Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#0D1321]/95 backdrop-blur-2xl border-b border-white/10 px-5 pt-4 pb-6 space-y-3 shadow-2xl">
           <nav className="flex flex-col space-y-1">

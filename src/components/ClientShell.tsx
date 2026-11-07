@@ -8,38 +8,43 @@ import { Hero } from './Hero';
 import { SkillsSection } from './SkillsSection';
 import { ProjectsSection } from './ProjectsSection';
 import { ExperienceSection } from './ExperienceSection';
+import { EducationSection } from './EducationSection';
 import { ContactSection } from './ContactSection';
 import { Footer } from './Footer';
 import { AiCopilotModal } from './AiCopilotModal';
 import { Bot, Sparkles } from 'lucide-react';
 
 /**
- * ClientShell Component - High Personality, Colorful & Mobile First
+ * ClientShell Component
+ * 
+ * Top-level interactive client wrapper coordinating state for modals,
+ * custom cursor, dynamic background, and separate content sections.
  */
 export const ClientShell: React.FC = () => {
   const [copilotOpen, setCopilotOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#090D16] text-slate-100 relative overflow-x-hidden selection:bg-amber-400 selection:text-slate-950 font-sans">
-      {/* 1. Goofy Custom Blob Cursor (Only active on fine pointer / desktop devices) */}
+      {/* 1. Fluid Custom Blob Cursor (desktop only) */}
       <PlayfulCursor />
 
-      {/* 2. Warm Colorful Background Gradients & Dot Grid */}
+      {/* 2. Warm Colorful Ambient Background */}
       <PlayfulBackground />
 
-      {/* 3. Responsive Header Navbar */}
+      {/* 3. Navigation Header */}
       <Navbar onOpenCopilot={() => setCopilotOpen(true)} />
 
-      {/* 4. Main Page Sections */}
+      {/* 4. Main Page Sections (Experience and Education Separated) */}
       <main className="relative z-10">
         <Hero onOpenCopilot={() => setCopilotOpen(true)} />
         <SkillsSection />
         <ProjectsSection />
         <ExperienceSection />
+        <EducationSection />
         <ContactSection />
       </main>
 
-      {/* 5. Footer with Beirut Timezone Clock */}
+      {/* 5. Footer */}
       <Footer onOpenCopilot={() => setCopilotOpen(true)} />
 
       {/* 6. Conversational AI Copilot Modal */}
@@ -48,7 +53,7 @@ export const ClientShell: React.FC = () => {
         onClose={() => setCopilotOpen(false)}
       />
 
-      {/* 7. Floating Thumb-Friendly Action Button on Mobile & Desktop */}
+      {/* 7. Floating Action Button */}
       <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-30">
         <button
           onClick={() => setCopilotOpen(true)}

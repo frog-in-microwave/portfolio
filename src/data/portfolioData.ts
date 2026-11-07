@@ -59,7 +59,7 @@ export const portfolioData = {
     resumeUrl: "/resume.pdf",
     statusBadge: "Available for Full-Stack & AI Engineering Opportunities",
     isAvailable: true,
-    bio: "Computer Engineering student and versatile Full-Stack Developer & AI Engineer with hands-on experience delivering web and mobile applications across the MERN and Next.js ecosystems, automated cloud infrastructure (GCP, Terraform, Cloud Run), and scalable data systems (PostgreSQL, Prisma, Firebase GraphQL, MongoDB).",
+    bio: "Computer Engineering student and Full-Stack Developer crafting fast, scalable web and mobile applications with Next.js, React Native, and GCP cloud infrastructure.",
     stats: [
       { label: "Completed Projects & Deployments", value: "8+" },
       { label: "Engineering Disciplines", value: "Full-Stack & Cloud" },
