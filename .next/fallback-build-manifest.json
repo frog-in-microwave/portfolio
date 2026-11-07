@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "/_app": []
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [
+    "static/RdienpdPDHacv-4g2vb4A/_buildManifest.js",
+    "static/RdienpdPDHacv-4g2vb4A/_ssgManifest.js",
+    "static/RdienpdPDHacv-4g2vb4A/_clientMiddlewareManifest.js"
+  ],
+  "rootMainFiles": [],
+  "rootMainFilesTree": {},
+  "pagesChunkGroupBootstrapParams": {}
+}

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Code2, Heart, Terminal, Sparkles } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';

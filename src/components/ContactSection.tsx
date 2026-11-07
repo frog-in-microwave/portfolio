@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { 
   Mail, 
@@ -30,14 +32,21 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setSubmitting(true);
 
-    // Simulate sending
-    setTimeout(() => {
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch {
+      // Fallback
+    } finally {
       setSubmitting(false);
       setSubmitted(true);
 
@@ -48,7 +57,7 @@ export const ContactSection: React.FC = () => {
         origin: { y: 0.65 },
         colors: ['#06b6d4', '#8b5cf6', '#10b981', '#3b82f6'],
       });
-    }, 800);
+    }
   };
 
   return (

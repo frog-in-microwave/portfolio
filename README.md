@@ -1,52 +1,59 @@
-# ⚡ High-Impact Full-Stack Web Developer & AI Engineer Portfolio
+# ⚡ High-Impact Full-Stack Web Developer & AI Engineer Portfolio (Next.js 16)
 
-A modern, high-performance developer portfolio engineered specifically for **Full Stack Web Developers & AI Systems Engineers**. Designed to showcase both deep software engineering craftsmanship (responsive client architecture, distributed backends, microservices) and state-of-the-art machine learning capabilities (autonomous agents, LangGraph, RAG pipelines, vector retrieval).
+A modern, high-performance developer portfolio engineered specifically for **Full Stack Web Developers & AI Systems Engineers**, built on **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Tailwind CSS**.
 
-Built with **React 19, TypeScript, Tailwind CSS, Vite, and Framer Motion**.
+Designed to showcase both deep software engineering craftsmanship (responsive client architecture, distributed backends, microservices) and state-of-the-art machine learning capabilities (autonomous agents, LangGraph, RAG pipelines, vector retrieval).
 
 ---
 
 ## 🌟 Key Features
 
-1. **Dynamic Neural Background Canvas**
+1. **Next.js 16 App Router Architecture**
+   - Server-side metadata, OpenGraph tags, and SEO optimization.
+   - Built-in Next.js Route Handlers:
+     - [`src/app/api/copilot/route.ts`](src/app/api/copilot/route.ts): Server endpoint processing portfolio inquiries.
+     - [`src/app/api/contact/route.ts`](src/app/api/contact/route.ts): Server endpoint handling contact transmissions.
+
+2. **Dynamic Neural Background Canvas**
    - Lightweight, hardware-accelerated interactive canvas that renders neural nodes and synaptic connections reacting in real-time to cursor movement.
 
-2. **Hero Section with Live AI Pipeline Sandbox**
+3. **Hero Section with Live AI Pipeline Sandbox**
    - Dynamic typewriter effect highlighting core competencies.
    - Interactive **"Run Trace"** sandbox that demonstrates an end-to-end full-stack AI execution flow: API Gateway -> Hybrid Vector Search (Milvus) -> LangGraph Agent Reasoning DAG -> Reactive WebSocket Token Streaming.
 
-3. **Full-Stack System Architecture Explorer**
+4. **Full-Stack System Architecture Explorer**
    - Interactive 5-layer system design breakdown demonstrating how you architect production-scale systems:
-     - *Layer 01*: Reactive Client & UI Layer (React 19, Next.js, WebSockets, Zustand)
+     - *Layer 01*: Reactive Client & UI Layer (Next.js, React 19, WebSockets, Zustand)
      - *Layer 02*: Edge Gateway & Distributed Routing (FastAPI / Go, sliding window rate limits, JWT)
      - *Layer 03*: Agentic Orchestration & Reasoning DAG (LangGraph, cyclic state, guardrails)
      - *Layer 04*: Hybrid Vector & Semantic Memory (Milvus dense search, BM25 lexical, Redis semantic cache)
      - *Layer 05*: Cloud Infrastructure & MLOps Observability (Kubernetes, Docker, ArgoCD, ClickHouse)
 
-4. **Conversational AI Portfolio Copilot (`Ask AI Copilot`)**
+5. **Conversational AI Portfolio Copilot (`Ask AI Copilot`)**
    - Interactive modal simulating an intelligent AI assistant trained on your background, technical philosophies, and projects.
    - Realistic token streaming effect, pre-configured quick prompts, and dynamic responses.
 
-5. **Developer CLI Terminal Mode (`vance-cli v2.4`)**
-   - Accessible via keyboard shortcut (`Ctrl + K` or `Cmd + K`) or navigation button.
+6. **Developer CLI Terminal Mode (`vance-cli v2.4`)**
+   - Accessible via keyboard shortcut (<kbd>Ctrl</kbd> + <kbd>K</kbd> or <kbd>Cmd</kbd> + <kbd>K</kbd>) or navigation button.
    - Interactive shell supporting commands: `help`, `whoami`, `skills`, `projects`, `experience`, `contact`, `cat resume.md`, `clear`, and `exit`.
 
-6. **Filterable Production Projects & Case Study Modal**
+7. **Filterable Production Projects & Case Study Modal**
    - Categorized by **AI & LLM Architectures**, **Full-Stack Web**, and **Distributed Systems**.
    - Deep-dive modal for each project displaying the engineering problem, architectural solution, technical innovations, and impact metrics.
 
-7. **Interactive Skills Matrix**
+8. **Interactive Skills Matrix**
    - Filterable tabs across AI & ML, Frontend, Backend & Systems, and Cloud/MLOps.
    - Visual proficiency indicators and practical production highlights for every technology.
 
-8. **Career Milestones & Social Proof**
+9. **Career Milestones & Social Proof**
    - Timeline with quantifiable achievements and role badges.
    - Endorsements from engineering leaders and research collaborators.
 
-9. **Interactive Contact Form with Confetti Blast**
-   - One-click copy email button with instant feedback.
-   - Direct inquiry submission with celebratory confetti explosion (`canvas-confetti`).
-   - Live HQ timezone clock in the footer.
+10. **Interactive Contact Form with Confetti Blast**
+    - Submits directly to the Next.js API route (`/api/contact`).
+    - One-click copy email button with instant feedback.
+    - Direct inquiry submission with celebratory confetti explosion (`canvas-confetti`).
+    - Live HQ timezone clock in the footer.
 
 ---
 
@@ -57,17 +64,21 @@ Built with **React 19, TypeScript, Tailwind CSS, Vite, and Framer Motion**.
 npm install
 ```
 
-### 2. Start the Local Development Server
+### 2. Start the Next.js Development Server
 ```bash
 npm run dev
 ```
-Open your browser at `http://localhost:5173`.
+Open your browser at `http://localhost:3000`.
 
 ### 3. Build for Production
 ```bash
 npm run build
 ```
-Creates an optimized static bundle in the `dist/` directory ready for instant zero-config deployment.
+
+### 4. Run the Production Server
+```bash
+npm run start
+```
 
 ---
 
@@ -100,19 +111,9 @@ In the `portfolioData.projects` array, replace or add your own projects. Each pr
 
 ---
 
-## 📦 Deployment
-
-### Deploy to Vercel (Recommended)
+## 📦 Deployment to Vercel
+Since this is a native Next.js application, deployment to Vercel is one-click:
 ```bash
 npm install -g vercel
 vercel
 ```
-
-### Deploy to Netlify
-```bash
-npm install -g netlify-cli
-netlify deploy --prod --dir=dist
-```
-
-### Deploy to GitHub Pages
-You can configure a GitHub Action to deploy `dist/` directly on push to `main`.
