@@ -28,342 +28,176 @@ export interface Experience {
 
 export interface SkillItem {
   name: string;
-  level: number; // 1 - 100
-  icon?: string;
+  level: number;
   highlight?: string;
 }
 
-export interface SkillCategory {
-  title: string;
-  description: string;
-  skills: SkillItem[];
+export interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  location: string;
+  description?: string;
 }
 
-export interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  avatar: string;
-  content: string;
-  relation: string;
+export interface Training {
+  title: string;
+  institution: string;
 }
 
 export const portfolioData = {
   profile: {
-    name: "Alex Vance",
-    role: "Full Stack Web Developer & AI Engineer",
-    secondaryTitle: "Distributed Systems • RAG & Agentic AI • Modern Web Architectures",
-    location: "San Francisco, CA / Remote",
-    statusBadge: "Available for High-Impact Roles & AI Consulting",
-    isAvailable: true,
-    bio: "Bridging modern full-stack web scalability with production-grade AI & LLM architectures. Over 5 years of engineering experience delivering enterprise web applications, real-time distributed backends, autonomous agent workflows, and low-latency retrieval systems.",
-    aboutLong: [
-      "I operate at the intersection of robust full-stack software engineering and state-of-the-art machine learning. Whether designing fault-tolerant microservices handling millions of events or architecting multi-agent reasoning loops with LangGraph and vector search, I prioritize performance, maintainability, and user delight.",
-      "My foundational philosophy is that AI is only as powerful as the systems and interfaces that deliver it. I build fast, accessible, and reactive frontend experiences backed by bulletproof, cloud-native backend infrastructure.",
-    ],
-    email: "alex.vance.dev@gmail.com",
+    name: "Yousef Abdallah",
+    role: "Full-Stack Web Developer & AI Engineer",
+    secondaryTitle: "Next.js • React / React Native • Node.js • Cloud & DevOps • Python",
+    location: "Beirut / Saida, Lebanon (Open to Remote)",
+    phone: "+961 70646225",
+    email: "yousef.abdallah.lbx@gmail.com",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com",
-    resumeUrl: "#",
+    resumeUrl: "/resume.pdf",
+    statusBadge: "Available for Full-Stack & AI Engineering Opportunities",
+    isAvailable: true,
+    bio: "Computer Engineering student and versatile Full-Stack Developer & AI Engineer with hands-on experience delivering web and mobile applications across the MERN and Next.js ecosystems, automated cloud infrastructure (GCP, Terraform, Cloud Run), and scalable data systems (PostgreSQL, Prisma, Firebase GraphQL, MongoDB).",
     stats: [
-      { label: "Production Apps Deployed", value: "24+" },
-      { label: "Years Engineering", value: "5+" },
-      { label: "Daily AI Requests Handled", value: "1.8M+" },
-      { label: "Production Uptime", value: "99.98%" },
+      { label: "Completed Projects & Deployments", value: "8+" },
+      { label: "Engineering Disciplines", value: "Full-Stack & Cloud" },
+      { label: "Cloud Platforms", value: "GCP & Terraform" },
+      { label: "Methodology", value: "Agile & CI/CD" },
     ],
   },
 
-  skills: {
-    ai: {
-      title: "AI & Machine Learning",
-      description: "Production LLM systems, agent orchestration, retrieval-augmented generation, and fine-tuning.",
-      skills: [
-        { name: "Autonomous Agents & LangGraph", level: 95, highlight: "State machines, human-in-the-loop, tool use" },
-        { name: "RAG & Vector Retrieval", level: 96, highlight: "Hybrid search, reranking, chunking strategies" },
-        { name: "Vector DBs (Milvus, Pinecone, Chroma)", level: 92, highlight: "HNSW indexing, metadata filtering" },
-        { name: "PyTorch & Transformers", level: 86, highlight: "Model fine-tuning, LoRA/PEFT, evaluation" },
-        { name: "OpenAI / Claude / Gemini APIs", level: 98, highlight: "Structured outputs, function calling, streaming" },
-        { name: "vLLM & Triton Inference", level: 84, highlight: "PagedAttention, low-latency model serving" },
-      ],
+  education: [
+    {
+      degree: "Computer Engineering",
+      institution: "Lebanese International University - Saida",
+      period: "09/2025 - 06/2028",
+      location: "Lebanon",
+      description: "Rigorous engineering curriculum covering computer architecture, algorithms, data structures, software engineering, and systems programming.",
     },
+  ] as Education[],
+
+  trainings: [
+    {
+      title: "Codebrave Python and Web-Dev Program",
+      institution: "Codebrave",
+    },
+  ] as Training[],
+
+  skills: {
     frontend: {
-      title: "Frontend Engineering",
-      description: "High-performance reactive interfaces with modern React, TypeScript, and micro-frontend patterns.",
+      title: "Frontend & Mobile Engineering",
+      description: "Modern, reactive web and mobile interfaces built with TypeScript and state-of-the-art frameworks.",
       skills: [
-        { name: "React 19 & Next.js 15", level: 98, highlight: "App router, Server Components, SSR, ISR" },
-        { name: "TypeScript (Strict)", level: 96, highlight: "Type-safe architectures, generics, zod schemas" },
-        { name: "Tailwind CSS & Design Systems", level: 95, highlight: "Accessible UI, micro-animations, theme tokens" },
-        { name: "State (Zustand, TanStack Query)", level: 94, highlight: "Optimistic updates, cache invalidation" },
-        { name: "WebSockets & Streaming UI", level: 92, highlight: "Real-time AI tokens, collaborative canvases" },
-        { name: "Performance & Core Web Vitals", level: 90, highlight: "Code-splitting, 100/100 Lighthouse targets" },
+        { name: "React & Next.js", level: 92, highlight: "App router, SSR, client-server components, state hooks" },
+        { name: "React Native & Expo", level: 88, highlight: "Cross-platform mobile applications for iOS & Android" },
+        { name: "TypeScript & JavaScript", level: 90, highlight: "Strict typing, ES6+ asynchronous workflows" },
+        { name: "HTML5 & Modern CSS / Tailwind", level: 92, highlight: "Responsive layouts, mobile-first design systems" },
       ],
     },
     backend: {
-      title: "Backend & Systems",
-      description: "Reliable, high-throughput microservices, real-time message streaming, and distributed data stores.",
+      title: "Backend & API Development",
+      description: "Scalable backend services, RESTful APIs, and GraphQL query layers.",
       skills: [
-        { name: "Python (FastAPI, Asyncio)", level: 96, highlight: "Asynchronous APIs, background workers" },
-        { name: "Node.js & Go (Golang)", level: 91, highlight: "High-concurrency daemons, REST & GraphQL" },
-        { name: "PostgreSQL & Prisma / Drizzle", level: 93, highlight: "Relational modeling, indexing, ACID transactions" },
-        { name: "Redis & In-Memory Caching", level: 92, highlight: "Pub/Sub, rate limiting, semantic caching" },
-        { name: "Kafka & Event-Driven Systems", level: 85, highlight: "Distributed queueing, idempotency" },
-        { name: "API Security & OAuth2 / JWT", level: 94, highlight: "RBAC, token rotation, rate-limiting shields" },
+        { name: "Node.js & Express.js", level: 90, highlight: "REST APIs, middleware pipelines, MVC architecture" },
+        { name: "GraphQL & Firebase Data Connect", level: 85, highlight: "Declarative schemas, mutations, and queries" },
+        { name: "MVC Architectural Pattern", level: 88, highlight: "Clean separation of business logic, models & routing" },
       ],
     },
-    devops: {
-      title: "Cloud, DevOps & MLOps",
-      description: "Container orchestration, CI/CD automation, cloud deployment, and observability pipelines.",
+    cloud: {
+      title: "Cloud, Databases & DevOps",
+      description: "Cloud-native deployments, infrastructure as code, and relational / document databases.",
       skills: [
-        { name: "Docker & Containerization", level: 95, highlight: "Multi-stage builds, minimal production images" },
-        { name: "Kubernetes & Helm", level: 82, highlight: "Cluster management, auto-scaling, ingress" },
-        { name: "AWS & GCP Cloud Architecture", level: 90, highlight: "ECS, Lambda, S3, CloudFront, Cloud Run" },
-        { name: "CI/CD (GitHub Actions, ArgoCD)", level: 93, highlight: "Automated linting, testing, canary rollouts" },
-        { name: "LLM Observability (LangSmith, OpenTelemetry)", level: 89, highlight: "Trace tracking, latency & token cost metrics" },
+        { name: "Google Cloud Platform (GCP) & Cloud Run", level: 84, highlight: "Containerized deployment, Cloud Build CI/CD" },
+        { name: "Terraform (Infrastructure as Code)", level: 82, highlight: "Cloud resource orchestration, declarative configs" },
+        { name: "PostgreSQL & Prisma ORM", level: 88, highlight: "Relational data modeling, schema migrations, ACID" },
+        { name: "MongoDB (MERN Stack)", level: 88, highlight: "NoSQL document storage, aggregation pipelines" },
+        { name: "Git & Agile Workflow", level: 92, highlight: "Branching strategies, sprint planning, PR reviews" },
+      ],
+    },
+    languages: {
+      title: "Languages & Core Tools",
+      description: "Multi-paradigm programming languages and CMS engineering.",
+      skills: [
+        { name: "Python", level: 88, highlight: "Data scripting, web backend, and AI integration" },
+        { name: "C++", level: 82, highlight: "Systems programming, algorithms, and performance" },
+        { name: "Java", level: 80, highlight: "Object-oriented design patterns and multi-threading" },
+        { name: "WordPress CMS", level: 85, highlight: "Custom theme customization, layout architecture" },
       ],
     },
   },
 
-  projects: [
-    {
-      id: "agent-forge",
-      title: "AgentForge Platform",
-      tagline: "Autonomous Multi-Agent Workflow Orchestrator & Execution Engine",
-      description: "An enterprise platform that coordinates multi-agent systems for automated codebase refactoring, security auditing, and dynamic synthesis with human-in-the-loop validation.",
-      category: "ai",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-      tags: ["LangGraph", "FastAPI", "React 19", "Milvus", "Docker", "WebSockets"],
-      metrics: [
-        { label: "Refactor Speedup", value: "6.2x" },
-        { label: "Tokens Processed", value: "45M+" },
-        { label: "Accuracy Score", value: "94.8%" },
-      ],
-      problem: "Software teams waste 20+ hours weekly on repetitive cross-repository dependency refactors, boilerplate code migration, and compliance audits.",
-      solution: "Engineered a distributed DAG-based agent orchestrator using LangGraph and FastAPI, streaming step-by-step reasoning tokens to a reactive Next.js dashboard via WebSockets.",
-      architectureHighlights: [
-        "Dynamic multi-agent state machines with cyclic verification loops",
-        "Deterministic sandboxed code execution in ephemeral micro-containers",
-        "Semantic memory retrieval indexed across 12,000+ files using Milvus HNSW",
-      ],
-      githubUrl: "https://github.com/example/agent-forge",
-      liveUrl: "https://agentforge.example.com",
-      featured: true,
-    },
-    {
-      id: "synapse-rag",
-      title: "Synapse Search & RAG",
-      tagline: "Sub-50ms Enterprise Hybrid Retrieval & Semantic Synthesis Engine",
-      description: "High-throughput retrieval-augmented generation engine combining dense vector embeddings with sparse BM25 indexing and cross-encoder neural reranking.",
-      category: "ai",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
-      tags: ["Python", "OpenAI Embeddings", "BM25", "Redis Cache", "TypeScript", "FastAPI"],
-      metrics: [
-        { label: "P99 Query Latency", value: "< 42ms" },
-        { label: "Hallucination Reduction", value: "78%" },
-        { label: "Indexed Documents", value: "2.4M" },
-      ],
-      problem: "Standard naive vector search frequently returned irrelevant chunks on domain-specific acronyms, causing LLM hallucinations in production customer support.",
-      solution: "Constructed a reciprocal rank fusion (RRF) pipeline that unifies BM25 lexical search with OpenAI dense embeddings, followed by a Cohere neural reranking tier.",
-      architectureHighlights: [
-        "Two-tier semantic caching layer using Redis vector similarity to serve 38% of queries instantaneously",
-        "Context-aware hierarchical document chunking with parent-document lookups",
-        "Streaming response generation with markdown citations linked to source PDFs",
-      ],
-      githubUrl: "https://github.com/example/synapse-rag",
-      liveUrl: "https://synapserag.example.com",
-      featured: true,
-    },
-    {
-      id: "omni-pulse",
-      title: "OmniPulse Cloud",
-      tagline: "Real-Time Distributed Telemetry & Anomaly Detection Platform",
-      description: "Full-stack observability suite monitoring microservice fleets with streaming telemetry, real-time alerts, and predictive system anomaly detection.",
-      category: "fullstack",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-      tags: ["Go (Golang)", "React", "Kafka", "TimescaleDB", "Tailwind CSS", "WebSockets"],
-      metrics: [
-        { label: "Events Ingested / Sec", value: "85,000" },
-        { label: "Dashboard Refresh", value: "16ms" },
-        { label: "Uptime Guaranteed", value: "99.99%" },
-      ],
-      problem: "Traditional logging solutions experienced 15-30 second ingestion lags, delaying incident response during high-traffic load spikes.",
-      solution: "Built a high-performance Go ingestion layer connected to Kafka queues, storing metrics in TimescaleDB and streaming continuous canvas charts to a React client.",
-      architectureHighlights: [
-        "Zero-allocation message deserialization in Go handling 85k events/sec per node",
-        "Client-side Canvas 2D charts with hardware-accelerated time-series rendering",
-        "Isolation forest ML models predicting memory leaks 30 minutes before OOM events",
-      ],
-      githubUrl: "https://github.com/example/omnipulse",
-      liveUrl: "https://omnipulse.example.com",
-      featured: true,
-    },
-    {
-      id: "hyper-commerce",
-      title: "Aether Next-Gen Commerce",
-      tagline: "Global E-Commerce Microservices with Real-Time AI Recommenders",
-      description: "End-to-end multi-tenant e-commerce platform featuring instantaneous search, AI-driven dynamic bundling, and fault-tolerant checkout processing.",
-      category: "fullstack",
-      image: "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80",
-      tags: ["Next.js 15", "Node.js", "PostgreSQL", "Stripe Connect", "Redis", "Tailwind"],
-      metrics: [
-        { label: "Conversion Lift", value: "+23.4%" },
-        { label: "Lighthouse Performance", value: "99/100" },
-        { label: "Checkout Failure Rate", value: "0.01%" },
-      ],
-      problem: "Legacy monolithic storefront suffered slow TTFB (850ms) and rigid product recommendations that failed to adapt to in-session consumer behaviors.",
-      solution: "Migrated to Next.js 15 Server Components with an edge-cached Node microservice layer and real-time embedding-based product recommendations.",
-      architectureHighlights: [
-        "Distributed lock mechanism in Redis preventing inventory oversell under flash-sale concurrency",
-        "Optimistic UI updates for cart modifications with rollback safety",
-        "Edge-rendered dynamic SEO pages with sub-80ms First Contentful Paint globally",
-      ],
-      githubUrl: "https://github.com/example/aether-commerce",
-      liveUrl: "https://aethercommerce.example.com",
-      featured: false,
-    },
-    {
-      id: "vision-craft",
-      title: "VisionCraft Studio",
-      tagline: "In-Browser WebGPU Generative Canvas & Neural Inpainting Suite",
-      description: "Creative web studio integrating WebGPU shaders, interactive canvas controls, and cloud generative diffusion pipelines for concept artists.",
-      category: "ai",
-      image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80",
-      tags: ["WebGPU", "React", "TypeScript", "FastAPI", "Stable Diffusion", "WebSockets"],
-      metrics: [
-        { label: "Render Frame Rate", value: "60 FPS" },
-        { label: "Active Creators", value: "14,000+" },
-        { label: "Latency per Brushstroke", value: "< 8ms" },
-      ],
-      problem: "Generative AI web tools often had clunky form-based interfaces with no spatial control or real-time feedback for professional designers.",
-      solution: "Developed an infinite-canvas workspace in React and WebGPU with layer masking, prompt brush inpainting, and asynchronous streaming tile generation.",
-      architectureHighlights: [
-        "Custom WebGPU brush shader engine for instant zero-lag spatial masks",
-        "Asynchronous WebSocket streaming of progressive denoising diffusion steps",
-        "Autoscaling GPU cluster runner deployed on Kubernetes with spot instances",
-      ],
-      githubUrl: "https://github.com/example/visioncraft",
-      liveUrl: "https://visioncraft.example.com",
-      featured: false,
-    },
-    {
-      id: "prompt-pulse",
-      title: "PromptPulse SDK & Observability",
-      tagline: "Production LLM Monitoring, Prompt Versioning & Cost Optimization",
-      description: "Developer tooling ecosystem providing automated regression evaluations, token cost heatmaps, and semantic guardrails for production LLM calls.",
-      category: "systems",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
-      tags: ["TypeScript", "Python SDK", "ClickHouse", "Next.js", "Docker"],
-      metrics: [
-        { label: "Token Cost Saved", value: "34%" },
-        { label: "SDK Overhead", value: "< 1.5ms" },
-        { label: "GitHub Stars", value: "1,200+" },
-      ],
-      problem: "Enterprises deploying LLMs suffered from silent regression errors during prompt edits and unexpected token expenditure spikes.",
-      solution: "Built a zero-latency telemetry SDK in TypeScript and Python that intercepts LLM calls, evaluates semantic drift, and alerts on anomalies.",
-      architectureHighlights: [
-        "Non-blocking background batch telemetry flush to ClickHouse columnar database",
-        "Automated semantic drift regression tester using synthetic test suites",
-        "Pre-inference prompt optimization token compactor reducing costs by 34%",
-      ],
-      githubUrl: "https://github.com/example/prompt-pulse",
-      liveUrl: "https://promptpulse.example.com",
-      featured: false,
-    },
-  ] as Project[],
+  // Projects kept empty as instructed
+  projects: [] as Project[],
 
   experience: [
     {
-      period: "2024 - Present",
-      role: "Senior Full Stack & AI Systems Engineer",
-      company: "Synthetix AI Systems",
-      location: "San Francisco, CA (Hybrid)",
-      type: "Full-Time",
-      description: "Lead architect for enterprise multi-agent workflows and real-time generative interfaces, directing cross-functional teams across backend systems and reactive frontends.",
+      period: "01/2026 - 04/2026",
+      role: "Full-Stack Developer Intern",
+      company: "Codebrave",
+      location: "Beirut, Lebanon",
+      type: "Internship",
+      description: "Engineered core modules for a comprehensive student and training management system serving students, teachers, and trainers across Lebanon.",
       achievements: [
-        "Architected an autonomous multi-agent RAG engine that decreased internal enterprise research cycle times by 65%.",
-        "Spearheaded the migration of frontend architectures to React 19 Server Components, reducing bundle size by 42% and boosting Core Web Vitals to 98+.",
-        "Engineered streaming vector search pipelines processing 1.8M daily semantic requests with sub-50ms P95 latency.",
-        "Mentored a team of 7 engineers in modern TypeScript patterns, LLM evaluation pipelines, and microservice decoupling.",
+        "Contributed to building and scaling a student and training management portal with full role-based access for students, teachers, and trainers.",
+        "Configured GCP, Cloud Run, and Cloud Build pipelines for automated, containerized continuous deployment.",
+        "Wrote and maintained Terraform scripts for Infrastructure as Code (IaC) and reliable cloud resource orchestration.",
+        "Designed PostgreSQL database schemas with Prisma ORM, later spearheading migration to Firebase Data Connect to leverage GraphQL capabilities.",
       ],
-      technologies: ["React 19", "TypeScript", "LangGraph", "FastAPI", "Milvus", "Kafka", "Docker", "AWS"],
+      technologies: ["GCP", "Cloud Run", "Cloud Build", "Terraform", "PostgreSQL", "Prisma", "Firebase Data Connect", "GraphQL", "TypeScript"],
     },
     {
-      period: "2022 - 2024",
-      role: "Full Stack Software Engineer",
-      company: "DataScale Cloud Infrastructure",
-      location: "Remote",
-      type: "Full-Time",
-      description: "Designed and scaled high-traffic telemetry dashboards, microservices, and distributed data pipelines for cloud-native enterprise customers.",
+      period: "01/2026 - 04/2026",
+      role: "Full-Stack Developer Intern",
+      company: "The Agile Labs",
+      location: "Online / Remote",
+      type: "Internship",
+      description: "Developed web and cross-platform mobile applications utilizing the MERN stack in an intensive Agile team environment.",
       achievements: [
-        "Engineered real-time telemetry streaming dashboard in React, Go, and WebSockets serving 20,000+ simultaneous engineering users.",
-        "Built resilient database schema migrations and Redis caching strategies that cut database CPU utilization by 40%.",
-        "Implemented automated CI/CD pipeline tests reducing release regression rates by 85%.",
+        "Built responsive mobile and web applications utilizing MongoDB, Express.js, React, React Native, and Node.js.",
+        "Collaborated with developers in high-velocity Agile sprints, participating in daily standups, sprint planning, and iterative shipping.",
+        "Structured application logic adhering to strict Model-View-Controller (MVC) architecture for clean maintainability.",
+        "Managed version control, merge requests, and code quality workflows using Git.",
       ],
-      technologies: ["React", "TypeScript", "Go (Golang)", "Node.js", "PostgreSQL", "Redis", "Kubernetes"],
+      technologies: ["React", "React Native", "Node.js", "Express.js", "MongoDB", "MERN", "Git", "MVC Architecture"],
     },
     {
-      period: "2020 - 2022",
-      role: "Software Engineer",
-      company: "Novus Web Labs",
-      location: "Austin, TX",
-      type: "Full-Time",
-      description: "Developed responsive web applications, payment integrations, and cloud REST APIs for high-growth SaaS startups.",
+      period: "04/2025 - 08/2025",
+      role: "WordPress Intern",
+      company: "CONCAT Tech",
+      location: "Online / Remote",
+      type: "Internship",
+      description: "Collaborated in an international engineering cohort on client web delivery, layout organization, and performance.",
       achievements: [
-        "Delivered 12+ end-to-end client web applications with 100% on-time milestone delivery.",
-        "Integrated Stripe payment billing engines and automated invoicing systems processing $3M+ in annual transaction volume.",
-        "Optimized frontend webpack bundles and implemented responsive mobile layouts.",
+        "Developed and launched the Musana Yoga website using WordPress.",
+        "Partnered with co-interns on end-to-end design layout, typography, navigation, and responsiveness.",
+        "Proposed and organized weekly technical coordination meetings to align on requirements, review pull requests, and solve blockers ahead of deadlines.",
       ],
-      technologies: ["React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Tailwind CSS"],
+      technologies: ["WordPress", "HTML & CSS", "Responsive Web Design", "Team Leadership"],
     },
   ] as Experience[],
 
-  testimonials: [
-    {
-      name: "Marcus Sterling",
-      role: "VP of Engineering",
-      company: "Synthetix AI",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80",
-      content: "Alex is that rare 1% engineer who operates flawlessly across the entire spectrum—from deep neural retrieval pipelines down to pixel-perfect, hyper-responsive React interfaces. He consistently delivers production code that is clean, well-tested, and built for scale.",
-      relation: "Direct Engineering Manager",
-    },
-    {
-      name: "Dr. Elena Rostova",
-      role: "Principal AI Research Scientist",
-      company: "Cortex Intelligence",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&h=200&q=80",
-      content: "Translating cutting-edge LLM research into production-grade systems is exceptionally hard. Alex's deep understanding of latency, vector indexing, and asynchronous system orchestration made our multi-agent launch an overwhelming success.",
-      relation: "Collaborated on Agent Orchestration",
-    },
-    {
-      name: "David Chen",
-      role: "Co-Founder & CTO",
-      company: "OmniPulse",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80",
-      content: "Alex built our core telemetry streaming engine in Go and React that handles tens of thousands of real-time events without breaking a sweat. If you need someone who can ship end-to-end with high velocity and zero hand-holding, hire him.",
-      relation: "Led Core Frontend & Ingestion Stack",
-    },
-  ] as Testimonial[],
-
   aiCopilotKnowledge: [
     {
-      question: "What is Alex's core expertise?",
-      answer: "Alex is a Full Stack Web Developer & AI Engineer with 5+ years of experience. He specializes in building scalable modern web applications (React 19, Next.js, TypeScript), high-throughput distributed backends (Python/FastAPI, Go, Node.js), and production AI systems (LangGraph, RAG, Vector Search, Milvus, PyTorch).",
+      question: "What is Yousef Abdallah's educational background?",
+      answer: "Yousef is studying Computer Engineering at the Lebanese International University (LIU) in Saida (2025-2028). He also completed the Codebrave Python and Web-Dev Program.",
     },
     {
-      question: "What kind of roles or contracts is Alex open to?",
-      answer: "Alex is currently considering Senior / Lead Full Stack Engineering roles, AI Systems Engineer positions, and select high-impact technical consulting engagements involving LLM applications, RAG pipelines, or full-stack architecture modernization.",
+      question: "What is Yousef's core tech stack?",
+      answer: "Yousef specializes in full-stack engineering and cloud deployment: React, Next.js, React Native, TypeScript, Node.js, Express.js, GraphQL, PostgreSQL with Prisma, MongoDB, GCP (Cloud Run, Cloud Build), and Terraform (IaC). He is also proficient in Python, C++, Java, and WordPress.",
     },
     {
-      question: "Can Alex build a full product end-to-end from scratch?",
-      answer: "Yes, absolutely! Alex has designed and shipped multiple complete products from ground zero: UI/UX design systems, frontend client applications, REST/WebSocket APIs, relational & vector database architecture, CI/CD automation, and cloud deployments.",
+      question: "What has Yousef achieved at Codebrave?",
+      answer: "At Codebrave, Yousef contributed to a student and training management system for students, teachers, and trainers. He deployed applications to GCP Cloud Run using Cloud Build, managed infrastructure with Terraform, and migrated from PostgreSQL/Prisma to Firebase Data Connect for GraphQL capabilities.",
     },
     {
-      question: "What is Alex's approach to AI and LLM engineering?",
-      answer: "Alex advocates for pragmatic, latency-conscious, and deterministic AI systems. Rather than treating LLMs as magic black boxes, he emphasizes hybrid retrieval (BM25 + Dense embeddings), state-machine orchestration (LangGraph), semantic caching (Redis), strict JSON schemas, and continuous observability.",
+      question: "What did Yousef build at The Agile Labs?",
+      answer: "At The Agile Labs, Yousef built web and mobile applications using the MERN stack (MongoDB, Express, React, Node.js) and React Native, implementing clean MVC architectures within an Agile/Scrum team.",
     },
     {
-      question: "How can I contact or hire Alex?",
-      answer: "You can reach out directly via email at alex.vance.dev@gmail.com, connect on LinkedIn, or use the interactive Contact form on this portfolio. Alex typically responds within 24 business hours.",
+      question: "How can I contact Yousef for an interview or opportunity?",
+      answer: "You can email Yousef directly at yousef.abdallah.lbx@gmail.com, call +961 70646225, or submit a message through the contact form on this portfolio.",
     },
   ],
 };

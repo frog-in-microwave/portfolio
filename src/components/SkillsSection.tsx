@@ -7,21 +7,19 @@ import {
   Server, 
   Cloud, 
   Sparkles, 
-  Check, 
-  Terminal,
   Code
 } from 'lucide-react';
-import { portfolioData, SkillCategory } from '../data/portfolioData';
+import { portfolioData } from '../data/portfolioData';
 
 export const SkillsSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'ai' | 'frontend' | 'backend' | 'devops'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'frontend' | 'backend' | 'cloud' | 'languages'>('all');
 
   const tabs = [
-    { id: 'all', label: 'All Capabilities', icon: Sparkles },
-    { id: 'ai', label: 'AI & Machine Learning', icon: Cpu },
-    { id: 'frontend', label: 'Frontend Engineering', icon: Layout },
-    { id: 'backend', label: 'Backend & Systems', icon: Server },
-    { id: 'devops', label: 'Cloud & MLOps', icon: Cloud },
+    { id: 'all', label: 'All Technologies', icon: Sparkles },
+    { id: 'frontend', label: 'Frontend & Mobile', icon: Layout },
+    { id: 'backend', label: 'Backend & APIs', icon: Server },
+    { id: 'cloud', label: 'Cloud & Databases', icon: Cloud },
+    { id: 'languages', label: 'Languages & Tools', icon: Code },
   ] as const;
 
   const getFilteredCategories = () => {
@@ -39,13 +37,13 @@ export const SkillsSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/40 text-xs font-mono text-cyan-400">
             <Cpu className="w-3.5 h-3.5" />
-            <span>ENGINEERING MASTERY</span>
+            <span>TECHNICAL PROFICIENCY</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-            Technical Stack & Core Competencies
+            Skills & Engineering Competencies
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            A comprehensive matrix of technologies I deploy to engineer responsive web frontends, resilient microservices, and state-of-the-art AI systems.
+            Direct competencies from my engineering training, internships, and production development.
           </p>
         </div>
 

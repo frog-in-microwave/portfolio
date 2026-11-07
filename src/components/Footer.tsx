@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Code2, Heart, Terminal, Sparkles } from 'lucide-react';
+import { ArrowUp, Code2, Terminal, Sparkles, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface FooterProps {
@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal, onOpenCopilot })
       const now = new Date();
       setCurrentTime(
         now.toLocaleTimeString('en-US', {
-          timeZone: 'America/Los_Angeles',
+          timeZone: 'Asia/Beirut',
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit',
@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal, onOpenCopilot })
                 {portfolioData.profile.name}
               </span>
               <p className="text-xs text-slate-500 font-mono">
-                {portfolioData.profile.secondaryTitle}
+                {portfolioData.profile.role}
               </p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal, onOpenCopilot })
           <div className="flex items-center gap-4 text-xs font-mono text-slate-400 bg-slate-900/60 px-4 py-2 rounded-full border border-slate-800">
             <span className="flex items-center gap-1.5 text-cyan-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>SF HQ: {currentTime || '12:00:00 PM'} (PST)</span>
+              <span>Beirut: {currentTime || '12:00:00 PM'} (EET)</span>
             </span>
             <span className="text-slate-600">|</span>
             <button
@@ -68,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal, onOpenCopilot })
               className="text-slate-400 hover:text-cyan-300 transition-colors flex items-center gap-1 cursor-pointer"
             >
               <Terminal className="w-3.5 h-3.5" />
-              <span>CLI Mode</span>
+              <span>CLI</span>
             </button>
             <span className="text-slate-600">|</span>
             <button
@@ -78,6 +78,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal, onOpenCopilot })
               <Sparkles className="w-3.5 h-3.5 text-purple-400" />
               <span>Copilot</span>
             </button>
+            <span className="text-slate-600">|</span>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-cyan-300 transition-colors flex items-center gap-1"
+            >
+              <FileText className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Resume</span>
+            </a>
           </div>
 
           {/* Back to top */}
@@ -94,11 +104,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal, onOpenCopilot })
         {/* Bottom Footer Row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
           <p>
-            © {new Date().getFullYear()} {portfolioData.profile.name}. Designed & engineered for production scale.
+            © {new Date().getFullYear()} {portfolioData.profile.name}. All rights reserved.
           </p>
 
           <p className="flex items-center gap-1">
-            Built with React 19, TypeScript, Tailwind CSS & Framer Motion
+            Engineered with Next.js 16, React 19, TypeScript & Tailwind CSS
           </p>
         </div>
 

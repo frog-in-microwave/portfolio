@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal as TerminalIcon, X, Maximize2, Minimize2, CornerDownLeft } from 'lucide-react';
+import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface TerminalLine {
@@ -20,7 +20,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     {
       id: 'sys-init',
       type: 'system',
-      content: `vance-cli [Version 2.4.0 (x86_64-apple-darwin23.0)]\nType "help" to display available CLI commands, or "projects" to view production artifacts.`,
+      content: `yousef-cli [Version 1.0.0 (x86_64-apple-darwin)]\nType "help" to display available CLI commands, or "skills" to view technical proficiencies.`,
     },
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -57,7 +57,6 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     const args = cmd.split(' ');
     const primary = args[0];
 
-    // Record user command line
     const userLine: TerminalLine = {
       id: Date.now().toString(),
       type: 'input',
@@ -74,11 +73,11 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           content: `Available Commands:
   • help           - Show this help manual
   • whoami         - Display candidate profile summary
-  • skills         - Matrix of full-stack & AI competencies
-  • projects       - List production artifacts & case studies
-  • experience     - Work history & enterprise milestones
-  • contact        - Direct communication channels & links
-  • cat resume.md  - Print raw markdown CV summary
+  • skills         - Technical competencies & frameworks
+  • experience     - Work history & internship milestones
+  • education      - Academic degrees & university background
+  • contact        - Direct communication channels & phone
+  • cat resume.md  - Print markdown resume summary
   • clear          - Clear terminal history
   • exit           - Close the terminal session`,
         };
@@ -90,7 +89,8 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           type: 'output',
           content: `${portfolioData.profile.name} — ${portfolioData.profile.role}
 Location: ${portfolioData.profile.location}
-Status: ${portfolioData.profile.statusBadge}
+Phone: ${portfolioData.profile.phone}
+Email: ${portfolioData.profile.email}
 Bio: ${portfolioData.profile.bio}`,
         };
         break;
@@ -99,36 +99,19 @@ Bio: ${portfolioData.profile.bio}`,
         responseLine = {
           id: (Date.now() + 1).toString(),
           type: 'output',
-          content: `[AI & ML]:
-  - Autonomous Multi-Agent Systems (LangGraph, StateGraphs)
-  - Hybrid RAG (Milvus HNSW + BM25 + Cohere Rerank)
-  - PyTorch fine-tuning (LoRA, PEFT, Triton Inference)
+          content: `[Frontend & Mobile]:
+  - React, Next.js, React Native, Expo, TypeScript, JavaScript, HTML & CSS, Tailwind
 
-[Frontend Engineering]:
-  - React 19, Next.js 15, TypeScript (Strict), Tailwind CSS
-  - WebSockets streaming UI, Zustand state machines
+[Backend & APIs]:
+  - Node.js, Express.js, GraphQL, Firebase Data Connect, MVC Architecture
 
-[Backend & Distributed Systems]:
-  - Python (FastAPI, Asyncio), Go (Golang), Node.js
-  - PostgreSQL, Redis semantic cache, Kafka event streaming
+[Cloud, Databases & DevOps]:
+  - Google Cloud Platform (GCP), Cloud Run, Cloud Build
+  - Terraform (Infrastructure as Code)
+  - PostgreSQL, Prisma ORM, MongoDB (MERN Stack), Git
 
-[Cloud & MLOps]:
-  - Docker, Kubernetes, AWS/GCP, GitHub Actions CI/CD`,
-        };
-        break;
-
-      case 'projects':
-        responseLine = {
-          id: (Date.now() + 1).toString(),
-          type: 'output',
-          content: portfolioData.projects
-            .map(
-              (p, idx) =>
-                `[${idx + 1}] ${p.title} (${p.category.toUpperCase()})
-     ${p.tagline}
-     Stack: ${p.tags.join(', ')}`
-            )
-            .join('\n\n'),
+[Languages]:
+  - Python, C++, Java, WordPress`,
         };
         break;
 
@@ -139,10 +122,22 @@ Bio: ${portfolioData.profile.bio}`,
           content: portfolioData.experience
             .map(
               (exp) =>
-                `• ${exp.role} @ ${exp.company} (${exp.period})
-    ${exp.description}`
+                `• ${exp.role} @ ${exp.company} (${exp.period}, ${exp.location})
+    - ${exp.achievements.join('\n    - ')}`
             )
             .join('\n\n'),
+        };
+        break;
+
+      case 'education':
+        responseLine = {
+          id: (Date.now() + 1).toString(),
+          type: 'output',
+          content: `• Computer Engineering (09/2025 - 06/2028)
+  Lebanese International University - Saida (Lebanon)
+
+• Codebrave Python and Web-Dev Program
+  Codebrave`,
         };
         break;
 
@@ -150,10 +145,10 @@ Bio: ${portfolioData.profile.bio}`,
         responseLine = {
           id: (Date.now() + 1).toString(),
           type: 'output',
-          content: `Direct Email:  ${portfolioData.profile.email}
-GitHub:        ${portfolioData.profile.github}
-LinkedIn:      ${portfolioData.profile.linkedin}
-Twitter/X:     ${portfolioData.profile.twitter}`,
+          content: `Email:    ${portfolioData.profile.email}
+Phone:    ${portfolioData.profile.phone}
+LinkedIn: ${portfolioData.profile.linkedin}
+GitHub:   ${portfolioData.profile.github}`,
         };
         break;
 
@@ -162,20 +157,21 @@ Twitter/X:     ${portfolioData.profile.twitter}`,
           responseLine = {
             id: (Date.now() + 1).toString(),
             type: 'output',
-            content: `# Alex Vance - Full Stack & AI Systems Engineer
-Email: ${portfolioData.profile.email} | Location: ${portfolioData.profile.location}
+            content: `# Yousef Abdallah - Full-Stack Developer & AI Engineer
+Email: ${portfolioData.profile.email} | Phone: ${portfolioData.profile.phone}
 
-## Summary
-5+ years shipping high-throughput distributed web systems, autonomous agent workflows, and hybrid vector search engines.
+## Education
+- Computer Engineering @ Lebanese International University - Saida (09/2025 - 06/2028)
+- Codebrave Python and Web-Dev Program
 
-## Education & Certifications
-- B.S. in Computer Science & Applied Mathematics
-- DeepLearning.AI Machine Learning & Advanced LLM Specializations
-
-## Core Architecture Focus
-- Sub-50ms RAG pipelines with semantic Redis caching
-- High-concurrency Go & FastAPI microservices
-- Real-time React 19 WebSocket client dashboards`,
+## Professional Experience
+- Full-Stack Developer Intern @ Codebrave (01/2026 - 04/2026)
+  • Contributed to student management portal
+  • GCP Cloud Run, Cloud Build & Terraform IaC
+  • PostgreSQL, Prisma, Firebase Data Connect & GraphQL
+- Full-Stack Developer Intern @ The Agile Labs (01/2026 - 04/2026)
+  • Web & Mobile Apps with MERN Stack & React Native
+- WordPress Intern @ CONCAT Tech (04/2025 - 08/2025)`,
           };
         } else {
           responseLine = {
@@ -239,10 +235,8 @@ Email: ${portfolioData.profile.email} | Location: ${portfolioData.profile.locati
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10">
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
 
-      {/* Terminal Window */}
       <div
         className={`relative bg-[#070b12] border border-cyan-800/50 rounded-xl shadow-2xl flex flex-col z-10 font-mono transition-all duration-300 ${
           isMaximized ? 'w-full h-full rounded-none' : 'w-full max-w-3xl h-[550px]'
@@ -254,21 +248,18 @@ Email: ${portfolioData.profile.email} | Location: ${portfolioData.profile.locati
             <button
               onClick={onClose}
               className="w-3 h-3 rounded-full bg-rose-500 hover:opacity-80 transition-opacity cursor-pointer"
-              title="Close window"
             />
             <button
               onClick={() => setIsMaximized(!isMaximized)}
               className="w-3 h-3 rounded-full bg-amber-500 hover:opacity-80 transition-opacity cursor-pointer"
-              title="Maximize"
             />
             <button
               onClick={onClose}
               className="w-3 h-3 rounded-full bg-emerald-500 hover:opacity-80 transition-opacity cursor-pointer"
-              title="Minimize"
             />
             <span className="ml-3 text-xs text-slate-400 font-semibold flex items-center gap-1.5">
               <TerminalIcon className="w-3.5 h-3.5 text-cyan-400" />
-              <span>alex@vance-workstation: ~ (zsh)</span>
+              <span>yousef@workstation: ~ (zsh)</span>
             </span>
           </div>
 
@@ -285,13 +276,13 @@ Email: ${portfolioData.profile.email} | Location: ${portfolioData.profile.locati
           </div>
         </div>
 
-        {/* Terminal Content Screen */}
+        {/* Terminal Screen */}
         <div className="flex-1 p-4 overflow-y-auto space-y-3 text-xs leading-relaxed text-slate-300">
           {history.map((line) => (
             <div key={line.id}>
               {line.type === 'input' && (
                 <div className="flex items-center gap-2 text-cyan-300">
-                  <span className="text-emerald-400">alex@workstation</span>
+                  <span className="text-emerald-400">yousef@workstation</span>
                   <span className="text-slate-500">:</span>
                   <span className="text-indigo-400">~</span>
                   <span className="text-slate-400">$</span>
@@ -316,7 +307,7 @@ Email: ${portfolioData.profile.email} | Location: ${portfolioData.profile.locati
 
           {/* Active Input Line */}
           <div className="flex items-center gap-2 text-cyan-300 pt-1">
-            <span className="text-emerald-400">alex@workstation</span>
+            <span className="text-emerald-400">yousef@workstation</span>
             <span className="text-slate-500">:</span>
             <span className="text-indigo-400">~</span>
             <span className="text-slate-400">$</span>
@@ -335,12 +326,11 @@ Email: ${portfolioData.profile.email} | Location: ${portfolioData.profile.locati
           <div ref={terminalEndRef} />
         </div>
 
-        {/* Footer shortcuts hint */}
+        {/* Footer shortcuts */}
         <div className="px-4 py-1.5 bg-slate-950 border-t border-slate-900 flex items-center justify-between text-[10px] text-slate-500 font-mono">
-          <span>Shortcuts: Press 'Tab' or 'Enter' to run • Up/Down for command history</span>
+          <span>Shortcuts: Press 'Enter' to run • Up/Down for command history</span>
           <span>Press ESC or ⌘K to close</span>
         </div>
-
       </div>
     </div>
   );

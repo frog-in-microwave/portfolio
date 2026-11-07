@@ -8,9 +8,7 @@ import {
   Menu, 
   X, 
   Sparkles,
-  Layers,
-  Code2,
-  ExternalLink
+  Code2
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -22,14 +20,13 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('about');
 
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Architecture', href: '#architecture' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
+    { name: 'Experience & Education', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -37,8 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      // Simple active section detection
-      const sections = ['about', 'skills', 'architecture', 'projects', 'experience', 'contact'];
+      const sections = ['about', 'skills', 'projects', 'experience', 'contact'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
@@ -59,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
     <header 
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled 
-          ? 'bg-[#080B11]/80 backdrop-blur-xl border-b border-slate-800/80 py-3 shadow-lg shadow-black/30' 
+          ? 'bg-[#080B11]/85 backdrop-blur-xl border-b border-slate-800/80 py-3 shadow-lg shadow-black/30' 
           : 'bg-transparent py-5'
       }`}
     >
@@ -81,11 +77,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
                   {portfolioData.profile.name}
                 </span>
                 <span className="px-1.5 py-0.5 text-[10px] font-mono font-semibold rounded bg-cyan-950/80 border border-cyan-700/50 text-cyan-400">
-                  AI / FULL-STACK
+                  FULL-STACK & AI
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-mono hidden sm:block">
-                Systems & ML Engineer
+                Software & Computer Engineer
               </p>
             </div>
           </a>
@@ -133,17 +129,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
               </span>
               <Bot className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Ask AI Copilot</span>
+              <span>Ask Copilot</span>
               <Sparkles className="w-3 h-3 text-purple-400 animate-pulse" />
             </button>
 
             {/* Resume Button */}
             <a
-              href={portfolioData.profile.resumeUrl}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-850 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-slate-100 transition-colors"
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 text-slate-200 hover:text-white transition-colors"
             >
-              <FileText className="w-3.5 h-3.5 text-slate-400" />
-              <span>CV</span>
+              <FileText className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Resume PDF</span>
             </a>
           </div>
 
@@ -185,6 +183,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
           </nav>
 
           <div className="pt-3 border-t border-slate-800/80 flex flex-col gap-2">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-slate-800 text-sm font-medium text-slate-200"
+            >
+              <FileText className="w-4 h-4 text-cyan-400" />
+              <span>View Resume (PDF)</span>
+            </a>
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -204,7 +212,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot, onOpenTerminal })
               className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-gradient-to-r from-cyan-600 to-indigo-600 text-sm font-semibold text-white shadow-md shadow-cyan-900/30"
             >
               <Bot className="w-4 h-4" />
-              <span>Chat with Portfolio AI Copilot</span>
+              <span>Chat with Yousef's AI Copilot</span>
             </button>
           </div>
         </div>

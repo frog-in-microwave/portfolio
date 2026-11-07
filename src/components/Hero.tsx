@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
-  Sparkles, 
   Terminal, 
   Zap, 
   ShieldCheck, 
@@ -11,9 +10,10 @@ import {
   Bot, 
   Cpu, 
   Database, 
-  GitBranch,
+  Cloud,
   Play,
-  RotateCw
+  RotateCw,
+  FileText
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -30,13 +30,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
   // Mini live simulator state
   const [simRunning, setSimRunning] = useState(false);
   const [simStep, setSimStep] = useState<number>(0);
-  const [tokensGenerated, setTokensGenerated] = useState(0);
+  const [requestsServed, setRequestsServed] = useState(0);
 
   const phrases = [
-    "Autonomous Multi-Agent Architectures",
-    "High-Performance Full-Stack Applications",
-    "Sub-50ms Enterprise RAG & Vector Systems",
-    "Fault-Tolerant Microservices & Cloud Infra"
+    "Full-Stack Web & Next.js Applications",
+    "React Native Mobile Development",
+    "GCP Cloud Run & Terraform (IaC)",
+    "PostgreSQL, Prisma & GraphQL Backends"
   ];
 
   // Typewriter effect
@@ -67,27 +67,25 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
     if (simRunning) return;
     setSimRunning(true);
     setSimStep(1);
-    setTokensGenerated(0);
+    setRequestsServed(0);
 
-    // Step 1: User Request Ingestion & Semantic Guardrails
     setTimeout(() => {
-      setSimStep(2); // Step 2: Hybrid Dense/Sparse Vector Search
+      setSimStep(2);
     }, 600);
 
     setTimeout(() => {
-      setSimStep(3); // Step 3: Agentic Reasoning Loop (LangGraph)
+      setSimStep(3);
     }, 1200);
 
     setTimeout(() => {
-      setSimStep(4); // Step 4: Streaming LLM Token Generation
-      // Stream tokens
+      setSimStep(4);
       let count = 0;
       const interval = setInterval(() => {
-        count += 28;
-        setTokensGenerated(count);
-        if (count >= 196) {
+        count += 35;
+        setRequestsServed(count);
+        if (count >= 245) {
           clearInterval(interval);
-          setSimStep(5); // Complete
+          setSimStep(5);
           setSimRunning(false);
         }
       }, 60);
@@ -120,13 +118,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
             {/* Main Headline */}
             <div className="space-y-2">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.12]">
-                Architecting <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400">Intelligent Systems</span> & Scalable Web Platforms
+                Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400">{portfolioData.profile.name}</span>
               </h1>
+              <p className="text-xl sm:text-2xl font-heading font-medium text-slate-200">
+                Full-Stack Web Developer & AI Systems Engineer
+              </p>
               
               {/* Typewriter Banner */}
               <div className="h-10 sm:h-12 flex items-center">
                 <span className="text-slate-400 text-lg sm:text-xl font-mono mr-2">&gt;</span>
-                <span className="text-xl sm:text-2xl font-mono font-medium text-cyan-300">
+                <span className="text-lg sm:text-xl font-mono font-medium text-cyan-300">
                   {displayedText}
                 </span>
                 <span className="w-2.5 h-6 bg-cyan-400 ml-1 inline-block animate-pulse" />
@@ -141,10 +142,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
-                href="#projects"
+                href="#experience"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/35 transition-all transform hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>Explore Featured Work</span>
+                <span>View Experience & Skills</span>
                 <ArrowRight className="w-4 h-4 text-slate-950" />
               </a>
 
@@ -153,17 +154,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                 className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl glass-panel hover:bg-slate-800/80 border border-slate-700/80 text-cyan-300 font-semibold text-sm hover:border-cyan-500/40 transition-all cursor-pointer shadow-md shadow-black/40"
               >
                 <Bot className="w-4 h-4 text-cyan-400" />
-                <span>Ask Portfolio Copilot</span>
+                <span>Ask Yousef's Copilot</span>
               </button>
 
-              <button
-                onClick={onOpenTerminal}
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/60 border border-slate-800 text-slate-400 hover:text-slate-200 text-xs font-mono transition-colors"
-                title="Launch Developer CLI"
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/60 border border-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-colors"
+                title="Download Resume PDF"
               >
-                <Terminal className="w-4 h-4 text-slate-400" />
-                <span>Launch CLI</span>
-              </button>
+                <FileText className="w-4 h-4 text-cyan-400" />
+                <span>Resume (PDF)</span>
+              </a>
             </div>
 
             {/* Core Stats Bar */}
@@ -193,7 +196,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                   <div className="w-3 h-3 rounded-full bg-amber-500/80" />
                   <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
                   <span className="ml-2 text-xs font-mono text-slate-400">
-                    ai-pipeline.daemon // v2.6
+                    yousef-stack.service // v1.4
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/50">
@@ -206,7 +209,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
               <div className="py-5 space-y-4 font-mono text-xs">
                 
                 <div className="flex items-center justify-between text-slate-400">
-                  <span>Interactive Pipeline Execution:</span>
+                  <span>Full-Stack Pipeline Execution:</span>
                   <button
                     onClick={runSimulation}
                     disabled={simRunning}
@@ -217,7 +220,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                     ) : (
                       <Play className="w-3 h-3" />
                     )}
-                    <span>{simRunning ? 'Executing...' : 'Run Trace'}</span>
+                    <span>{simRunning ? 'Executing...' : 'Run Pipeline'}</span>
                   </button>
                 </div>
 
@@ -230,10 +233,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <ShieldCheck className="w-4 h-4 text-cyan-400" />
-                        <span className="font-semibold">01. API Gateway & Schema Validation</span>
+                        <span className="font-semibold">01. React / Next.js Client Interface</span>
                       </div>
                       <span className="text-[11px] text-slate-400">
-                        {simStep >= 1 ? '2.4ms • P99' : 'idle'}
+                        {simStep >= 1 ? 'Next.js 16' : 'idle'}
                       </span>
                     </div>
                   </div>
@@ -245,10 +248,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Database className="w-4 h-4 text-purple-400" />
-                        <span className="font-semibold">02. Hybrid Vector + BM25 Reranker</span>
+                        <span className="font-semibold">02. GraphQL & Firebase Data Connect</span>
                       </div>
                       <span className="text-[11px] text-slate-400">
-                        {simStep >= 2 ? 'Milvus HNSW (18ms)' : 'idle'}
+                        {simStep >= 2 ? 'Schema Validated' : 'idle'}
                       </span>
                     </div>
                   </div>
@@ -259,11 +262,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                   }`}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <GitBranch className="w-4 h-4 text-indigo-400" />
-                        <span className="font-semibold">03. LangGraph Agent Reasoning DAG</span>
+                        <Cloud className="w-4 h-4 text-indigo-400" />
+                        <span className="font-semibold">03. GCP Cloud Run & Terraform (IaC)</span>
                       </div>
                       <span className="text-[11px] text-slate-400">
-                        {simStep >= 3 ? 'Verified State' : 'idle'}
+                        {simStep >= 3 ? 'Active Container' : 'idle'}
                       </span>
                     </div>
                   </div>
@@ -275,10 +278,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Cpu className="w-4 h-4 text-emerald-400" />
-                        <span className="font-semibold">04. Reactive WebSocket Token Stream</span>
+                        <span className="font-semibold">04. PostgreSQL & Prisma ORM Layer</span>
                       </div>
                       <span className="text-[11px] text-emerald-300">
-                        {simStep >= 4 ? `${tokensGenerated} tokens` : 'idle'}
+                        {simStep >= 4 ? `${requestsServed} ops/sec` : 'idle'}
                       </span>
                     </div>
                   </div>
@@ -287,16 +290,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
                 {/* Live Console Output Box */}
                 <div className="mt-4 p-3 rounded-lg bg-black/60 border border-slate-800/80 font-mono text-[11px] text-slate-300 space-y-1">
                   <div className="text-cyan-400 flex items-center justify-between">
-                    <span>&gt; telemetry.stream()</span>
-                    <span className="text-slate-500">HTTP/2 SSE</span>
+                    <span>&gt; yousef.deploy()</span>
+                    <span className="text-slate-500">Cloud Build</span>
                   </div>
                   <div className="text-slate-400 truncate">
-                    {simStep === 0 && 'Click "Run Trace" to simulate an end-to-end full-stack AI request...'}
-                    {simStep === 1 && 'Ingesting payload -> verifying JWT & rate limiter tokens...'}
-                    {simStep === 2 && 'Querying 2.4M embeddings in Milvus -> applying reciprocal rank fusion...'}
-                    {simStep === 3 && 'Branching LangGraph subagents -> executing parallel verification...'}
-                    {simStep === 4 && `Streaming response chunks: ${tokensGenerated} tokens emitted @ 165 tok/s...`}
-                    {simStep === 5 && 'Trace 0x8F92 complete: Status 200 OK • Total duration: 38ms'}
+                    {simStep === 0 && 'Click "Run Pipeline" to simulate Yousef\'s deployment stack...'}
+                    {simStep === 1 && 'Next.js frontend initialized -> bundling client-server components...'}
+                    {simStep === 2 && 'Connecting to GraphQL API and Firebase Data Connect layer...'}
+                    {simStep === 3 && 'Terraform provisioned GCP Cloud Run container deployed...'}
+                    {simStep === 4 && `PostgreSQL & Prisma query execution: ${requestsServed} records synced...`}
+                    {simStep === 5 && 'Status 200 OK • Production environment live.'}
                   </div>
                 </div>
 
@@ -304,9 +307,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot, onOpenTerminal }) => 
 
               {/* Bottom Mini Specs */}
               <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span>Stack: React • FastAPI • Milvus</span>
+                <span>Stack: Next.js • GCP • Prisma • Python</span>
                 <span className="text-emerald-400 flex items-center gap-1">
-                  <Zap className="w-3 h-3" /> 0ms Drop Rate
+                  <Zap className="w-3 h-3" /> Ready
                 </span>
               </div>
 

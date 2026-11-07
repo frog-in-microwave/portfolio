@@ -5,10 +5,8 @@ import { NeuralBackground } from './NeuralBackground';
 import { Navbar } from './Navbar';
 import { Hero } from './Hero';
 import { SkillsSection } from './SkillsSection';
-import { ArchitectureShowcase } from './ArchitectureShowcase';
 import { ProjectsSection } from './ProjectsSection';
 import { ExperienceSection } from './ExperienceSection';
-import { TestimonialsSection } from './TestimonialsSection';
 import { ContactSection } from './ContactSection';
 import { Footer } from './Footer';
 import { AiCopilotModal } from './AiCopilotModal';
@@ -49,10 +47,8 @@ export const ClientShell: React.FC = () => {
           onOpenTerminal={() => setTerminalOpen(true)}
         />
         <SkillsSection />
-        <ArchitectureShowcase />
         <ProjectsSection />
         <ExperienceSection />
-        <TestimonialsSection />
         <ContactSection />
       </main>
 
@@ -86,7 +82,7 @@ export const ClientShell: React.FC = () => {
 
         <button
           onClick={() => setCopilotOpen(true)}
-          title="Chat with Alex's Portfolio AI Copilot"
+          title="Chat with Yousef's AI Copilot"
           className="relative group flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 text-slate-950 font-bold text-xs shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 transition-all cursor-pointer"
         >
           <span className="relative flex h-2 w-2">

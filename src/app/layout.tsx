@@ -2,26 +2,30 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Alex Vance | Full Stack Web Developer & AI Systems Engineer',
+  title: 'Yousef Abdallah | Full-Stack Web Developer & AI Systems Engineer',
   description:
-    'Portfolio of a Senior Full Stack Web Developer & AI Engineer specializing in React, Next.js, distributed microservices, LangGraph multi-agent workflows, and enterprise RAG systems.',
+    'Portfolio of Yousef Abdallah, Computer Engineering student and Full-Stack Developer with hands-on experience in Next.js, React, React Native, Node.js, Express, GraphQL, PostgreSQL, Prisma, GCP Cloud Run, and Terraform.',
   keywords: [
-    'Full Stack Developer',
+    'Yousef Abdallah',
+    'Full-Stack Developer',
     'AI Engineer',
     'Next.js',
     'React',
+    'React Native',
     'TypeScript',
-    'LangGraph',
-    'RAG',
-    'FastAPI',
-    'Distributed Systems',
-    'Machine Learning',
+    'Node.js',
+    'GraphQL',
+    'GCP',
+    'Terraform',
+    'Prisma',
+    'PostgreSQL',
+    'Lebanon',
   ],
-  authors: [{ name: 'Alex Vance' }],
+  authors: [{ name: 'Yousef Abdallah' }],
   openGraph: {
-    title: 'Alex Vance | Full Stack Web Developer & AI Systems Engineer',
+    title: 'Yousef Abdallah | Full-Stack Web Developer & AI Engineer',
     description:
-      'Architecting Intelligent Systems & Scalable Web Platforms. Bridging modern full-stack engineering with production LLM & Agent architectures.',
+      'Computer Engineering student and Full-Stack Developer specializing in Next.js, React, Node.js, GCP Cloud Run, Terraform, and GraphQL.',
     type: 'website',
   },
   icons: {

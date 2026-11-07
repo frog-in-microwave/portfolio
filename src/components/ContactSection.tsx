@@ -6,10 +6,10 @@ import {
   Send, 
   Copy, 
   Check, 
-  Sparkles, 
-  MessageSquare,
-  Clock,
-  ShieldCheck
+  Clock, 
+  Phone,
+  ShieldCheck,
+  MapPin
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { portfolioData } from '../data/portfolioData';
@@ -19,7 +19,7 @@ export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    topic: 'Full-Time Role',
+    topic: 'Job Opportunity',
     message: '',
   });
   const [copied, setCopied] = useState(false);
@@ -50,7 +50,6 @@ export const ContactSection: React.FC = () => {
       setSubmitting(false);
       setSubmitted(true);
 
-      // Trigger Confetti Celebration
       confetti({
         particleCount: 80,
         spread: 70,
@@ -68,13 +67,13 @@ export const ContactSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/40 text-xs font-mono text-cyan-400">
             <Mail className="w-3.5 h-3.5" />
-            <span>START A CONVERSATION</span>
+            <span>GET IN TOUCH</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-            Let's Engineer Something Exceptional
+            Let's Connect & Collaborate
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Have an open full-stack or AI role, an architecture challenge, or a consulting engagement? Drop me a message below.
+            Looking for a motivated Full-Stack Developer or AI Engineer? Feel free to reach out directly or send a message below.
           </p>
         </div>
 
@@ -86,12 +85,13 @@ export const ContactSection: React.FC = () => {
             {/* Direct Email Card */}
             <div className="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
               <h3 className="font-heading font-bold text-white text-lg">
-                Direct Contact
+                Direct Contact Channels
               </h3>
               <p className="text-sm text-slate-400">
-                Prefer email or want to invite me directly to an interview or repository?
+                You can reach me directly via email or phone:
               </p>
 
+              {/* Email */}
               <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs text-slate-200">
                 <span className="truncate mr-2">{portfolioData.profile.email}</span>
                 <button
@@ -103,15 +103,29 @@ export const ContactSection: React.FC = () => {
                 </button>
               </div>
 
-              {/* Guarantees */}
+              {/* Phone & Location */}
+              <div className="space-y-2 pt-1 font-mono text-xs text-slate-300">
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <Phone className="w-4 h-4 text-cyan-400" />
+                  <a href={`tel:${portfolioData.profile.phone}`} className="hover:text-cyan-300 transition-colors">
+                    {portfolioData.profile.phone}
+                  </a>
+                </div>
+
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <MapPin className="w-4 h-4 text-cyan-400" />
+                  <span>{portfolioData.profile.location}</span>
+                </div>
+              </div>
+
               <div className="pt-3 border-t border-slate-800/80 space-y-2 text-xs text-slate-400">
                 <div className="flex items-center gap-2">
                   <Clock className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Response time: Within 24 hours</span>
+                  <span>Prompt response within 24 hours</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Available for NDA discussions & architecture reviews</span>
+                  <span>Available for full-time, part-time & remote roles</span>
                 </div>
               </div>
             </div>
@@ -119,35 +133,26 @@ export const ContactSection: React.FC = () => {
             {/* Social Channels */}
             <div className="glass-panel p-6 rounded-2xl border border-slate-800 space-y-3">
               <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
-                Social Profiles & Repositories:
+                Social Profiles & Code:
               </h4>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 <a
                   href={portfolioData.profile.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+                  className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
                 >
-                  <GithubIcon className="w-5 h-5 mb-1 text-slate-400" />
+                  <GithubIcon className="w-5 h-5 mb-1.5 text-slate-400" />
                   <span className="text-xs font-medium">GitHub</span>
                 </a>
                 <a
                   href={portfolioData.profile.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-cyan-400 transition-colors"
+                  className="flex flex-col items-center justify-center p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-cyan-400 transition-colors"
                 >
-                  <LinkedinIcon className="w-5 h-5 mb-1 text-cyan-400" />
+                  <LinkedinIcon className="w-5 h-5 mb-1.5 text-cyan-400" />
                   <span className="text-xs font-medium">LinkedIn</span>
-                </a>
-                <a
-                  href={portfolioData.profile.twitter}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-cyan-300 transition-colors"
-                >
-                  <TwitterIcon className="w-5 h-5 mb-1 text-cyan-300" />
-                  <span className="text-xs font-medium">Twitter / X</span>
                 </a>
               </div>
             </div>
@@ -163,15 +168,15 @@ export const ContactSection: React.FC = () => {
                     <Check className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-white">
-                    Transmission Dispatched!
+                    Message Dispatched!
                   </h3>
                   <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                    Thank you, {formData.name}. Your message has been received. I'll get back to you at <span className="text-cyan-300 font-mono">{formData.email}</span> within 24 hours.
+                    Thank you, {formData.name}. Your message has been received. Yousef will respond to <span className="text-cyan-300 font-mono">{formData.email}</span> shortly.
                   </p>
                   <button
                     onClick={() => {
                       setSubmitted(false);
-                      setFormData({ name: '', email: '', topic: 'Full-Time Role', message: '' });
+                      setFormData({ name: '', email: '', topic: 'Job Opportunity', message: '' });
                     }}
                     className="mt-4 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors cursor-pointer"
                   >
@@ -181,7 +186,6 @@ export const ContactSection: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Name */}
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono text-slate-300 font-medium">
                         Your Name
@@ -191,12 +195,11 @@ export const ContactSection: React.FC = () => {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Sarah Connor"
+                        placeholder="Your Name"
                         className="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 transition-colors"
                       />
                     </div>
 
-                    {/* Email */}
                     <div className="space-y-1.5">
                       <label className="text-xs font-mono text-slate-300 font-medium">
                         Email Address
@@ -206,13 +209,12 @@ export const ContactSection: React.FC = () => {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="sarah@company.com"
+                        placeholder="you@company.com"
                         className="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 transition-colors"
                       />
                     </div>
                   </div>
 
-                  {/* Topic Select */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono text-slate-300 font-medium">
                       Inquiry Type
@@ -222,30 +224,27 @@ export const ContactSection: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors"
                     >
-                      <option value="Full-Time Role">Full-Time Senior / Lead Engineering Role</option>
-                      <option value="AI Consulting">AI / RAG / Multi-Agent Consulting</option>
-                      <option value="Full-Stack Project">Full-Stack Application Development</option>
-                      <option value="System Review">Architecture & Codebase Audit</option>
-                      <option value="Other">General Technical Networking</option>
+                      <option value="Job Opportunity">Full-Stack / AI Job Opportunity</option>
+                      <option value="Internship / Role">Internship or Project Collaboration</option>
+                      <option value="Freelance">Freelance Web / Mobile Development</option>
+                      <option value="Other">General Networking</option>
                     </select>
                   </div>
 
-                  {/* Message */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-mono text-slate-300 font-medium">
-                      Project Details & Message
+                      Message
                     </label>
                     <textarea
                       required
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell me about your team's objectives, technology stack, timeline, or scope..."
+                      placeholder="Hi Yousef, we would love to speak with you regarding a developer role at..."
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
                     />
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={submitting}
@@ -255,7 +254,7 @@ export const ContactSection: React.FC = () => {
                       <span>Dispatching Message...</span>
                     ) : (
                       <>
-                        <span>Send Transmission</span>
+                        <span>Send Message</span>
                         <Send className="w-4 h-4" />
                       </>
                     )}
