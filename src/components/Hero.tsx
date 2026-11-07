@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot }) => {
   const phrases = [
     "Next.js 16 Web Applications",
     "React Native Mobile Apps",
-    "GCP / AWS and Cloud Terraform (IaC)",
+    "GCP Cloud & Terraform (IaC)",
     "PostgreSQL & MongoDB APIs"
   ];
 
@@ -137,38 +137,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot }) => {
           </a>
         </div>
 
-        {/* Bento Bar */}
-        <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-left">
-          <div className="p-3 rounded-2xl bg-[#121826]/90 border border-white/10 flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center shrink-0">
-              <Laptop className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-white">Full-Stack & Mobile</div>
-              <div className="text-[11px] text-slate-400 font-mono">Next.js & React Native</div>
-            </div>
-          </div>
 
-          <div className="p-3 rounded-2xl bg-[#121826]/90 border border-white/10 flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center shrink-0">
-              <CheckCircle2 className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-white">Cloud Infrastructure</div>
-              <div className="text-[11px] text-slate-400 font-mono">GCP & Terraform IaC</div>
-            </div>
-          </div>
-
-          <div className="p-3 rounded-2xl bg-[#121826]/90 border border-white/10 flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center shrink-0">
-              <MapPin className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-white">Beirut, Lebanon</div>
-              <div className="text-[11px] text-slate-400 font-mono">LIU Computer Engineering</div>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section>
