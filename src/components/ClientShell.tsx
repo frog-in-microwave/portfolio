@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NeuralBackground } from './NeuralBackground';
+import { PlayfulBackground } from './PlayfulBackground';
+import { PlayfulCursor } from './PlayfulCursor';
 import { Navbar } from './Navbar';
 import { Hero } from './Hero';
 import { SkillsSection } from './SkillsSection';
@@ -13,61 +14,54 @@ import { AiCopilotModal } from './AiCopilotModal';
 import { Bot, Sparkles } from 'lucide-react';
 
 /**
- * ClientShell Component
- * 
- * Serves as the primary client-side state boundary for the Next.js App Router.
- * Manages the AI Copilot modal state and coordinates the interactive layout.
+ * ClientShell Component - High Personality, Colorful & Mobile First
  */
 export const ClientShell: React.FC = () => {
-  // Modal visibility state
   const [copilotOpen, setCopilotOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#080B11] text-slate-100 relative overflow-x-hidden selection:bg-cyan-500/20 selection:text-cyan-300">
-      {/* 1. Dynamic Interactive Neural Canvas (Fixed Background) */}
-      <NeuralBackground />
+    <div className="min-h-screen bg-[#090D16] text-slate-100 relative overflow-x-hidden selection:bg-amber-400 selection:text-slate-950 font-sans">
+      {/* 1. Goofy Custom Blob Cursor (Only active on fine pointer / desktop devices) */}
+      <PlayfulCursor />
 
-      {/* 2. Primary Fixed Header Navbar */}
-      <Navbar
-        onOpenCopilot={() => setCopilotOpen(true)}
-      />
+      {/* 2. Warm Colorful Background Gradients & Dot Grid */}
+      <PlayfulBackground />
 
-      {/* 3. Main Content Flow */}
+      {/* 3. Responsive Header Navbar */}
+      <Navbar onOpenCopilot={() => setCopilotOpen(true)} />
+
+      {/* 4. Main Page Sections */}
       <main className="relative z-10">
-        <Hero
-          onOpenCopilot={() => setCopilotOpen(true)}
-        />
+        <Hero onOpenCopilot={() => setCopilotOpen(true)} />
         <SkillsSection />
         <ProjectsSection />
         <ExperienceSection />
         <ContactSection />
       </main>
 
-      {/* 4. Global Footer with Beirut Real-Time Clock */}
-      <Footer
-        onOpenCopilot={() => setCopilotOpen(true)}
-      />
+      {/* 5. Footer with Beirut Timezone Clock */}
+      <Footer onOpenCopilot={() => setCopilotOpen(true)} />
 
-      {/* 5. Conversational AI Copilot Modal */}
+      {/* 6. Conversational AI Copilot Modal */}
       <AiCopilotModal
         isOpen={copilotOpen}
         onClose={() => setCopilotOpen(false)}
       />
 
-      {/* 6. Floating Quick Action AI Copilot Button (Bottom Right) */}
-      <div className="fixed bottom-6 right-6 z-30">
+      {/* 7. Floating Thumb-Friendly Action Button on Mobile & Desktop */}
+      <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-30">
         <button
           onClick={() => setCopilotOpen(true)}
           title="Chat with Yousef's AI Copilot"
-          className="relative group flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 text-slate-950 font-bold text-xs shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105 transition-all cursor-pointer"
+          className="relative group flex items-center gap-2 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-gradient-to-r from-amber-400 via-rose-500 to-violet-600 text-slate-950 font-extrabold text-xs shadow-xl shadow-rose-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
           </span>
           <Bot className="w-4 h-4 text-slate-950" />
-          <span className="hidden sm:inline">Ask AI Copilot</span>
-          <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+          <span>Ask AI Copilot</span>
+          <Sparkles className="w-3.5 h-3.5 text-slate-950 animate-spin" />
         </button>
       </div>
     </div>

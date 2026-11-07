@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Code2, Sparkles, FileText } from 'lucide-react';
+import { ArrowUp, Smile, Sparkles, FileText, Heart } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface FooterProps {
@@ -9,26 +9,11 @@ interface FooterProps {
 }
 
 /**
- * Footer Component
- * 
- * Sits at the base of the page.
- * 
- * Key Features:
- * 1. Live Timezone Clock:
- *    Calculates current wall-clock time in Beirut, Lebanon (`Asia/Beirut`) using the
- *    browser's native internationalization API (`toLocaleTimeString`), updated via a 1s interval.
- * 2. Smooth Scroll-To-Top Trigger:
- *    Invokes `window.scrollTo({ top: 0, behavior: 'smooth' })`.
- * 3. Quick Copilot & Resume triggers.
+ * Footer Component - Colorful & Tactile
  */
 export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
-  // Formatted Beirut time string
   const [currentTime, setCurrentTime] = useState<string>('');
 
-  /**
-   * Timezone ticker:
-   * Sets up a 1000ms interval to update the clock every second with zero drift.
-   */
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -43,60 +28,57 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
       );
     };
 
-    updateTime(); // Initial invocation
+    updateTime();
     const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval); // Clear interval on unmount
+    return () => clearInterval(interval);
   }, []);
 
-  /**
-   * Smoothly scrolls the window back to coordinates (0, 0)
-   */
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="relative bg-[#05080e] border-t border-slate-900 pt-16 pb-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="relative bg-[#070B14] border-t border-white/10 pt-14 pb-12 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Top Footer Row */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-12 border-b border-slate-900">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 pb-10 border-b border-white/10 text-center sm:text-left">
           
           {/* Logo & Headline */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-cyan-950 border border-cyan-800 text-cyan-400">
-              <Code2 className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-2xl bg-amber-400/15 border border-amber-400/30 text-amber-400 flex items-center justify-center">
+              <Smile className="w-5 h-5" />
             </div>
             <div>
-              <span className="font-heading font-bold text-white text-base">
+              <span className="font-heading font-extrabold text-white text-base">
                 {portfolioData.profile.name}
               </span>
-              <p className="text-xs text-slate-500 font-mono">
+              <p className="text-xs text-slate-400 font-mono">
                 {portfolioData.profile.role}
               </p>
             </div>
           </div>
 
           {/* Center: Live Beirut Time & Feature Hotlinks */}
-          <div className="flex items-center gap-4 text-xs font-mono text-slate-400 bg-slate-900/60 px-4 py-2 rounded-full border border-slate-800">
-            <span className="flex items-center gap-1.5 text-cyan-400">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-300 bg-white/5 px-4 py-2 rounded-2xl border border-white/10">
+            <span className="flex items-center gap-1.5 text-amber-300 font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Beirut: {currentTime || '12:00:00 PM'} (EET)</span>
+              <span>Beirut: {currentTime || '12:00:00 PM'}</span>
             </span>
-            <span className="text-slate-600">|</span>
+            <span className="text-white/20">|</span>
             <button
               onClick={onOpenCopilot}
-              className="text-slate-400 hover:text-cyan-300 transition-colors flex items-center gap-1 cursor-pointer"
+              className="text-slate-300 hover:text-amber-300 transition-colors flex items-center gap-1 cursor-pointer font-bold"
             >
-              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+              <Sparkles className="w-3.5 h-3.5 text-rose-400" />
               <span>Copilot</span>
             </button>
-            <span className="text-slate-600">|</span>
+            <span className="text-white/20">|</span>
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 hover:text-cyan-300 transition-colors flex items-center gap-1"
+              className="text-slate-300 hover:text-amber-300 transition-colors flex items-center gap-1 font-bold"
             >
               <FileText className="w-3.5 h-3.5 text-cyan-400" />
               <span>Resume</span>
@@ -106,7 +88,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
           {/* Back To Top Button */}
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-400 hover:text-white text-xs font-mono transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white text-xs font-bold transition-colors cursor-pointer"
           >
             <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
@@ -114,14 +96,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
 
         </div>
 
-        {/* Bottom Copyright & Colophon */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+        {/* Bottom Colophon */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
           <p>
-            © {new Date().getFullYear()} {portfolioData.profile.name}. All rights reserved.
+            © {new Date().getFullYear()} {portfolioData.profile.name}. Handcrafted with passion.
           </p>
 
           <p className="flex items-center gap-1">
-            Engineered with Next.js 16, React 19, TypeScript & Tailwind CSS
+            Built with Next.js 16, React 19, TypeScript & Tailwind CSS
           </p>
         </div>
 
