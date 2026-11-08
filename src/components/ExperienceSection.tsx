@@ -12,6 +12,8 @@ import { portfolioData } from '../data/portfolioData';
 
 /**
  * ExperienceSection Component - Dedicated Work History & Internships
+ * 
+ * Loaded dynamically from src/data/experiences.json with ordering via `order` attribute.
  */
 export const ExperienceSection: React.FC = () => {
   const companyRibbons = [
@@ -46,25 +48,30 @@ export const ExperienceSection: React.FC = () => {
             Work Experience
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
-            Software development internships, cloud infrastructure engineering, and collaborative team sprints.
+            Software development internships, cloud infrastructure engineering, and collaborative team sprints loaded from JSON.
           </p>
         </div>
 
         {/* Experience Cards Stack */}
         <div className="space-y-6">
           {portfolioData.experience.map((exp, idx) => {
-            const ribbon = companyRibbons[idx] || companyRibbons[0];
+            const ribbon = companyRibbons[idx % companyRibbons.length];
             return (
               <div
-                key={idx}
+                key={exp.id || idx}
                 className={`p-6 sm:p-7 rounded-3xl bg-[#111726]/90 border border-white/10 border-l-4 ${ribbon.borderColor} pop-card ${ribbon.glow} space-y-4`}
               >
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10">
                   <div>
-                    <h3 className="text-lg sm:text-xl font-extrabold text-white">
-                      {exp.role}
-                    </h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg sm:text-xl font-extrabold text-white">
+                        {exp.role}
+                      </h3>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400">
+                        #{exp.order}
+                      </span>
+                    </div>
                     <div className="text-sm font-bold text-amber-400 mt-0.5">
                       {exp.company}
                     </div>
@@ -98,11 +105,11 @@ export const ExperienceSection: React.FC = () => {
                 </div>
 
                 {/* Tech Badges */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/10">
+                <div className="flex flex-wrap items-center gap-1.5 pt-2">
                   {exp.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 text-xs font-mono rounded-lg bg-white/5 border border-white/10 text-slate-200"
+                      className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300"
                     >
                       {tech}
                     </span>

@@ -2,28 +2,38 @@
 
 import React from 'react';
 import { 
-  Cpu, 
   Layout, 
   Server, 
   Cloud, 
-  Sparkles, 
   Code2,
-  Terminal,
-  Zap,
-  Layers
+  Sparkles,
+  Layers,
+  Terminal
 } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { portfolioData, SkillCategory } from '../data/portfolioData';
 
 /**
- * SkillsSection Component - Bento-Style Colorful Competencies
+ * SkillsSection Component - Bento-Style Competencies loaded from skills.json
  * 
  * Features:
- * - 4 High-personality Bento cards with distinct color themes (Mint, Amber, Violet, Cyan).
- * - Tactile tech badges with production highlights.
- * - 100% Mobile responsive (1-column on phones, 2-column on desktops).
+ * - Dynamic data loaded directly from src/data/skills.json
+ * - Categorized with deterministic ordering via `order` attribute
+ * - Categories have NO subcategories as specified
+ * - No percentages; focus on practical production highlights
+ * - 100% Mobile responsive (1-column on phones, 2-column on desktop)
  */
 export const SkillsSection: React.FC = () => {
-  const bentoThemes = {
+  // Visual themes mapped by category ID with fallback
+  const themeMap: Record<
+    string,
+    {
+      color: string;
+      badgeBg: string;
+      tagBg: string;
+      glow: string;
+      icon: React.ComponentType<{ className?: string }>;
+    }
+  > = {
     frontend: {
       color: 'emerald',
       badgeBg: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300',
@@ -54,10 +64,15 @@ export const SkillsSection: React.FC = () => {
     },
   };
 
-  const categories = Object.entries(portfolioData.skills) as [
-    keyof typeof bentoThemes,
-    (typeof portfolioData.skills)['frontend']
-  ][];
+  const defaultTheme = {
+    color: 'rose',
+    badgeBg: 'bg-rose-500/15 border-rose-500/30 text-rose-300',
+    tagBg: 'bg-rose-950/40 border-rose-800/40 text-rose-200 hover:border-rose-500/60',
+    glow: 'glow-coral',
+    icon: Layers,
+  };
+
+  const categories: SkillCategory[] = portfolioData.skills;
 
   return (
     <section id="skills" className="py-20 relative">
@@ -70,22 +85,22 @@ export const SkillsSection: React.FC = () => {
             <span>CORE TOOLKIT</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-            Skills & Technologies
+            Skills &amp; Technologies
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
-            Technologies I use to build scalable web platforms, cross-platform mobile apps, and automated cloud systems.
+            Ordered competencies loaded dynamically from JSON, covering full-stack web, cross-platform mobile, and cloud infrastructure.
           </p>
         </div>
 
         {/* Colorful Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-          {categories.map(([categoryKey, category]) => {
-            const theme = bentoThemes[categoryKey] || bentoThemes.frontend;
+          {categories.map((category) => {
+            const theme = themeMap[category.id] || defaultTheme;
             const Icon = theme.icon;
 
             return (
               <div
-                key={categoryKey}
+                key={category.id}
                 className={`p-6 sm:p-7 rounded-3xl bg-[#111726]/90 border border-white/10 pop-card flex flex-col justify-between space-y-5 ${theme.glow}`}
               >
                 <div>
@@ -99,21 +114,29 @@ export const SkillsSection: React.FC = () => {
                         {category.title}
                       </h3>
                     </div>
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400">
+                      #{category.order}
+                    </span>
                   </div>
 
                   <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-5">
                     {category.description}
                   </p>
 
-                  {/* Skills Badges with Highlights */}
+                  {/* Skills Badges with Highlights (sorted by skill.order) */}
                   <div className="space-y-3">
                     {category.skills.map((skill) => (
                       <div
                         key={skill.name}
                         className={`p-3 rounded-2xl border transition-all ${theme.tagBg}`}
                       >
-                        <div className="text-xs sm:text-sm font-bold text-slate-100">
-                          {skill.name}
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-xs sm:text-sm font-bold text-slate-100">
+                            {skill.name}
+                          </span>
+                          <span className="text-[10px] font-mono text-slate-500">
+                            #{skill.order}
+                          </span>
                         </div>
                         {skill.highlight && (
                           <div className="text-[11px] font-mono text-slate-400 mt-1">

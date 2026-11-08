@@ -5,7 +5,7 @@ import { ArrowUp, Code2, Sparkles, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface FooterProps {
-  onOpenCopilot: () => void;
+  onOpenCopilot?: () => void;
 }
 
 /**
@@ -67,7 +67,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
             </span>
             <span className="text-white/20">|</span>
             <button
-              onClick={onOpenCopilot}
+              onClick={() => {
+                if (onOpenCopilot) {
+                  onOpenCopilot();
+                } else {
+                  window.location.href = '/#contact';
+                }
+              }}
               className="text-slate-300 hover:text-amber-300 transition-colors flex items-center gap-1 cursor-pointer font-bold"
             >
               <Sparkles className="w-3.5 h-3.5 text-rose-400" />

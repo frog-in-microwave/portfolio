@@ -1,0 +1,76 @@
+[
+  {
+    "id": "codebrave-internship",
+    "order": 1,
+    "period": "01/2026 - 04/2026",
+    "role": "Full-Stack Developer Intern",
+    "company": "Codebrave",
+    "location": "Beirut, Lebanon",
+    "type": "Internship",
+    "description": "Engineered core modules for a comprehensive student and training management system serving students, teachers, and trainers across Lebanon.",
+    "achievements": [
+      "Contributed to building and scaling a student and training management portal with full role-based access for students, teachers, and trainers.",
+      "Configured GCP, Cloud Run, and Cloud Build pipelines for automated, containerized continuous deployment.",
+      "Wrote and maintained Terraform scripts for Infrastructure as Code (IaC) and reliable cloud resource orchestration.",
+      "Designed PostgreSQL database schemas with Prisma ORM, later spearheading migration to Firebase Data Connect to leverage GraphQL capabilities."
+    ],
+    "technologies": [
+      "GCP",
+      "Cloud Run",
+      "Cloud Build",
+      "Terraform",
+      "PostgreSQL",
+      "Prisma",
+      "Firebase Data Connect",
+      "GraphQL",
+      "TypeScript"
+    ]
+  },
+  {
+    "id": "agile-labs-internship",
+    "order": 2,
+    "period": "01/2026 - 04/2026",
+    "role": "Full-Stack Developer Intern",
+    "company": "The Agile Labs",
+    "location": "Online / Remote",
+    "type": "Internship",
+    "description": "Developed web and cross-platform mobile applications utilizing the MERN stack in an intensive Agile team environment.",
+    "achievements": [
+      "Built responsive mobile and web applications utilizing MongoDB, Express.js, React, React Native, and Node.js.",
+      "Collaborated with developers in high-velocity Agile sprints, participating in daily standups, sprint planning, and iterative shipping.",
+      "Structured application logic adhering to strict Model-View-Controller (MVC) architecture for clean maintainability.",
+      "Managed version control, merge requests, and code quality workflows using Git."
+    ],
+    "technologies": [
+      "React",
+      "React Native",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "MERN",
+      "Git",
+      "MVC Architecture"
+    ]
+  },
+  {
+    "id": "concat-tech-internship",
+    "order": 3,
+    "period": "04/2025 - 08/2025",
+    "role": "WordPress Intern",
+    "company": "CONCAT Tech",
+    "location": "Online / Remote",
+    "type": "Internship",
+    "description": "Collaborated in an international engineering cohort on client web delivery, layout organization, and performance.",
+    "achievements": [
+      "Developed and launched the Musana Yoga website using WordPress.",
+      "Partnered with co-interns on end-to-end design layout, typography, navigation, and responsiveness.",
+      "Proposed and organized weekly technical coordination meetings to align on requirements, review pull requests, and solve blockers ahead of deadlines."
+    ],
+    "technologies": [
+      "WordPress",
+      "HTML & CSS",
+      "Responsive Web Design",
+      "Team Leadership"
+    ]
+  }
+]

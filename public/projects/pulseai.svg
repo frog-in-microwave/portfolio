@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#190e21" />
+      <stop offset="100%" stop-color="#3b0764" />
+    </linearGradient>
+    <linearGradient id="glowLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="50%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#e879f9" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg)" rx="16" />
+
+  <!-- Center AI Core Orb -->
+  <circle cx="400" cy="200" r="70" fill="#f43f5e" opacity="0.15" />
+  <circle cx="400" cy="200" r="50" fill="#f43f5e" opacity="0.3" />
+  <circle cx="400" cy="200" r="30" fill="#fb923c" opacity="0.8" />
+  <text x="400" y="206" fill="#030712" font-size="20" font-family="sans-serif" font-weight="extrabold" text-anchor="middle">AI</text>
+
+  <!-- Surrounding Nodes -->
+  <!-- Node 1: Vector Search -->
+  <rect x="120" y="110" width="160" height="60" rx="10" fill="#181329" stroke="#f43f5e" stroke-width="1.5" />
+  <text x="200" y="135" fill="#fda4af" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">Hybrid Vector &amp; BM25</text>
+  <text x="200" y="152" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">Cosine Sim &gt; 0.89</text>
+  <path d="M 280 140 Q 340 160 370 185" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3" />
+
+  <!-- Node 2: Context Cache -->
+  <rect x="120" y="250" width="160" height="60" rx="10" fill="#181329" stroke="#fb923c" stroke-width="1.5" />
+  <text x="200" y="275" fill="#fed7aa" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">Context Caching</text>
+  <text x="200" y="292" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">Cache Hit: 82%</text>
+  <path d="M 280 280 Q 340 250 370 215" fill="none" stroke="#fb923c" stroke-width="2" stroke-dasharray="3" />
+
+  <!-- Node 3: Streaming Tokens -->
+  <rect x="520" y="110" width="160" height="60" rx="10" fill="#181329" stroke="#e879f9" stroke-width="1.5" />
+  <text x="600" y="135" fill="#f5d0fe" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">SSE Streamer</text>
+  <text x="600" y="152" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">85 tokens/sec</text>
+  <path d="M 430 185 Q 470 160 520 140" fill="none" stroke="#e879f9" stroke-width="2" stroke-dasharray="3" />
+
+  <!-- Node 4: Citation Verifier -->
+  <rect x="520" y="250" width="160" height="60" rx="10" fill="#181329" stroke="#34d399" stroke-width="1.5" />
+  <text x="600" y="275" fill="#a7f3d0" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">Citation Verifier</text>
+  <text x="600" y="292" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">98.4% Accuracy</text>
+  <path d="M 430 215 Q 470 250 520 280" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="3" />
+
+  <!-- Bottom Console Status -->
+  <rect x="180" y="370" width="440" height="40" rx="8" fill="#100b1a" stroke="#2e1065" stroke-width="1" />
+  <text x="400" y="394" fill="#a855f7" font-size="11" font-family="monospace" text-anchor="middle">system.pulse: ready &gt; prompt latency &lt; 450ms</text>
+</svg>

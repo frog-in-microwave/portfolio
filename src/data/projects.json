@@ -1,0 +1,221 @@
+{
+  "categories": [
+    {
+      "id": "web-mobile",
+      "name": "Web & Mobile Platforms",
+      "order": 1,
+      "subcategories": [
+        {
+          "id": "fullstack-enterprise",
+          "name": "Full-Stack Web Systems",
+          "order": 1
+        },
+        {
+          "id": "cross-platform-mobile",
+          "name": "Cross-Platform Mobile",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "cloud-devops",
+      "name": "Cloud & DevOps Infrastructure",
+      "order": 2,
+      "subcategories": [
+        {
+          "id": "iac-pipelines",
+          "name": "Infrastructure as Code",
+          "order": 1
+        },
+        {
+          "id": "containerized-deployments",
+          "name": "Container Deployments",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "ai-intelligence",
+      "name": "AI Systems & Microservices",
+      "order": 3,
+      "subcategories": [
+        {
+          "id": "agentic-ai",
+          "name": "Agentic AI & LLMs",
+          "order": 1
+        },
+        {
+          "id": "knowledge-retrieval",
+          "name": "RAG & Vector Retrieval",
+          "order": 2
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "edubrave-learning-portal",
+      "title": "EduBrave Learning Portal",
+      "tagline": "Multi-role academy portal with realtime schedule sync, GraphQL data connect, and automated report generation.",
+      "order": 1,
+      "categoryId": "web-mobile",
+      "subcategoryId": "fullstack-enterprise",
+      "featured": true,
+      "role": "Lead Full-Stack Developer",
+      "timeline": "3 Months (Q1 2026)",
+      "badge": "Full-Stack Flagship",
+      "summary": "Unified digital portal serving students, instructors, and academy staff with role-based access, attendance tracking, and instant grade synchronization.",
+      "overview": "EduBrave was engineered to eliminate communication fragmentation and spreadsheet chaos across training centers. It provides a cohesive Next.js 16 web app and responsive mobile interface backed by PostgreSQL and GraphQL via Firebase Data Connect, facilitating real-time course enrollment, assignment uploads, and attendance tracking.",
+      "problem": "Educational centers struggled with manual tracking of student cohorts, slow grading feedback loops, and desynchronized timetable data across disparate software tools.",
+      "solution": "Architected a unified responsive web and mobile application utilizing Next.js 16 with role-based permissions (RBAC), realtime attendance syncing, and GraphQL data layers backed by PostgreSQL.",
+      "metrics": [
+        { "label": "Active Learners", "value": "1,200+" },
+        { "label": "Query Latency", "value": "< 110ms" },
+        { "label": "Uptime SLA", "value": "99.95%" }
+      ],
+      "technologies": [
+        "Next.js 16",
+        "React",
+        "TypeScript",
+        "GraphQL",
+        "Firebase Data Connect",
+        "PostgreSQL",
+        "Prisma ORM",
+        "Tailwind CSS"
+      ],
+      "architectureHighlights": [
+        "Role-based authentication & route guards (Student, Teacher, Admin)",
+        "Real-time schedule synchronization with GraphQL subscriptions",
+        "Automated PDF grade report generation and asynchronous export",
+        "Optimized mobile layout with touch-friendly navigation"
+      ],
+      "keyFeatures": [
+        "Interactive cohort scheduling calendar with collision detection",
+        "Automated grading dashboards with instant student push notifications",
+        "Batch CSV student onboarding with automated credential distribution",
+        "Audited activity logs for institutional compliance"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "url": "/projects/edubrave.svg",
+          "caption": "EduBrave Academy Dashboard: Multi-role cohort metrics and attendance overview"
+        }
+      ],
+      "links": {
+        "live": "https://edubrave-demo.example.com",
+        "github": "https://github.com/yousef-abdallah/edubrave-portal",
+        "docs": "https://docs.edubrave-demo.example.com"
+      }
+    },
+    {
+      "id": "terrarun-cloud-pipeline",
+      "title": "TerraRun Cloud Orchestrator",
+      "tagline": "Automated GCP Cloud Run container deployment engine with Terraform Infrastructure as Code and GitHub Actions.",
+      "order": 2,
+      "categoryId": "cloud-devops",
+      "subcategoryId": "iac-pipelines",
+      "featured": true,
+      "role": "Cloud & DevOps Engineer",
+      "timeline": "2 Months (2026)",
+      "badge": "DevOps / Cloud IaC",
+      "summary": "Declarative multi-environment cloud infrastructure automation delivering zero-downtime rolling container releases on Google Cloud.",
+      "overview": "TerraRun is an enterprise-grade cloud deployment scaffold utilizing Terraform to provision GCP VPCs, Cloud Run instances, Secret Manager credentials, and Cloud Build CI/CD triggers. It enforces GitOps best practices and immutable container deployment standards.",
+      "problem": "Manual cloud deployments incurred configuration drift between staging and production environments, leading to fragile releases and downtime risks.",
+      "solution": "Constructed fully automated, modular Terraform configurations with automated pull-request validation, preview environments, and blue-green Cloud Run container promotions.",
+      "metrics": [
+        { "label": "Deployment Duration", "value": "3.2 min" },
+        { "label": "Zero Downtime", "value": "100%" },
+        { "label": "Infra Cost Saved", "value": "38%" }
+      ],
+      "technologies": [
+        "Terraform (IaC)",
+        "Google Cloud Run",
+        "GCP Cloud Build",
+        "Docker",
+        "GitHub Actions",
+        "Bash & Shell Scripting",
+        "GCP IAM"
+      ],
+      "architectureHighlights": [
+        "Modular Terraform IaC separating network, database, and compute layers",
+        "Container vulnerability scanning with Trivy in CI pipelines",
+        "Automated preview URLs for pull requests before staging merges",
+        "Granular GCP IAM least-privilege service accounts"
+      ],
+      "keyFeatures": [
+        "Automated Terraform plan outputs posted as PR comments",
+        "Instant rollback trigger with historical container tag locking",
+        "Centralized Google Cloud Secret Manager integration with automated rotation",
+        "Cost estimation alerts via Terraform Infracost hooks"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "url": "/projects/terrarun.svg",
+          "caption": "TerraRun Cloud Infrastructure: GCP Cloud Run & Terraform orchestration topology"
+        }
+      ],
+      "links": {
+        "live": "https://cloudrun-pipeline.example.com",
+        "github": "https://github.com/yousef-abdallah/terrarun-cloud-pipeline",
+        "docs": "https://github.com/yousef-abdallah/terrarun-cloud-pipeline#readme"
+      }
+    },
+    {
+      "id": "pulseai-agent-engine",
+      "title": "PulseAI Copilot & Knowledge Engine",
+      "tagline": "Multimodal intelligent agent engine with hybrid vector search, context caching, and real-time streaming.",
+      "order": 3,
+      "categoryId": "ai-intelligence",
+      "subcategoryId": "agentic-ai",
+      "featured": true,
+      "role": "AI Systems Engineer",
+      "timeline": "3 Months (2025 - 2026)",
+      "badge": "AI & LLM Systems",
+      "summary": "Next-generation autonomous assistant capable of answering complex domain questions with verifiable citations and interactive tools.",
+      "overview": "PulseAI is an open-source agent framework combining semantic embeddings, hybrid keyword + vector retrieval, and fast token streaming for technical customer support and documentation search.",
+      "problem": "Generic LLM chatbots suffer from hallucinated answers, lack of private domain knowledge, and slow non-streamed responses.",
+      "solution": "Built a Python & TypeScript hybrid system utilizing semantic indexing, context caching, and a low-latency streaming API with human-in-the-loop fallback.",
+      "metrics": [
+        { "label": "Query Latency", "value": "< 450ms" },
+        { "label": "Citation Accuracy", "value": "98.4%" },
+        { "label": "Stream Throughput", "value": "85 tok/s" }
+      ],
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "TypeScript",
+        "Next.js App Router",
+        "Vector Embeddings",
+        "BM25 Search",
+        "SSE Streaming",
+        "Tailwind CSS"
+      ],
+      "architectureHighlights": [
+        "Hybrid vector and BM25 lexical search ranking for pinpoint accuracy",
+        "Real-time Server-Sent Events (SSE) token streaming",
+        "Custom tool execution engine with sandboxed evaluation",
+        "Full citation verification and confidence scoring"
+      ],
+      "keyFeatures": [
+        "Dynamic prompt compression with sliding window context management",
+        "Interactive document preview with inline sentence highlight references",
+        "Fallback routing to human engineering team on low-confidence queries",
+        "Real-time token usage telemetry and cost monitoring"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "url": "/projects/pulseai.svg",
+          "caption": "PulseAI Interactive Query & Citation Explorer with live streaming tokens"
+        }
+      ],
+      "links": {
+        "live": "https://pulseai-agent.example.com",
+        "github": "https://github.com/yousef-abdallah/pulseai-agent-engine",
+        "demo": "https://pulseai-agent.example.com/demo"
+      }
+    }
+  ]
+}

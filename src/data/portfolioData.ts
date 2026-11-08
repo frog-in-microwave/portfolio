@@ -1,21 +1,30 @@
-export interface Project {
-  id: string;
-  title: string;
-  tagline: string;
-  description: string;
-  category: 'ai' | 'fullstack' | 'systems';
-  image: string;
-  tags: string[];
-  metrics: { label: string; value: string }[];
-  problem: string;
-  solution: string;
-  architectureHighlights: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  featured: boolean;
+import skillsRaw from './skills.json';
+import experiencesRaw from './experiences.json';
+import projectsRaw from './projects.json';
+
+// ==========================================
+// Skills Type Definitions
+// ==========================================
+export interface SkillItem {
+  name: string;
+  highlight?: string;
+  order: number;
 }
 
+export interface SkillCategory {
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+  skills: SkillItem[];
+}
+
+// ==========================================
+// Experience Type Definitions
+// ==========================================
 export interface Experience {
+  id: string;
+  order: number;
   period: string;
   role: string;
   company: string;
@@ -26,12 +35,71 @@ export interface Experience {
   technologies: string[];
 }
 
-export interface SkillItem {
+// ==========================================
+// Projects Type Definitions
+// ==========================================
+export interface ProjectSubcategory {
+  id: string;
   name: string;
-  level: number;
-  highlight?: string;
+  order: number;
 }
 
+export interface ProjectCategory {
+  id: string;
+  name: string;
+  order: number;
+  subcategories: ProjectSubcategory[];
+}
+
+export interface ProjectMedia {
+  type: 'image' | 'video';
+  url: string;
+  caption: string;
+}
+
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
+export interface ProjectLinks {
+  live?: string;
+  github?: string;
+  docs?: string;
+  demo?: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  tagline: string;
+  order: number;
+  categoryId: string;
+  subcategoryId: string;
+  featured: boolean;
+  role: string;
+  timeline: string;
+  badge?: string;
+  summary: string;
+  overview: string;
+  problem: string;
+  solution: string;
+  metrics: ProjectMetric[];
+  technologies: string[];
+  architectureHighlights: string[];
+  keyFeatures: string[];
+  media: ProjectMedia[];
+  links: ProjectLinks;
+}
+
+export interface ProjectsData {
+  categories: ProjectCategory[];
+  projects: Project[];
+}
+
+// ==========================================
+// Profile & Education Definitions
+// ==========================================
 export interface Education {
   degree: string;
   institution: string;
@@ -45,6 +113,65 @@ export interface Training {
   institution: string;
 }
 
+// ==========================================
+// Data Sorting & Retrieval Helpers
+// ==========================================
+
+/**
+ * Returns skill categories sorted by category.order ascending,
+ * with each category's skills sorted by skill.order ascending.
+ */
+export function getSortedSkills(): SkillCategory[] {
+  const categories = [...(skillsRaw as SkillCategory[])];
+  return categories
+    .sort((a, b) => a.order - b.order)
+    .map((cat) => ({
+      ...cat,
+      skills: [...cat.skills].sort((a, b) => a.order - b.order),
+    }));
+}
+
+/**
+ * Returns work experiences sorted by order ascending.
+ */
+export function getSortedExperiences(): Experience[] {
+  const experiences = [...(experiencesRaw as Experience[])];
+  return experiences.sort((a, b) => a.order - b.order);
+}
+
+/**
+ * Returns project categories sorted by category.order ascending,
+ * with subcategories sorted by subcategory.order ascending.
+ */
+export function getSortedProjectCategories(): ProjectCategory[] {
+  const categories = [...(projectsRaw.categories as ProjectCategory[])];
+  return categories
+    .sort((a, b) => a.order - b.order)
+    .map((cat) => ({
+      ...cat,
+      subcategories: [...cat.subcategories].sort((a, b) => a.order - b.order),
+    }));
+}
+
+/**
+ * Returns all projects sorted by project.order ascending.
+ */
+export function getSortedProjects(): Project[] {
+  const projects = [...(projectsRaw.projects as unknown as Project[])];
+  return projects.sort((a, b) => a.order - b.order);
+}
+
+/**
+ * Finds a specific project by id.
+ */
+export function getProjectById(id: string): Project | undefined {
+  const projects = projectsRaw.projects as unknown as Project[];
+  return projects.find((p) => p.id === id);
+}
+
+// ==========================================
+// Unified Portfolio Export
+// ==========================================
 export const portfolioData = {
   profile: {
     name: "Yousef Abdallah",
@@ -85,98 +212,11 @@ export const portfolioData = {
     },
   ] as Training[],
 
-  skills: {
-    frontend: {
-      title: "Frontend & Mobile Engineering",
-      description: "Modern, reactive web and mobile interfaces built with TypeScript and state-of-the-art frameworks.",
-      skills: [
-        { name: "React & Next.js", level: 92, highlight: "App router, SSR, client-server components, state hooks" },
-        { name: "React Native & Expo", level: 88, highlight: "Cross-platform mobile applications for iOS & Android" },
-        { name: "TypeScript & JavaScript", level: 90, highlight: "Strict typing, ES6+ asynchronous workflows" },
-        { name: "HTML5 & Modern CSS / Tailwind", level: 92, highlight: "Responsive layouts, mobile-first design systems" },
-      ],
-    },
-    backend: {
-      title: "Backend & API Development",
-      description: "Scalable backend services, RESTful APIs, and GraphQL query layers.",
-      skills: [
-        { name: "Node.js & Express.js", level: 90, highlight: "REST APIs, middleware pipelines, MVC architecture" },
-        { name: "GraphQL & Firebase Data Connect", level: 85, highlight: "Declarative schemas, mutations, and queries" },
-        { name: "MVC Architectural Pattern", level: 88, highlight: "Clean separation of business logic, models & routing" },
-      ],
-    },
-    cloud: {
-      title: "Cloud, Databases & DevOps",
-      description: "Cloud-native deployments, infrastructure as code, and relational / document databases.",
-      skills: [
-        { name: "Google Cloud Platform (GCP) & Cloud Run", level: 84, highlight: "Containerized deployment, Cloud Build CI/CD" },
-        { name: "Terraform (Infrastructure as Code)", level: 82, highlight: "Cloud resource orchestration, declarative configs" },
-        { name: "PostgreSQL & Prisma ORM", level: 88, highlight: "Relational data modeling, schema migrations, ACID" },
-        { name: "MongoDB (MERN Stack)", level: 88, highlight: "NoSQL document storage, aggregation pipelines" },
-        { name: "Git & Agile Workflow", level: 92, highlight: "Branching strategies, sprint planning, PR reviews" },
-      ],
-    },
-    languages: {
-      title: "Languages & Core Tools",
-      description: "Multi-paradigm programming languages and CMS engineering.",
-      skills: [
-        { name: "Python", level: 88, highlight: "Data scripting, web backend, and AI integration" },
-        { name: "C++", level: 82, highlight: "Systems programming, algorithms, and performance" },
-        { name: "Java", level: 80, highlight: "Object-oriented design patterns and multi-threading" },
-        { name: "WordPress CMS", level: 85, highlight: "Custom theme customization, layout architecture" },
-      ],
-    },
-  },
-
-  // Projects kept empty as instructed
-  projects: [] as Project[],
-
-  experience: [
-    {
-      period: "01/2026 - 04/2026",
-      role: "Full-Stack Developer Intern",
-      company: "Codebrave",
-      location: "Beirut, Lebanon",
-      type: "Internship",
-      description: "Engineered core modules for a comprehensive student and training management system serving students, teachers, and trainers across Lebanon.",
-      achievements: [
-        "Contributed to building and scaling a student and training management portal with full role-based access for students, teachers, and trainers.",
-        "Configured GCP, Cloud Run, and Cloud Build pipelines for automated, containerized continuous deployment.",
-        "Wrote and maintained Terraform scripts for Infrastructure as Code (IaC) and reliable cloud resource orchestration.",
-        "Designed PostgreSQL database schemas with Prisma ORM, later spearheading migration to Firebase Data Connect to leverage GraphQL capabilities.",
-      ],
-      technologies: ["GCP", "Cloud Run", "Cloud Build", "Terraform", "PostgreSQL", "Prisma", "Firebase Data Connect", "GraphQL", "TypeScript"],
-    },
-    {
-      period: "01/2026 - 04/2026",
-      role: "Full-Stack Developer Intern",
-      company: "The Agile Labs",
-      location: "Online / Remote",
-      type: "Internship",
-      description: "Developed web and cross-platform mobile applications utilizing the MERN stack in an intensive Agile team environment.",
-      achievements: [
-        "Built responsive mobile and web applications utilizing MongoDB, Express.js, React, React Native, and Node.js.",
-        "Collaborated with developers in high-velocity Agile sprints, participating in daily standups, sprint planning, and iterative shipping.",
-        "Structured application logic adhering to strict Model-View-Controller (MVC) architecture for clean maintainability.",
-        "Managed version control, merge requests, and code quality workflows using Git.",
-      ],
-      technologies: ["React", "React Native", "Node.js", "Express.js", "MongoDB", "MERN", "Git", "MVC Architecture"],
-    },
-    {
-      period: "04/2025 - 08/2025",
-      role: "WordPress Intern",
-      company: "CONCAT Tech",
-      location: "Online / Remote",
-      type: "Internship",
-      description: "Collaborated in an international engineering cohort on client web delivery, layout organization, and performance.",
-      achievements: [
-        "Developed and launched the Musana Yoga website using WordPress.",
-        "Partnered with co-interns on end-to-end design layout, typography, navigation, and responsiveness.",
-        "Proposed and organized weekly technical coordination meetings to align on requirements, review pull requests, and solve blockers ahead of deadlines.",
-      ],
-      technologies: ["WordPress", "HTML & CSS", "Responsive Web Design", "Team Leadership"],
-    },
-  ] as Experience[],
+  // Loaded from JSON
+  skills: getSortedSkills(),
+  experience: getSortedExperiences(),
+  projects: getSortedProjects(),
+  projectCategories: getSortedProjectCategories(),
 
   aiCopilotKnowledge: [
     {
@@ -189,11 +229,15 @@ export const portfolioData = {
     },
     {
       question: "What has Yousef achieved at Codebrave?",
-      answer: "At Codebrave, Yousef contributed to a student and training management system for students, teachers, and trainers. He deployed applications to GCP Cloud Run using Cloud Build, managed infrastructure with Terraform, and migrated from PostgreSQL/Prisma to Firebase Data Connect for GraphQL capabilities.",
+      answer: "At Codebrave, Yousef worked as a Full-Stack Developer Intern contributing to a student and training management system for students, teachers, and trainers. He deployed applications to GCP Cloud Run using Cloud Build, managed infrastructure with Terraform, and migrated from PostgreSQL/Prisma to Firebase Data Connect for GraphQL capabilities.",
     },
     {
       question: "What did Yousef build at The Agile Labs?",
       answer: "At The Agile Labs, Yousef built web and mobile applications using the MERN stack (MongoDB, Express, React, Node.js) and React Native, implementing clean MVC architectures within an Agile/Scrum team.",
+    },
+    {
+      question: "What projects has Yousef worked on?",
+      answer: "Yousef has developed several featured systems including the EduBrave Learning Portal (Next.js 16, GraphQL, PostgreSQL), the TerraRun Cloud Orchestrator (Terraform IaC and GCP Cloud Run zero-downtime pipelines), and PulseAI Copilot & Knowledge Engine (hybrid vector search and SSE token streaming).",
     },
     {
       question: "How can I contact Yousef for an interview or opportunity?",
