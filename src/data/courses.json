@@ -1,0 +1,28 @@
+[
+  {
+    "id": "codebrave-web-dev",
+    "order": 1,
+    "title": "Codebrave Python & Web Development Program",
+    "institution": "Codebrave",
+    "period": "2024",
+    "badge": "Full-Stack & Python",
+    "description": "Comprehensive full-stack development and Python program covering software engineering fundamentals, modern web architectures, API integration, and database systems.",
+    "skills": ["Python", "Full-Stack Web Dev", "REST APIs", "Git", "Software Architecture"],
+    "certificateImage": "/certificates/codebrave-certificate.svg",
+    "credentialUrl": "",
+    "featured": true
+  },
+  {
+    "id": "lebnet-tech-fellows",
+    "order": 2,
+    "title": "LebNet Tech Fellows AI Program",
+    "institution": "LebNet",
+    "period": "2024",
+    "badge": "AI Fellowship",
+    "description": "Competitive fellowship specializing in artificial intelligence and deep learning, including neural network architectures, PyTorch, computer vision, and applied model deployments.",
+    "skills": ["Artificial Intelligence", "Deep Learning", "PyTorch", "Computer Vision", "FastAPI"],
+    "certificateImage": "/certificates/lebnet-certificate.svg",
+    "credentialUrl": "",
+    "featured": true
+  }
+]

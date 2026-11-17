@@ -1,221 +1,163 @@
-{
-  "categories": [
-    {
-      "id": "web-mobile",
-      "name": "Web & Mobile Platforms",
-      "order": 1,
-      "subcategories": [
-        {
-          "id": "fullstack-enterprise",
-          "name": "Full-Stack Web Systems",
-          "order": 1
-        },
-        {
-          "id": "cross-platform-mobile",
-          "name": "Cross-Platform Mobile",
-          "order": 2
-        }
-      ]
-    },
-    {
-      "id": "cloud-devops",
-      "name": "Cloud & DevOps Infrastructure",
-      "order": 2,
-      "subcategories": [
-        {
-          "id": "iac-pipelines",
-          "name": "Infrastructure as Code",
-          "order": 1
-        },
-        {
-          "id": "containerized-deployments",
-          "name": "Container Deployments",
-          "order": 2
-        }
-      ]
-    },
-    {
-      "id": "ai-intelligence",
-      "name": "AI Systems & Microservices",
-      "order": 3,
-      "subcategories": [
-        {
-          "id": "agentic-ai",
-          "name": "Agentic AI & LLMs",
-          "order": 1
-        },
-        {
-          "id": "knowledge-retrieval",
-          "name": "RAG & Vector Retrieval",
-          "order": 2
-        }
-      ]
-    }
-  ],
-  "projects": [
-    {
-      "id": "edubrave-learning-portal",
-      "title": "EduBrave Learning Portal",
-      "tagline": "Multi-role academy portal with realtime schedule sync, GraphQL data connect, and automated report generation.",
-      "order": 1,
-      "categoryId": "web-mobile",
-      "subcategoryId": "fullstack-enterprise",
-      "featured": true,
-      "role": "Lead Full-Stack Developer",
-      "timeline": "3 Months (Q1 2026)",
-      "badge": "Full-Stack Flagship",
-      "summary": "Unified digital portal serving students, instructors, and academy staff with role-based access, attendance tracking, and instant grade synchronization.",
-      "overview": "EduBrave was engineered to eliminate communication fragmentation and spreadsheet chaos across training centers. It provides a cohesive Next.js 16 web app and responsive mobile interface backed by PostgreSQL and GraphQL via Firebase Data Connect, facilitating real-time course enrollment, assignment uploads, and attendance tracking.",
-      "problem": "Educational centers struggled with manual tracking of student cohorts, slow grading feedback loops, and desynchronized timetable data across disparate software tools.",
-      "solution": "Architected a unified responsive web and mobile application utilizing Next.js 16 with role-based permissions (RBAC), realtime attendance syncing, and GraphQL data layers backed by PostgreSQL.",
-      "metrics": [
-        { "label": "Active Learners", "value": "1,200+" },
-        { "label": "Query Latency", "value": "< 110ms" },
-        { "label": "Uptime SLA", "value": "99.95%" }
-      ],
-      "technologies": [
-        "Next.js 16",
-        "React",
-        "TypeScript",
-        "GraphQL",
-        "Firebase Data Connect",
-        "PostgreSQL",
-        "Prisma ORM",
-        "Tailwind CSS"
-      ],
-      "architectureHighlights": [
-        "Role-based authentication & route guards (Student, Teacher, Admin)",
-        "Real-time schedule synchronization with GraphQL subscriptions",
-        "Automated PDF grade report generation and asynchronous export",
-        "Optimized mobile layout with touch-friendly navigation"
-      ],
-      "keyFeatures": [
-        "Interactive cohort scheduling calendar with collision detection",
-        "Automated grading dashboards with instant student push notifications",
-        "Batch CSV student onboarding with automated credential distribution",
-        "Audited activity logs for institutional compliance"
-      ],
-      "media": [
-        {
-          "type": "image",
-          "url": "/projects/edubrave.svg",
-          "caption": "EduBrave Academy Dashboard: Multi-role cohort metrics and attendance overview"
-        }
-      ],
-      "links": {
-        "live": "https://edubrave-demo.example.com",
-        "github": "https://github.com/yousef-abdallah/edubrave-portal",
-        "docs": "https://docs.edubrave-demo.example.com"
+[
+  {
+    "id": "miami-sunshine-store",
+    "title": "Miami Sunshine Summer Store",
+    "tagline": "Full-stack neo-brutalist e-commerce web platform built with React, Redux Toolkit, Node.js, Express, MongoDB, and Stripe payments.",
+    "order": 1,
+    "categoryId": "web-mobile",
+    "subcategoryId": "fullstack-web",
+    "featured": true,
+    "role": "Lead Full-Stack Developer",
+    "timeline": "2026",
+    "badge": "MERN & Stripe Payments",
+    "summary": "Vibrant full-stack MERN e-commerce application featuring JWT authentication, Redux Toolkit state persistence, infinite scroll catalog pagination, dynamic search & filtering, and secure Stripe payment processing.",
+    "overview": "Miami Sunshine Summer Store is a high-energy, full-stack MERN (MongoDB, Express.js, React, Node.js) e-commerce web application engineered with a distinctive neo-brutalist coastal aesthetic. Built from the ground up to provide seamless customer browsing and lightning-fast transactions, the platform integrates Redux Toolkit for unified global state (cart, user sessions, active filters, and cached catalog pages), an infinite-scroll product catalog with backend cursor-style pagination and case-insensitive regex filtering, bcrypt-secured JWT authentication with customized user profiles and badge identifiers, and an end-to-end Stripe Checkout Sessions payment integration guarded by Express rate limiting and CORS controls.",
+    "problem": "Traditional e-commerce templates often suffer from sluggish page transitions, fragile state synchronization between cart and checkout, generic corporate visuals, and repetitive database refetches when users navigate between product detail views and catalog lists.",
+    "solution": "Designed and implemented an expressive, neo-brutalist MERN web application utilizing Redux Toolkit to cache catalog queries and maintain cart consistency, an asynchronous Express & Mongoose backend providing paginated REST endpoints, rate-limited Stripe payment sessions, and a mobile-first responsive React frontend with Intersection Observer infinite loading.",
+    "technologies": [
+      "React 18",
+      "Redux Toolkit",
+      "Node.js",
+      "Express.js 5",
+      "MongoDB & Mongoose",
+      "Stripe API",
+      "JWT (JSON Web Tokens)",
+      "Bcrypt",
+      "Vite",
+      "React Router 7",
+      "Intersection Observer",
+      "Netlify",
+      "ImageKit CDN"
+    ],
+    "architectureHighlights": [
+      "Full-Stack MERN Architecture: Decoupled React + Vite frontend communicating with a RESTful Express 5 & Mongoose backend",
+      "Redux Toolkit State Caching: Global store retaining fetched products, active category filters, and search terms to eliminate redundant network roundtrips",
+      "Infinite Scroll & Cursor Pagination: Seamless browsing powered by react-intersection-observer paired with backend skip() and limit() database queries",
+      "Stripe Checkout Integration: Secure server-side checkout session creation formatting multi-item line items with automatic shipping threshold logic",
+      "JWT Authentication & Security: Bearer token authentication with bcrypt 10-round password hashing, persistent profile state, and route guards",
+      "API Resilience & Rate Limiting: Configured Express Rate Limit middleware (5 req/min on sensitive routes) preventing credential stuffing and checkout abuse"
+    ],
+    "keyFeatures": [
+      "Dynamic Catalog Filtering: Real-time search and multi-category filtering ('Surf Gear', 'Apparel', 'Accessories', 'Limited') across MongoDB collections",
+      "Redux-Powered Shopping Cart: Persistent client-side cart with real-time subtotal calculations and free-shipping threshold logic ($100+)",
+      "Neo-Brutalist Visual Design: Custom coastal theme with hard drop shadows, high-contrast neon accents, sticker badges, and tactile button feedback",
+      "User Account Management: Dedicated member dashboard featuring order history tracking, shipping address updates, and customizable status badges",
+      "One-Click Card Checkout: Instant redirect to Stripe Hosted Checkout with automated currency handling and order metadata tracking",
+      "Transactional Messaging: Contact and support inquiry pipelines powered by backend email dispatch services"
+    ],
+    "media": [
+      {
+        "type": "image",
+        "url": "/projects/miami-sunshine/miami-sunshine-hero.avif",
+        "caption": "Miami Sunshine Summer Store: Storefront hero and brand manifesto with high-voltage neo-brutalist coastal aesthetic"
+      },
+      {
+        "type": "image",
+        "url": "/projects/miami-sunshine/miami-sunshine-home-products.avif",
+        "caption": "Featured Summer Drops: Responsive product showcases with status badges and quick interactions"
+      },
+      {
+        "type": "image",
+        "url": "/projects/miami-sunshine/miami-sunshine-shop.avif",
+        "caption": "Product Drops Catalog: Filterable product grid with category selectors and live MongoDB inventory items"
+      },
+      {
+        "type": "image",
+        "url": "/projects/miami-sunshine/miami-sunshine-product.avif",
+        "caption": "Product Showcase & Details: Responsive product view with dynamic pricing, stock status, and add-to-cart actions"
+      },
+      {
+        "type": "image",
+        "url": "/projects/miami-sunshine/miami-sunshine-contact-form.avif",
+        "caption": "Customer Inquiries & Support Portal: Responsive contact form connected to backend transactional messaging dispatch"
+      },
+      {
+        "type": "image",
+        "url": "/projects/miami-sunshine/miami-sunshine-about-hero.avif",
+        "caption": "Brand Manifesto & Story: High-voltage coastal aesthetic and design system"
       }
+    ],
+    "links": {
+      "live": "https://miami-sunshine-summer-store.netlify.app/",
+      "github": "https://github.com/frog-in-microwave/Miami-Sunshine-Summer-Store",
+      "demo": "https://miami-sunshine-summer-store.netlify.app/"
     },
-    {
-      "id": "terrarun-cloud-pipeline",
-      "title": "TerraRun Cloud Orchestrator",
-      "tagline": "Automated GCP Cloud Run container deployment engine with Terraform Infrastructure as Code and GitHub Actions.",
-      "order": 2,
-      "categoryId": "cloud-devops",
-      "subcategoryId": "iac-pipelines",
-      "featured": true,
-      "role": "Cloud & DevOps Engineer",
-      "timeline": "2 Months (2026)",
-      "badge": "DevOps / Cloud IaC",
-      "summary": "Declarative multi-environment cloud infrastructure automation delivering zero-downtime rolling container releases on Google Cloud.",
-      "overview": "TerraRun is an enterprise-grade cloud deployment scaffold utilizing Terraform to provision GCP VPCs, Cloud Run instances, Secret Manager credentials, and Cloud Build CI/CD triggers. It enforces GitOps best practices and immutable container deployment standards.",
-      "problem": "Manual cloud deployments incurred configuration drift between staging and production environments, leading to fragile releases and downtime risks.",
-      "solution": "Constructed fully automated, modular Terraform configurations with automated pull-request validation, preview environments, and blue-green Cloud Run container promotions.",
-      "metrics": [
-        { "label": "Deployment Duration", "value": "3.2 min" },
-        { "label": "Zero Downtime", "value": "100%" },
-        { "label": "Infra Cost Saved", "value": "38%" }
-      ],
-      "technologies": [
-        "Terraform (IaC)",
-        "Google Cloud Run",
-        "GCP Cloud Build",
-        "Docker",
-        "GitHub Actions",
-        "Bash & Shell Scripting",
-        "GCP IAM"
-      ],
-      "architectureHighlights": [
-        "Modular Terraform IaC separating network, database, and compute layers",
-        "Container vulnerability scanning with Trivy in CI pipelines",
-        "Automated preview URLs for pull requests before staging merges",
-        "Granular GCP IAM least-privilege service accounts"
-      ],
-      "keyFeatures": [
-        "Automated Terraform plan outputs posted as PR comments",
-        "Instant rollback trigger with historical container tag locking",
-        "Centralized Google Cloud Secret Manager integration with automated rotation",
-        "Cost estimation alerts via Terraform Infracost hooks"
-      ],
-      "media": [
-        {
-          "type": "image",
-          "url": "/projects/terrarun.svg",
-          "caption": "TerraRun Cloud Infrastructure: GCP Cloud Run & Terraform orchestration topology"
-        }
-      ],
-      "links": {
-        "live": "https://cloudrun-pipeline.example.com",
-        "github": "https://github.com/yousef-abdallah/terrarun-cloud-pipeline",
-        "docs": "https://github.com/yousef-abdallah/terrarun-cloud-pipeline#readme"
+    "thumbnail": "/projects/miami-sunshine/miami-sunshine-hero.avif"
+  },
+  {
+    "id": "tomato-leaf-classifier",
+    "title": "Leaf Diagnostics: Tomato Disease Classifier",
+    "tagline": "Custom deep PyTorch CNN & FastAPI web system diagnosing tomato leaf health and 5 plant pathologies with 95.1% accuracy.",
+    "order": 2,
+    "categoryId": "ai-ml",
+    "subcategoryId": "machine-learning",
+    "featured": true,
+    "role": "Machine Learning & Full-Stack Engineer",
+    "timeline": "LebNet Tech Fellows (2026)",
+    "badge": "Computer Vision & PyTorch",
+    "summary": "Deep learning computer vision system trained on 10,900+ leaf images, delivering real-time probabilistic diagnosis across 6 tomato leaf conditions via a lightweight FastAPI REST backend.",
+    "overview": "Leaf Diagnostics is an end-to-end computer vision platform designed to provide accessible plant disease screening for farmers and agriculturalists. Powered by a custom 5-stage Convolutional Neural Network (CNN) built and trained from scratch in PyTorch on a curated corpus of ~10,900 images from PlantVillage and the Pakistan Tomato Leaf datasets, the model classifies tomato leaves into six distinct categories: healthy leaves, Early Blight (Alternaria solani), Late Blight (Phytophthora infestans), Leaf Mold (Passalora fulva), Tomato Yellow Leaf Curl Virus (TYLCV), and Septoria Leaf Spot (Septoria lycopersici). The solution pairs an asynchronous Python FastAPI inference microservice with a responsive Netlify web application equipped with client-side canvas pre-compression, real-time scanning feedback, and an interactive held-out sample test gallery.",
+    "problem": "Plant diseases like Early Blight, Late Blight, and Yellow Leaf Curl Virus spread aggressively across tomato crops, often causing catastrophic yield loss. Traditional laboratory diagnosis is accurate but expensive and slow, creating an information lag that prevents farmers from taking timely containment measures.",
+    "solution": "Built a free, rapid screening tool powered by a custom deep PyTorch CNN reaching 95.1% validation accuracy. The system features a rate-limited Python FastAPI REST backend with Torchvision image preprocessing and a responsive web client enabling farmers to upload photos directly from mobile devices or evaluate against held-out sample images.",
+    "technologies": [
+      "PyTorch",
+      "Torchvision",
+      "Python",
+      "FastAPI",
+      "Uvicorn",
+      "Convolutional Neural Networks (CNN)",
+      "Computer Vision",
+      "Pillow (PIL)",
+      "HTML5 Canvas",
+      "JavaScript",
+      "SlowAPI Rate Limiter",
+      "Netlify",
+      "Render"
+    ],
+    "architectureHighlights": [
+      "Custom 5-stage Conv2D + MaxPool2d feature extractor progressively downsampling 224×224 RGB inputs to 6,272 features",
+      "3-stage fully connected classification head (6,272 → 512 → 128 → 6 logits) with Softmax probability normalization",
+      "Multi-source training dataset combining 10,900+ images from PlantVillage (clean morphology) and Pakistan Tomato Leaf (field conditions)",
+      "Preserved 3-channel RGB color space to capture pigmentation shifts, chlorosis, and lesion discoloration critical to diagnosis",
+      "Data augmentation pipeline applying on-the-fly random flips, brightness/contrast shifts, and ±20° rotations",
+      "Asynchronous FastAPI REST endpoint (POST /predict) with SlowAPI rate limiting (5 req/min) for DDoS and compute protection",
+      "Client-side HTML5 canvas image downscaling to 400px before transmission to optimize mobile data bandwidth"
+    ],
+    "keyFeatures": [
+      "Multi-Class Disease Screening: Differentiates healthy leaves from 5 widespread fungal and viral diseases",
+      "Granular Probability Readout: Generates sorted Softmax confidence percentages and visual meters for all 6 target classes",
+      "Interactive Held-Out Sample Gallery: Includes a built-in collection of unseen test samples for each class for instant live demonstration",
+      "Mobile-First Responsive Interface: Direct touch-to-upload and camera capture with animated scanning state indicators",
+      "High-Performance Inference: Optimized PyTorch inference pipeline operating with torch.no_grad() for sub-200ms turnaround",
+      "Empirical Hyperparameter Tuning: Checkpointed training pipeline optimized with Adam optimizer (learning rate 0.0005) and cross-entropy loss, achieving 95.1% validation accuracy and 0.13 validation loss"
+    ],
+    "media": [
+      {
+        "type": "image",
+        "url": "/projects/tomato-classifier/tomato-classifier-results.avif",
+        "caption": "Diagnostic Results & Probability Readout: Live AI model classification with confidence scores and pathology identification"
+      },
+      {
+        "type": "image",
+        "url": "/projects/tomato-classifier/tomato-classifier-home.avif",
+        "caption": "Scanner Portal Homepage: Touch-and-drop leaf upload interface with test sample selector and camera input"
+      },
+      {
+        "type": "image",
+        "url": "/projects/tomato-classifier/tomato-classifiermodel_architecture.avif",
+        "caption": "Deep CNN Model Architecture: Custom 5-stage Conv2D feature extraction and classification head diagram"
+      },
+      {
+        "type": "image",
+        "url": "/projects/tomato-classifier/tomato-classifier-system_architecture.avif",
+        "caption": "End-to-End System Architecture: Client-side pre-compression, FastAPI REST service, and PyTorch inference pipeline"
       }
+    ],
+    "links": {
+      "live": "https://tomato-classifier-yousef-abdallah.netlify.app",
+      "github": "https://github.com/frog-in-microwave/Tomato-Classifier",
+      "demo": "https://tomato-classifier-yousef-abdallah.netlify.app"
     },
-    {
-      "id": "pulseai-agent-engine",
-      "title": "PulseAI Copilot & Knowledge Engine",
-      "tagline": "Multimodal intelligent agent engine with hybrid vector search, context caching, and real-time streaming.",
-      "order": 3,
-      "categoryId": "ai-intelligence",
-      "subcategoryId": "agentic-ai",
-      "featured": true,
-      "role": "AI Systems Engineer",
-      "timeline": "3 Months (2025 - 2026)",
-      "badge": "AI & LLM Systems",
-      "summary": "Next-generation autonomous assistant capable of answering complex domain questions with verifiable citations and interactive tools.",
-      "overview": "PulseAI is an open-source agent framework combining semantic embeddings, hybrid keyword + vector retrieval, and fast token streaming for technical customer support and documentation search.",
-      "problem": "Generic LLM chatbots suffer from hallucinated answers, lack of private domain knowledge, and slow non-streamed responses.",
-      "solution": "Built a Python & TypeScript hybrid system utilizing semantic indexing, context caching, and a low-latency streaming API with human-in-the-loop fallback.",
-      "metrics": [
-        { "label": "Query Latency", "value": "< 450ms" },
-        { "label": "Citation Accuracy", "value": "98.4%" },
-        { "label": "Stream Throughput", "value": "85 tok/s" }
-      ],
-      "technologies": [
-        "Python",
-        "FastAPI",
-        "TypeScript",
-        "Next.js App Router",
-        "Vector Embeddings",
-        "BM25 Search",
-        "SSE Streaming",
-        "Tailwind CSS"
-      ],
-      "architectureHighlights": [
-        "Hybrid vector and BM25 lexical search ranking for pinpoint accuracy",
-        "Real-time Server-Sent Events (SSE) token streaming",
-        "Custom tool execution engine with sandboxed evaluation",
-        "Full citation verification and confidence scoring"
-      ],
-      "keyFeatures": [
-        "Dynamic prompt compression with sliding window context management",
-        "Interactive document preview with inline sentence highlight references",
-        "Fallback routing to human engineering team on low-confidence queries",
-        "Real-time token usage telemetry and cost monitoring"
-      ],
-      "media": [
-        {
-          "type": "image",
-          "url": "/projects/pulseai.svg",
-          "caption": "PulseAI Interactive Query & Citation Explorer with live streaming tokens"
-        }
-      ],
-      "links": {
-        "live": "https://pulseai-agent.example.com",
-        "github": "https://github.com/yousef-abdallah/pulseai-agent-engine",
-        "demo": "https://pulseai-agent.example.com/demo"
-      }
-    }
-  ]
-}
+    "thumbnail": "/projects/tomato-classifier/tomato-classifier-results.avif"
+  }
+]

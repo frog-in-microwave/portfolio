@@ -1,0 +1,46 @@
+[
+  {
+    "id": "web-mobile",
+    "name": "Web & Mobile",
+    "order": 1,
+    "subcategories": [
+      {
+        "id": "fullstack-web",
+        "name": "Full-Stack Web",
+        "order": 1
+      },
+      {
+        "id": "mobile-apps",
+        "name": "Mobile Apps",
+        "order": 2
+      },
+      {
+        "id": "cloud-infrastructure",
+        "name": "Cloud & Infrastructure",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "id": "ai-ml",
+    "name": "AI & ML",
+    "order": 2,
+    "subcategories": [
+      {
+        "id": "llm-agents",
+        "name": "LLM & Agentic AI",
+        "order": 1
+      },
+      {
+        "id": "rag-vector",
+        "name": "RAG & Vector Search",
+        "order": 2
+      },
+      {
+        "id": "machine-learning",
+        "name": "Machine Learning Models",
+        "order": 3
+      }
+    ]
+  }
+]

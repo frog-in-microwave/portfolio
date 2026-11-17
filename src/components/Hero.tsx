@@ -2,25 +2,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  ArrowRight, 
+  ArrowDown, 
+  FolderGit2, 
   Bot, 
   FileText, 
-  MapPin,
-  Laptop,
-  CheckCircle2,
-  Code2,
-  Cloud
+  Code2, 
+  Cloud 
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-
-interface HeroProps {
-  onOpenCopilot: () => void;
-}
 
 /**
  * Hero Component - Clean, Professional & Colorful
  */
-export const Hero: React.FC<HeroProps> = ({ onOpenCopilot }) => {
+export const Hero: React.FC = () => {
   const [typingIndex, setTypingIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -111,20 +105,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot }) => {
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 max-w-md sm:max-w-none mx-auto">
           <a
-            href="#experience"
+            href="#projects"
             className="flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-98 transition-all cursor-pointer"
           >
-            <span>View Experience</span>
-            <ArrowRight className="w-4 h-4 text-slate-950" />
+            <FolderGit2 className="w-4 h-4 text-slate-950" />
+            <span>View Projects</span>
+            <ArrowDown className="w-4 h-4 text-slate-950" />
           </a>
 
-          <button
-            onClick={onOpenCopilot}
-            className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#141C2E] hover:bg-[#1A253C] border border-white/10 text-amber-300 font-bold text-xs sm:text-sm transition-all active:scale-98 cursor-pointer"
+          <a
+            href="#experience"
+            className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-[#141C2E] hover:bg-[#1A253C] border border-white/10 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm transition-all active:scale-98 cursor-pointer"
           >
-            <Bot className="w-4 h-4 text-amber-400" />
-            <span>Ask Yousef's AI</span>
-          </button>
+            <span>View Experience</span>
+            <ArrowDown className="w-4 h-4 text-amber-400" />
+          </a>
 
           <a
             href="/resume.pdf"
@@ -136,8 +131,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCopilot }) => {
             <span>Resume (PDF)</span>
           </a>
         </div>
-
-
 
       </div>
     </section>

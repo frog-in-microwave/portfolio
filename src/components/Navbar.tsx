@@ -2,11 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  Bot, 
   FileText, 
   Menu, 
   X, 
-  Sparkles,
   Code2,
   ArrowRight,
   Briefcase,
@@ -18,10 +16,6 @@ import {
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
-interface NavbarProps {
-  onOpenCopilot: () => void;
-}
-
 /**
  * Navbar Component
  * 
@@ -30,7 +24,7 @@ interface NavbarProps {
  * - Mobile: True slide-in drawer with dark backdrop blur, thumb-friendly tap targets,
  *   and lock on background scrolling when open.
  */
-export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
+export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
@@ -105,7 +99,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
                   <span className="font-heading font-extrabold text-slate-100 text-base sm:text-lg tracking-tight group-hover:text-amber-300 transition-colors">
                     {portfolioData.profile.name}
                   </span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
                 <p className="text-[11px] text-amber-400/90 font-mono font-medium hidden sm:block">
                   Full-Stack & Cloud Dev
@@ -135,37 +128,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
 
             {/* Desktop Action Hub */}
             <div className="hidden sm:flex items-center gap-2.5">
-              <button
-                onClick={onOpenCopilot}
-                className="group flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-xl bg-gradient-to-r from-amber-400 via-rose-500 to-violet-600 text-slate-950 hover:brightness-110 shadow-md shadow-rose-500/20 transition-all cursor-pointer"
-              >
-                <Bot className="w-3.5 h-3.5 text-slate-950" />
-                <span>Ask AI Copilot</span>
-                <Sparkles className="w-3 h-3 text-slate-950 animate-pulse" />
-              </button>
-
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl bg-slate-800/80 hover:bg-slate-750 border border-slate-700 text-slate-200 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl bg-gradient-to-r from-amber-400 via-rose-500 to-violet-600 text-slate-950 hover:brightness-110 shadow-md shadow-rose-500/20 transition-all cursor-pointer"
               >
-                <FileText className="w-3.5 h-3.5 text-amber-400" />
-                <span>CV</span>
+                <FileText className="w-3.5 h-3.5 text-slate-950" />
+                <span>Resume (CV)</span>
               </a>
             </div>
 
-            {/* Mobile Controls (Copilot + Hamburger Drawer Trigger) */}
+            {/* Mobile Controls (Hamburger Drawer Trigger) */}
             <div className="flex md:hidden items-center gap-2">
-              <button
-                onClick={onOpenCopilot}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-rose-500 text-slate-950 font-bold text-xs shadow-sm"
-                aria-label="Open AI Copilot"
-              >
-                <Bot className="w-3.5 h-3.5" />
-                <span>AI</span>
-              </button>
-
               <button
                 onClick={() => setDrawerOpen(true)}
                 className="p-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-slate-200 hover:text-white active:scale-95 transition-transform"
@@ -264,16 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCopilot }) => {
             <span>Download Resume PDF</span>
           </a>
 
-          <button
-            onClick={() => {
-              setDrawerOpen(false);
-              onOpenCopilot();
-            }}
-            className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-400 via-rose-500 to-violet-600 text-slate-950 font-extrabold text-xs shadow-md shadow-rose-500/20 active:scale-98 transition-all"
-          >
-            <Bot className="w-4 h-4" />
-            <span>Ask Yousef's AI Copilot</span>
-          </button>
+
         </div>
       </aside>
     </>

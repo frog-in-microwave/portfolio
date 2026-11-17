@@ -1,6 +1,9 @@
 import skillsRaw from './skills.json';
 import experiencesRaw from './experiences.json';
 import projectsRaw from './projects.json';
+import projectCategoriesRaw from './projectCategories.json';
+import educationRaw from './education.json';
+import coursesRaw from './courses.json';
 
 // ==========================================
 // Skills Type Definitions
@@ -57,11 +60,6 @@ export interface ProjectMedia {
   caption: string;
 }
 
-export interface ProjectMetric {
-  label: string;
-  value: string;
-}
-
 export interface ProjectLinks {
   live?: string;
   github?: string;
@@ -84,8 +82,8 @@ export interface Project {
   overview: string;
   problem: string;
   solution: string;
-  metrics: ProjectMetric[];
   technologies: string[];
+  thumbnail?: string;
   architectureHighlights: string[];
   keyFeatures: string[];
   media: ProjectMedia[];
@@ -108,10 +106,21 @@ export interface Education {
   description?: string;
 }
 
-export interface Training {
+export interface Course {
+  id: string;
+  order: number;
   title: string;
   institution: string;
+  period: string;
+  badge?: string;
+  description: string;
+  skills: string[];
+  certificateImage: string;
+  credentialUrl?: string;
+  featured?: boolean;
 }
+
+export type Training = Course;
 
 // ==========================================
 // Data Sorting & Retrieval Helpers
@@ -144,7 +153,7 @@ export function getSortedExperiences(): Experience[] {
  * with subcategories sorted by subcategory.order ascending.
  */
 export function getSortedProjectCategories(): ProjectCategory[] {
-  const categories = [...(projectsRaw.categories as ProjectCategory[])];
+  const categories = [...(projectCategoriesRaw as ProjectCategory[])];
   return categories
     .sort((a, b) => a.order - b.order)
     .map((cat) => ({
@@ -157,7 +166,7 @@ export function getSortedProjectCategories(): ProjectCategory[] {
  * Returns all projects sorted by project.order ascending.
  */
 export function getSortedProjects(): Project[] {
-  const projects = [...(projectsRaw.projects as unknown as Project[])];
+  const projects = [...(projectsRaw as unknown as Project[])];
   return projects.sort((a, b) => a.order - b.order);
 }
 
@@ -165,8 +174,16 @@ export function getSortedProjects(): Project[] {
  * Finds a specific project by id.
  */
 export function getProjectById(id: string): Project | undefined {
-  const projects = projectsRaw.projects as unknown as Project[];
+  const projects = projectsRaw as unknown as Project[];
   return projects.find((p) => p.id === id);
+}
+
+/**
+ * Returns courses & certifications sorted by course.order ascending.
+ */
+export function getSortedCourses(): Course[] {
+  const courses = [...(coursesRaw as Course[])];
+  return courses.sort((a, b) => a.order - b.order);
 }
 
 // ==========================================
@@ -195,22 +212,9 @@ export const portfolioData = {
     ],
   },
 
-  education: [
-    {
-      degree: "Computer Engineering",
-      institution: "Lebanese International University - Saida",
-      period: "09/2025 - 06/2028",
-      location: "Lebanon",
-      description: "Rigorous engineering curriculum covering computer architecture, algorithms, data structures, software engineering, and systems programming.",
-    },
-  ] as Education[],
-
-  trainings: [
-    {
-      title: "Codebrave Python and Web-Dev Program",
-      institution: "Codebrave",
-    },
-  ] as Training[],
+  education: educationRaw.education as Education[],
+  courses: getSortedCourses(),
+  trainings: getSortedCourses(), // backward compatibility alias
 
   // Loaded from JSON
   skills: getSortedSkills(),
@@ -237,7 +241,15 @@ export const portfolioData = {
     },
     {
       question: "What projects has Yousef worked on?",
-      answer: "Yousef has developed several featured systems including the EduBrave Learning Portal (Next.js 16, GraphQL, PostgreSQL), the TerraRun Cloud Orchestrator (Terraform IaC and GCP Cloud Run zero-downtime pipelines), and PulseAI Copilot & Knowledge Engine (hybrid vector search and SSE token streaming).",
+      answer: "Yousef has developed featured systems including the Miami Sunshine Summer Store (full-stack MERN e-commerce with Redux Toolkit and Stripe) and the Leaf Diagnostics Tomato Disease Classifier (custom PyTorch deep CNN & FastAPI reaching 95.1% validation accuracy).",
+    },
+    {
+      question: "Tell me about the Miami Sunshine Summer Store project.",
+      answer: "Miami Sunshine Summer Store is a full-stack MERN e-commerce application engineered with React 18, Vite, Redux Toolkit, Node.js, Express 5, MongoDB with Mongoose, and Stripe Checkout Sessions. It features an expressive neo-brutalist coastal aesthetic, JWT bearer token authentication, infinite-scroll product catalog with regex search and category filtering, Redux-managed cart persistence, user profile customization with status badges, and rate-limited payment processing.",
+    },
+    {
+      question: "Tell me about the Tomato Disease Classifier project.",
+      answer: "Leaf Diagnostics is an AI-powered tomato leaf disease classifier developed by Yousef Abdallah for the LebNet Tech Fellows AI course. It uses a custom 5-stage PyTorch CNN trained on 10,900+ images from PlantVillage and the Pakistan Tomato Leaf dataset, achieving 95.1% validation accuracy. It distinguishes healthy leaves from 5 pathologies (Early Blight, Late Blight, Leaf Mold, Tomato Yellow Leaf Curl Virus, and Septoria Leaf Spot) and is deployed with a FastAPI backend and a responsive Netlify web app with live camera capture and test sample support.",
     },
     {
       question: "How can I contact Yousef for an interview or opportunity?",

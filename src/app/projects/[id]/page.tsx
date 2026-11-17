@@ -7,13 +7,9 @@ import {
   ExternalLink, 
   Sparkles, 
   CheckCircle2, 
-  Calendar, 
-  UserCheck, 
   Layers, 
-  Cpu, 
   ArrowRight,
-  Flame,
-  FileText
+  Flame
 } from 'lucide-react';
 import { 
   getProjectById, 
@@ -24,6 +20,7 @@ import {
 import { GithubIcon } from '@/components/Icons';
 import { PlayfulBackground } from '@/components/PlayfulBackground';
 import { Footer } from '@/components/Footer';
+import { ProjectMediaSlider } from '@/components/ProjectMediaSlider';
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>;
@@ -112,11 +109,90 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       </nav>
 
       {/* Main Case Study Body */}
-      <main className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16">
+      <main className="relative z-10 max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16">
         
-        {/* Header Breadcrumbs & Title */}
-        <div className="space-y-4">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+        {/* Mobile / Small Screens Hero Stack (< lg) - Strictly unchanged */}
+        <div className="lg:hidden space-y-8 sm:space-y-12">
+          {/* Header Breadcrumbs & Title */}
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
+              <Link href="/" className="hover:text-amber-400 transition-colors">Home</Link>
+              <span>/</span>
+              <Link href="/#projects" className="hover:text-amber-400 transition-colors">Projects</Link>
+              <span>/</span>
+              <span className="text-amber-300">{currentCategory?.name || project.categoryId}</span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2.5 pt-1">
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-400/15 border border-amber-400/30 text-amber-300">
+                {currentSubcategory?.name || project.subcategoryId}
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-white/5 border border-white/10 text-slate-400">
+                Order #{project.order}
+              </span>
+              {project.badge && (
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/15 border border-rose-500/30 text-rose-300">
+                  {project.badge}
+                </span>
+              )}
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              {project.title}
+            </h1>
+
+            <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
+              {project.tagline}
+            </p>
+          </div>
+
+          {/* Project Thumbnail Hero Image */}
+          {((project.thumbnail) || (project.media && project.media[0])) && (
+            <div className="space-y-3">
+              <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-[#0c121e] border border-white/10 shadow-2xl pop-card glow-mint">
+                <img
+                  src={project.thumbnail || project.media[0]?.url}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Primary Action Links Bar (Placed directly under thumbnail) */}
+          {(project.links.live || project.links.github) && (
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              {project.links.live && (
+                <a
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500 text-slate-950 text-xs sm:text-sm font-extrabold shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-98 transition-all"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Visit Live Demo</span>
+                </a>
+              )}
+
+              {project.links.github && (
+                <a
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#111726] hover:bg-[#182033] border border-white/10 hover:border-white/20 text-slate-200 hover:text-white text-xs sm:text-sm font-bold active:scale-98 transition-all"
+                >
+                  <GithubIcon className="w-4 h-4" />
+                  <span>View Source Code</span>
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Desktop / Widescreen Hero Section (>= lg) */}
+        <div className="hidden lg:block space-y-8">
+          {/* Breadcrumbs */}
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
             <Link href="/" className="hover:text-amber-400 transition-colors">Home</Link>
             <span>/</span>
             <Link href="/#projects" className="hover:text-amber-400 transition-colors">Projects</Link>
@@ -124,64 +200,109 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <span className="text-amber-300">{currentCategory?.name || project.categoryId}</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5 pt-1">
-            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-400/15 border border-amber-400/30 text-amber-300">
-              {currentSubcategory?.name || project.subcategoryId}
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-white/5 border border-white/10 text-slate-400">
-              Order #{project.order}
-            </span>
-            {project.badge && (
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/15 border border-rose-500/30 text-rose-300">
-                {project.badge}
-              </span>
-            )}
+          {/* Top Hero Grid: Thumbnail on Left, Title + Tagline + Actions on Right */}
+          <div className="grid grid-cols-12 gap-8 xl:gap-10 items-start">
+            {/* Left Column: Thumbnail */}
+            <div className="col-span-5">
+              {((project.thumbnail) || (project.media && project.media[0])) && (
+                <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-[#0c121e] border border-white/10 shadow-2xl pop-card glow-mint">
+                  <img
+                    src={project.thumbnail || project.media[0]?.url}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Right Column: Badges, Title, Tagline, Action Buttons */}
+            <div className="col-span-7 space-y-6">
+              <div className="space-y-4">
+                {/* Badges */}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-400/15 border border-amber-400/30 text-amber-300">
+                    {currentSubcategory?.name || project.subcategoryId}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-white/5 border border-white/10 text-slate-400">
+                    Order #{project.order}
+                  </span>
+                  {project.badge && (
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/15 border border-rose-500/30 text-rose-300">
+                      {project.badge}
+                    </span>
+                  )}
+                </div>
+
+                {/* Title */}
+                <h1 className="text-3xl xl:text-4xl 2xl:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                  {project.title}
+                </h1>
+
+                {/* Tagline */}
+                <p className="text-base xl:text-lg text-slate-300 leading-relaxed">
+                  {project.tagline}
+                </p>
+              </div>
+
+              {/* Primary Action Links Bar on Desktop */}
+              {(project.links.live || project.links.github) && (
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  {project.links.live && (
+                    <a
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500 text-slate-950 text-xs xl:text-sm font-extrabold shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-98 transition-all"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Visit Live Demo</span>
+                    </a>
+                  )}
+
+                  {project.links.github && (
+                    <a
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#111726] hover:bg-[#182033] border border-white/10 hover:border-white/20 text-slate-200 hover:text-white text-xs xl:text-sm font-bold active:scale-98 transition-all"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>View Source Code</span>
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            {project.title}
-          </h1>
-
-          <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
-            {project.tagline}
-          </p>
+          {/* Description Under Them Both */}
+          <div className="p-6 xl:p-8 rounded-3xl bg-[#111726]/60 border border-white/10 space-y-3">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-400 font-bold">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>Executive Overview</span>
+            </div>
+            <p className="text-base xl:text-lg text-slate-200 leading-relaxed">
+              {project.overview}
+            </p>
+          </div>
         </div>
 
-        {/* Media Banner / Visual Mockup */}
-        {project.media && project.media.length > 0 && (
-          <div className="space-y-3">
-            <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-[#0c121e] border border-white/10 shadow-2xl pop-card glow-mint">
-              <img
-                src={project.media[0].url}
-                alt={project.media[0].caption || project.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {project.media[0].caption && (
-              <p className="text-xs font-mono text-slate-400 text-center">
-                Fig 1.0 — {project.media[0].caption}
-              </p>
-            )}
-          </div>
-        )}
+        {/* Executive Overview (Mobile only, as widescreen displays it under the hero grid above) */}
+        <section className="space-y-3 lg:hidden">
+          <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-amber-400" />
+            <span>Executive Overview</span>
+          </h2>
+          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+            {project.overview}
+          </p>
+        </section>
 
-        {/* Key Metrics Bento Row */}
-        {project.metrics && project.metrics.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {project.metrics.map((metric, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-2xl bg-[#111726]/90 border border-white/10 text-center pop-card space-y-1"
-              >
-                <div className="text-2xl sm:text-3xl font-extrabold text-amber-400">
-                  {metric.value}
-                </div>
-                <div className="text-xs font-mono text-slate-400">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Media Gallery (Takes up full width on wide screens - Nothing on its right) */}
+        {project.media && project.media.length > 0 && (
+          <section className="w-full">
+            <ProjectMediaSlider media={project.media} projectTitle={project.title} />
+          </section>
         )}
 
         {/* Two-Column Deep Dive: Content + Meta Sidebar */}
@@ -189,37 +310,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           
           {/* Main Content (Left 2 cols) */}
           <div className="lg:col-span-2 space-y-10">
-            {/* Overview */}
-            <section className="space-y-3">
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-400" />
-                <span>Executive Overview</span>
-              </h2>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                {project.overview}
-              </p>
-            </section>
-
-            {/* The Challenge / Problem */}
-            <section className="p-6 rounded-2xl bg-[#111726]/80 border border-rose-500/20 space-y-3">
-              <h3 className="text-base sm:text-lg font-bold text-rose-300">
-                The Engineering Problem
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                {project.problem}
-              </p>
-            </section>
-
-            {/* The Solution */}
-            <section className="p-6 rounded-2xl bg-[#111726]/80 border border-emerald-500/20 space-y-3">
-              <h3 className="text-base sm:text-lg font-bold text-emerald-300">
-                The Architectural Solution
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                {project.solution}
-              </p>
-            </section>
-
             {/* Architecture Highlights */}
             {project.architectureHighlights && project.architectureHighlights.length > 0 && (
               <section className="space-y-4">
@@ -265,35 +355,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           {/* Sidebar (Right 1 col) */}
           <div className="space-y-6">
             
-            {/* Project Quick Info Card */}
-            <div className="p-6 rounded-3xl bg-[#111726]/90 border border-white/10 space-y-4">
-              <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
-                Project Metadata
-              </h3>
-
-              <div className="space-y-3 text-xs">
-                <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                  <span className="text-slate-400">Role</span>
-                  <span className="font-bold text-white">{project.role}</span>
-                </div>
-
-                <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                  <span className="text-slate-400">Timeline</span>
-                  <span className="font-mono text-slate-200">{project.timeline}</span>
-                </div>
-
-                <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                  <span className="text-slate-400">Category</span>
-                  <span className="font-mono text-amber-300">{currentCategory?.name}</span>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-400">Subcategory</span>
-                  <span className="font-mono text-slate-300">{currentSubcategory?.name}</span>
-                </div>
-              </div>
-            </div>
-
             {/* Technologies Used */}
             <div className="p-6 rounded-3xl bg-[#111726]/90 border border-white/10 space-y-3">
               <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
@@ -308,48 +369,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     {tech}
                   </span>
                 ))}
-              </div>
-            </div>
-
-            {/* External Links */}
-            <div className="p-6 rounded-3xl bg-[#111726]/90 border border-white/10 space-y-3">
-              <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
-                Links &amp; Artifacts
-              </h3>
-              <div className="space-y-2">
-                {project.links.live && (
-                  <a
-                    href={project.links.live}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-200 transition-colors"
-                  >
-                    <span>View Live Deployment</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-                  </a>
-                )}
-                {project.links.github && (
-                  <a
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-200 transition-colors"
-                  >
-                    <span>GitHub Repository</span>
-                    <GithubIcon className="w-3.5 h-3.5 text-slate-400" />
-                  </a>
-                )}
-                {project.links.docs && (
-                  <a
-                    href={project.links.docs}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-200 transition-colors"
-                  >
-                    <span>Documentation</span>
-                    <FileText className="w-3.5 h-3.5 text-slate-400" />
-                  </a>
-                )}
               </div>
             </div>
 

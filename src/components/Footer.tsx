@@ -1,38 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { ArrowUp, Code2, Sparkles, FileText } from 'lucide-react';
+import React from 'react';
+import { ArrowUp, Code2, FileText } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-
-interface FooterProps {
-  onOpenCopilot?: () => void;
-}
 
 /**
  * Footer Component - Clean & Professional
  */
-export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
-  const [currentTime, setCurrentTime] = useState<string>('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setCurrentTime(
-        now.toLocaleTimeString('en-US', {
-          timeZone: 'Asia/Beirut',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true,
-        })
-      );
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
+export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -45,49 +20,32 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCopilot }) => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5 pb-10 border-b border-white/10 text-center sm:text-left">
           
           {/* Logo & Headline */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-400/15 border border-amber-400/30 text-amber-400 flex items-center justify-center">
-              <Code2 className="w-5 h-5" />
-            </div>
-            <div>
+          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-amber-400/15 border border-amber-400/30 text-amber-400 flex items-center justify-center shrink-0">
+                <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
               <span className="font-heading font-extrabold text-white text-base">
                 {portfolioData.profile.name}
               </span>
+            </div>
+            <div>
               <p className="text-xs text-slate-400 font-mono">
                 {portfolioData.profile.role}
               </p>
             </div>
           </div>
 
-          {/* Center: Live Beirut Time & Feature Hotlinks */}
+          {/* Center: Feature Hotlinks */}
           <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-slate-300 bg-white/5 px-4 py-2 rounded-2xl border border-white/10">
-            <span className="flex items-center gap-1.5 text-amber-300 font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Beirut: {currentTime || '12:00:00 PM'}</span>
-            </span>
-            <span className="text-white/20">|</span>
-            <button
-              onClick={() => {
-                if (onOpenCopilot) {
-                  onOpenCopilot();
-                } else {
-                  window.location.href = '/#contact';
-                }
-              }}
-              className="text-slate-300 hover:text-amber-300 transition-colors flex items-center gap-1 cursor-pointer font-bold"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-rose-400" />
-              <span>Copilot</span>
-            </button>
-            <span className="text-white/20">|</span>
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-300 hover:text-amber-300 transition-colors flex items-center gap-1 font-bold"
+              className="text-slate-300 hover:text-amber-300 transition-colors flex items-center gap-1.5 font-bold"
             >
               <FileText className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Resume</span>
+              <span>Resume (PDF)</span>
             </a>
           </div>
 

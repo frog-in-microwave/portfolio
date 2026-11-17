@@ -7,7 +7,7 @@
     "skills": [
       {
         "name": "React & Next.js",
-        "highlight": "App router, SSR, client-server components, state hooks",
+        "highlight": "Redux Toolkit, App router, SSR, client-server components, state hooks",
         "order": 1
       },
       {
@@ -90,8 +90,8 @@
     "order": 4,
     "skills": [
       {
-        "name": "Python",
-        "highlight": "Data scripting, web backend, and AI integration",
+        "name": "Python & PyTorch",
+        "highlight": "Deep learning (CNNs), Torchvision, FastAPI, and computer vision",
         "order": 1
       },
       {

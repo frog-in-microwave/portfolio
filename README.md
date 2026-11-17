@@ -39,7 +39,7 @@ Designed to showcase both deep software engineering craftsmanship (responsive cl
 
 7. **Filterable Production Projects & Case Study Modal**
    - Categorized by **AI & LLM Architectures**, **Full-Stack Web**, and **Distributed Systems**.
-   - Deep-dive modal for each project displaying the engineering problem, architectural solution, technical innovations, and impact metrics.
+   - Deep-dive page for each project displaying the engineering problem, architectural solution, technical innovations, and architecture highlights.
 
 8. **Interactive Skills Matrix**
    - Filterable tabs across AI & ML, Frontend, Backend & Systems, and Cloud/MLOps.
@@ -100,7 +100,6 @@ Open `src/data/portfolioData.ts` and edit the `portfolioData.profile` object:
 In the `portfolioData.projects` array, replace or add your own projects. Each project supports:
 - `title`, `tagline`, `description`
 - `category`: `'ai' | 'fullstack' | 'systems'`
-- `metrics`: Quantifiable metrics (e.g. `[{ label: "Latency", value: "< 40ms" }]`)
 - `problem` & `solution`: Detailed case study breakdown
 - `architectureHighlights`: Key bullet points
 - `githubUrl` & `liveUrl`
