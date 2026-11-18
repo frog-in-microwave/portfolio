@@ -25,6 +25,10 @@ export const ProjectMediaSlider: React.FC<ProjectMediaSliderProps> = ({ media, p
 
   // Intrinsic aspect ratios (naturalWidth / naturalHeight) dynamically stored per image
   const [aspectRatios, setAspectRatios] = useState<Record<number, number>>({});
+
+  // Image loading readiness state - container will NOT appear until images are fully loaded
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  const [isGalleryReady, setIsGalleryReady] = useState(false);
   
   // Continuous scroll progress: 0 to 100 percentage
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -87,6 +91,74 @@ export const ProjectMediaSlider: React.FC<ProjectMediaSliderProps> = ({ media, p
       stopMomentum();
     };
   }, [handleScrollUpdate, stopMomentum, media.length]);
+
+  // Preload all gallery images in background: container will NOT appear until images are fully loaded
+  useEffect(() => {
+    let isMounted = true;
+    let completedCount = 0;
+    const total = media.length;
+
+    if (total === 0) {
+      setIsGalleryReady(false);
+      return;
+    }
+
+    media.forEach((item, idx) => {
+      const img = new window.Image();
+      img.src = item.url;
+
+      const onImageSuccess = () => {
+        if (!isMounted) return;
+        if (img.naturalWidth && img.naturalHeight) {
+          const ratio = img.naturalWidth / img.naturalHeight;
+          setAspectRatios((prev) => ({ ...prev, [idx]: ratio }));
+        }
+        setLoadedImages((prev) => ({ ...prev, [idx]: true }));
+        completedCount++;
+
+        if (completedCount >= total) {
+          setIsGalleryReady(true);
+        }
+      };
+
+      const onImageFail = () => {
+        if (!isMounted) return;
+        completedCount++;
+        if (completedCount >= total) {
+          setIsGalleryReady(true);
+        }
+      };
+
+      if (img.complete && img.naturalWidth > 0) {
+        onImageSuccess();
+      } else {
+        img.onload = onImageSuccess;
+        img.onerror = onImageFail;
+      }
+    });
+
+    // Safety fallback: if network is severely throttled on one asset, reveal loaded assets after 3.5s
+    const timeoutId = setTimeout(() => {
+      if (isMounted && completedCount > 0) {
+        setIsGalleryReady(true);
+      }
+    }, 3500);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+    };
+  }, [media]);
+
+  // Recalculate scroll metrics when gallery becomes ready and renders in DOM
+  useEffect(() => {
+    if (isGalleryReady) {
+      const raf = requestAnimationFrame(() => {
+        handleScrollUpdate();
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isGalleryReady, handleScrollUpdate]);
 
   // Lock body scroll when fullscreen modal is active
   useEffect(() => {
@@ -252,10 +324,10 @@ export const ProjectMediaSlider: React.FC<ProjectMediaSliderProps> = ({ media, p
     window.addEventListener('mouseup', onMouseUp);
   };
 
-  if (!media || media.length === 0) return null;
+  if (!media || media.length === 0 || !isGalleryReady) return null;
 
   return (
-    <div className="space-y-3 sm:space-y-4 pt-2">
+    <div className="space-y-3 sm:space-y-4 pt-2 animate-in fade-in duration-500">
       {/* =========================================================================
           SLIDER HEADER (Mobile-First Layout)
           ========================================================================= */}
@@ -330,6 +402,9 @@ export const ProjectMediaSlider: React.FC<ProjectMediaSliderProps> = ({ media, p
           }}
         >
           {media.map((item, idx) => {
+            // Container will not appear unless image is fully loaded
+            if (!loadedImages[idx]) return null;
+
             const ratio = aspectRatios[idx];
             const isPortrait = ratio ? ratio < 0.95 : false;
 
@@ -339,7 +414,7 @@ export const ProjectMediaSlider: React.FC<ProjectMediaSliderProps> = ({ media, p
                 style={{
                   width: 'fit-content',
                 }}
-                className="shrink-0 flex flex-col rounded-2xl overflow-hidden bg-[#0c121e] border border-white/10 pop-card shadow-lg select-none transition-all duration-300 hover:border-white/20 group/card"
+                className="shrink-0 flex flex-col rounded-2xl overflow-hidden bg-[#0c121e] border border-white/10 pop-card shadow-lg select-none transition-all duration-300 hover:border-white/20 group/card animate-in fade-in duration-300"
               >
                 {/* Visual Container: EXACT UNIFORM HEIGHT across all cards, width determined dynamically by the image */}
                 <div

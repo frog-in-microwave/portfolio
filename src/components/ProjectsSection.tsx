@@ -1,16 +1,84 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Flame, 
   ArrowRight, 
   ExternalLink, 
   Filter,
-  Layers
+  Layers,
+  Loader2,
+  Image as ImageIcon,
+  ImageOff
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { GithubIcon } from './Icons';
+
+interface ProjectCardThumbnailProps {
+  src: string;
+  alt: string;
+}
+
+const ProjectCardThumbnail: React.FC<ProjectCardThumbnailProps> = ({ src, alt }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setHasError(false);
+
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [src]);
+
+  return (
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0c121e]">
+      {/* Animated Loading Skeleton & Spinner */}
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#0c121e]">
+          {/* Subtle Shimmer background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent animate-pulse" />
+
+          {/* Centered Loader Spinner & Status */}
+          <div className="relative z-10 flex flex-col items-center gap-2.5">
+            <div className="relative flex items-center justify-center">
+              <div className="w-9 h-9 rounded-full border-2 border-slate-700/80 border-t-amber-400 animate-spin" />
+              <ImageIcon className="w-4 h-4 text-amber-400/80 absolute" />
+            </div>
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-white/10 shadow-sm">
+              <Loader2 className="w-3 h-3 text-amber-400 animate-spin" />
+              <span className="text-[10px] font-mono font-medium text-slate-300 uppercase tracking-wider">
+                Loading...
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Error state */}
+      {hasError ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0c121e] text-slate-500 gap-1.5 p-4 text-center">
+          <ImageOff className="w-6 h-6 opacity-40 text-slate-400" />
+          <span className="text-[10px] font-mono text-slate-400">Preview unavailable</span>
+        </div>
+      ) : (
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setHasError(true)}
+          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'
+          }`}
+        />
+      )}
+    </div>
+  );
+};
 
 /**
  * ProjectsSection Component - Two-Tier Taxonomy Grid Showcase
@@ -205,10 +273,9 @@ export const ProjectsSection: React.FC = () => {
                     className="block relative aspect-video w-full bg-[#0d1424] overflow-hidden group cursor-pointer"
                   >
                     {displayThumbnail ? (
-                      <img
+                      <ProjectCardThumbnail
                         src={displayThumbnail}
                         alt={`${project.title} thumbnail`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-slate-900 text-slate-600 text-xs font-mono">
@@ -219,7 +286,7 @@ export const ProjectsSection: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111726] via-transparent to-black/30 pointer-events-none" />
 
                     {/* Order Badge and Category Chip */}
-                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-20">
                       <span className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold border backdrop-blur-md ${theme.badge}`}>
                         {subName}
                       </span>

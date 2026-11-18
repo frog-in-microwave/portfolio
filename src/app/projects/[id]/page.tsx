@@ -21,6 +21,7 @@ import { GithubIcon } from '@/components/Icons';
 import { PlayfulBackground } from '@/components/PlayfulBackground';
 import { Footer } from '@/components/Footer';
 import { ProjectMediaSlider } from '@/components/ProjectMediaSlider';
+import { CardImage } from '@/components/CardImage';
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>;
@@ -150,10 +151,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           {((project.thumbnail) || (project.media && project.media[0])) && (
             <div className="space-y-3">
               <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-[#0c121e] border border-white/10 shadow-2xl pop-card glow-mint">
-                <img
+                <CardImage
                   src={project.thumbnail || project.media[0]?.url}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  hoverEffect={false}
                 />
               </div>
             </div>
@@ -206,10 +207,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <div className="col-span-5">
               {((project.thumbnail) || (project.media && project.media[0])) && (
                 <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-[#0c121e] border border-white/10 shadow-2xl pop-card glow-mint">
-                  <img
+                  <CardImage
                     src={project.thumbnail || project.media[0]?.url}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    hoverEffect={false}
                   />
                 </div>
               )}

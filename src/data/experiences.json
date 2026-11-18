@@ -12,7 +12,7 @@
       "Contributed to building and scaling a student and training management portal with full role-based access for students, teachers, and trainers.",
       "Configured GCP, Cloud Run, and Cloud Build pipelines for automated, containerized continuous deployment.",
       "Wrote and maintained Terraform scripts for Infrastructure as Code (IaC) and reliable cloud resource orchestration.",
-      "Designed PostgreSQL database schemas with Prisma ORM, later spearheading migration to Firebase Data Connect to leverage GraphQL capabilities."
+      "Designed and optimized relational PostgreSQL database schemas with Prisma ORM for high-integrity student records and course workflows."
     ],
     "technologies": [
       "GCP",
@@ -21,8 +21,8 @@
       "Terraform",
       "PostgreSQL",
       "Prisma",
-      "Firebase Data Connect",
-      "GraphQL",
+      "REST APIs",
+      "Docker",
       "TypeScript"
     ]
   },

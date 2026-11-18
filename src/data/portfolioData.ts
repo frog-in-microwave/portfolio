@@ -229,11 +229,11 @@ export const portfolioData = {
     },
     {
       question: "What is Yousef's core tech stack?",
-      answer: "Yousef specializes in full-stack engineering and cloud deployment: React, Next.js, React Native, TypeScript, Node.js, Express.js, GraphQL, PostgreSQL with Prisma, MongoDB, GCP (Cloud Run, Cloud Build), and Terraform (IaC). He is also proficient in Python, C++, Java, and WordPress.",
+      answer: "Yousef specializes in full-stack engineering, cloud architecture, and AI: React, Next.js, React Native, TypeScript, Node.js, Express.js, PostgreSQL with Prisma, MongoDB, AWS (Certified Cloud Practitioner), GCP (Cloud Run, Cloud Build), and Terraform (IaC). He is also proficient in Python (PyTorch), C++, Java, and WordPress.",
     },
     {
       question: "What has Yousef achieved at Codebrave?",
-      answer: "At Codebrave, Yousef worked as a Full-Stack Developer Intern contributing to a student and training management system for students, teachers, and trainers. He deployed applications to GCP Cloud Run using Cloud Build, managed infrastructure with Terraform, and migrated from PostgreSQL/Prisma to Firebase Data Connect for GraphQL capabilities.",
+      answer: "At Codebrave, Yousef worked as a Full-Stack Developer Intern contributing to a student and training management system for students, teachers, and trainers. He deployed containerized microservices to GCP Cloud Run using Cloud Build, managed cloud infrastructure with Terraform, and designed robust PostgreSQL database schemas using Prisma ORM.",
     },
     {
       question: "What did Yousef build at The Agile Labs?",

@@ -2,111 +2,111 @@
   {
     "id": "frontend",
     "title": "Frontend & Mobile Engineering",
-    "description": "Modern, reactive web and mobile interfaces built with TypeScript and state-of-the-art frameworks.",
+    "description": "Reactive web platforms and cross-platform mobile systems built with TypeScript and modern component architectures.",
     "order": 1,
     "skills": [
       {
         "name": "React & Next.js",
-        "highlight": "Redux Toolkit, App router, SSR, client-server components, state hooks",
+        "highlight": "App Router, SSR, Server & Client Components, Redux Toolkit, Context API",
         "order": 1
       },
       {
         "name": "React Native & Expo",
-        "highlight": "Cross-platform mobile applications for iOS & Android",
+        "highlight": "Cross-platform mobile applications for iOS & Android, native mobile APIs",
         "order": 2
       },
       {
         "name": "TypeScript & JavaScript",
-        "highlight": "Strict typing, ES6+ asynchronous workflows",
+        "highlight": "Strict typing, ES6+ asynchronous workflows, interfaces & generics",
         "order": 3
       },
       {
-        "name": "HTML5 & Modern CSS / Tailwind",
-        "highlight": "Responsive layouts, mobile-first design systems",
+        "name": "HTML5 & Modern CSS",
+        "highlight": "Semantic architecture, responsive Flexbox, CSS Grid layouts, mobile-first design",
         "order": 4
       }
     ]
   },
   {
     "id": "backend",
-    "title": "Backend & API Development",
-    "description": "Scalable backend services, RESTful APIs, and GraphQL query layers.",
+    "title": "Backend & API Engineering",
+    "description": "High-throughput asynchronous server runtimes, RESTful endpoints, and robust database architectures.",
     "order": 2,
     "skills": [
       {
         "name": "Node.js & Express.js",
-        "highlight": "REST APIs, middleware pipelines, MVC architecture",
+        "highlight": "REST API routing, middleware chaining, controller layers, async I/O",
         "order": 1
       },
       {
-        "name": "GraphQL & Firebase Data Connect",
-        "highlight": "Declarative schemas, mutations, and queries",
+        "name": "PostgreSQL & Prisma ORM",
+        "highlight": "Relational data modeling, ACID transactions, type-safe migrations",
         "order": 2
       },
       {
-        "name": "MVC Architectural Pattern",
-        "highlight": "Clean separation of business logic, models & routing",
+        "name": "MongoDB & Mongoose",
+        "highlight": "Document-based NoSQL storage, schema validation, aggregation pipelines",
         "order": 3
+      },
+      {
+        "name": "MVC Architecture & Security",
+        "highlight": "Clean separation of concerns, JWT token authentication, Bcrypt password hashing",
+        "order": 4
       }
     ]
   },
   {
     "id": "cloud",
-    "title": "Cloud, Databases & DevOps",
-    "description": "Cloud-native deployments, infrastructure as code, and relational / document databases.",
+    "title": "Cloud Architecture & DevOps (GCP & AWS)",
+    "description": "Multi-cloud architecture across AWS and Google Cloud Platform, automated CI/CD, and Terraform IaC.",
     "order": 3,
     "skills": [
       {
-        "name": "Google Cloud Platform (GCP) & Cloud Run",
-        "highlight": "Containerized deployment, Cloud Build CI/CD",
+        "name": "AWS Architecture (Certified Practitioner)",
+        "highlight": "Amazon S3, EC2 instances, AWS Lambda serverless, IAM security, CloudFront CDN",
         "order": 1
       },
       {
-        "name": "Terraform (Infrastructure as Code)",
-        "highlight": "Cloud resource orchestration, declarative configs",
+        "name": "GCP Cloud Run & Cloud Build",
+        "highlight": "Serverless containerized microservices, automated CI/CD triggers, Artifact Registry",
         "order": 2
       },
       {
-        "name": "PostgreSQL & Prisma ORM",
-        "highlight": "Relational data modeling, schema migrations, ACID",
+        "name": "Terraform (IaC)",
+        "highlight": "Declarative multi-cloud infrastructure orchestration, reproducible environments",
         "order": 3
       },
       {
-        "name": "MongoDB (MERN Stack)",
-        "highlight": "NoSQL document storage, aggregation pipelines",
+        "name": "Docker & Git Workflows",
+        "highlight": "Containerized multi-stage builds, version control, branching strategies, Agile/Scrum",
         "order": 4
-      },
-      {
-        "name": "Git & Agile Workflow",
-        "highlight": "Branching strategies, sprint planning, PR reviews",
-        "order": 5
       }
     ]
   },
   {
-    "id": "languages",
-    "title": "Languages & Core Tools",
-    "description": "Multi-paradigm programming languages and CMS engineering.",
+    "id": "ai-engineering",
+    "title": "AI Engineering & Systems",
+    "description": "Deep learning neural network architectures, computer vision diagnostics, and systems programming.",
     "order": 4,
     "skills": [
       {
         "name": "Python & PyTorch",
-        "highlight": "Deep learning (CNNs), Torchvision, FastAPI, and computer vision",
+        "highlight": "Convolutional Neural Networks (CNNs), Torchvision transforms, deep learning vision",
         "order": 1
       },
       {
-        "name": "C++",
-        "highlight": "Systems programming, algorithms, and performance",
+        "name": "FastAPI Model Serving",
+        "highlight": "Sub-200ms asynchronous ML inference APIs, client-side canvas pre-processing",
         "order": 2
       },
       {
-        "name": "Java",
-        "highlight": "Object-oriented design patterns and multi-threading",
+        "name": "C++",
+        "highlight": "Object-oriented systems programming, memory management, algorithms & data structures",
         "order": 3
       },
       {
-        "name": "WordPress CMS",
-        "highlight": "Custom theme customization, layout architecture",
+        "name": "Java",
+        "highlight": "Object-oriented design patterns, multi-threading, structured enterprise architecture",
         "order": 4
       }
     ]

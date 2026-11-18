@@ -1,7 +1,20 @@
 [
   {
-    "id": "codebrave-web-dev",
+    "id": "aws-cloud-practitioner",
     "order": 1,
+    "title": "AWS Certified Cloud Practitioner (CLF-C02)",
+    "institution": "Amazon Web Services (AWS)",
+    "period": "2024",
+    "badge": "AWS Certified",
+    "description": "Validated foundational expertise in AWS Cloud architecture, core cloud services (Amazon EC2, S3, AWS Lambda, IAM), VPC networking, security governance, and the AWS Well-Architected Framework.",
+    "skills": ["AWS Cloud", "Amazon S3", "Amazon EC2", "AWS Lambda", "IAM Security", "CloudFront CDN"],
+    "certificateImage": "/certificates/aws-certified-cloud-practitioner.svg",
+    "credentialUrl": "",
+    "featured": true
+  },
+  {
+    "id": "codebrave-web-dev",
+    "order": 2,
     "title": "Codebrave Python & Web Development Program",
     "institution": "Codebrave",
     "period": "2024",
@@ -14,7 +27,7 @@
   },
   {
     "id": "lebnet-tech-fellows",
-    "order": 2,
+    "order": 3,
     "title": "LebNet Tech Fellows AI Program",
     "institution": "LebNet",
     "period": "2024",

@@ -15,6 +15,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { portfolioData, Course } from '../data/portfolioData';
+import { CardImage } from './CardImage';
 
 /**
  * EducationSection Component
@@ -172,10 +173,10 @@ export const EducationSection: React.FC = () => {
                       className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#080d16] border border-white/10 group/img cursor-zoom-in shadow-inner"
                       title="Click to view full certificate"
                     >
-                      <img
+                      <CardImage
                         src={course.certificateImage}
                         alt={`${course.title} Certificate`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                        className="group-hover/img:scale-105"
                       />
 
                       {/* Image Overlay with Click Notice */}
