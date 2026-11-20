@@ -8,7 +8,7 @@
     "badge": "AWS Certified",
     "description": "Validated foundational expertise in AWS Cloud architecture, core cloud services (Amazon EC2, S3, AWS Lambda, IAM), VPC networking, security governance, and the AWS Well-Architected Framework.",
     "skills": ["AWS Cloud", "Amazon S3", "Amazon EC2", "AWS Lambda", "IAM Security", "CloudFront CDN"],
-    "certificateImage": "/certificates/aws-certified-cloud-practitioner.svg",
+    "certificateImage": "/certificates/aws-cloud-practitioner.jpg",
     "credentialUrl": "",
     "featured": true
   },
@@ -21,7 +21,7 @@
     "badge": "Full-Stack & Python",
     "description": "Comprehensive full-stack development and Python program covering software engineering fundamentals, modern web architectures, API integration, and database systems.",
     "skills": ["Python", "Full-Stack Web Dev", "REST APIs", "Git", "Software Architecture"],
-    "certificateImage": "/certificates/codebrave-certificate.svg",
+    "certificateImage": "/certificates/codebrave.jpg",
     "credentialUrl": "",
     "featured": true
   },
@@ -34,7 +34,7 @@
     "badge": "AI Fellowship",
     "description": "Competitive fellowship specializing in artificial intelligence and deep learning, including neural network architectures, PyTorch, computer vision, and applied model deployments.",
     "skills": ["Artificial Intelligence", "Deep Learning", "PyTorch", "Computer Vision", "FastAPI"],
-    "certificateImage": "/certificates/lebnet-certificate.svg",
+    "certificateImage": "/certificates/lebnet-tech-fellows.jpg",
     "credentialUrl": "",
     "featured": true
   }

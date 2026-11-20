@@ -1,112 +1,152 @@
 [
   {
-    "id": "frontend",
-    "title": "Frontend & Mobile Engineering",
-    "description": "Reactive web platforms and cross-platform mobile systems built with TypeScript and modern component architectures.",
+    "id": "frontend-mobile",
+    "title": "Frontend & Mobile",
+    "description": "Modern web interfaces and cross-platform mobile applications built with React, React Native, and TypeScript.",
     "order": 1,
     "skills": [
       {
-        "name": "React & Next.js",
-        "highlight": "App Router, SSR, Server & Client Components, Redux Toolkit, Context API",
+        "name": "React",
+        "highlight": "Component architecture, hooks, state management, and responsive web applications",
+        "badge": "Core",
         "order": 1
       },
       {
-        "name": "React Native & Expo",
-        "highlight": "Cross-platform mobile applications for iOS & Android, native mobile APIs",
+        "name": "React Native",
+        "highlight": "Cross-platform mobile apps for iOS and Android with native device features",
+        "badge": "Mobile",
         "order": 2
       },
       {
-        "name": "TypeScript & JavaScript",
-        "highlight": "Strict typing, ES6+ asynchronous workflows, interfaces & generics",
+        "name": "Expo",
+        "highlight": "Mobile application workflow, device API access, and cross-platform builds",
+        "badge": "Mobile",
         "order": 3
       },
       {
-        "name": "HTML5 & Modern CSS",
-        "highlight": "Semantic architecture, responsive Flexbox, CSS Grid layouts, mobile-first design",
+        "name": "TypeScript",
+        "highlight": "Static typing, interfaces, and compile-time reliability for scalable applications",
+        "badge": "Language",
         "order": 4
+      },
+      {
+        "name": "JavaScript",
+        "highlight": "ES6+ asynchronous programming, event-driven scripting, and DOM manipulation",
+        "badge": "Core",
+        "order": 5
+      },
+      {
+        "name": "HTML and CSS",
+        "highlight": "Semantic page structuring, responsive layouts, Flexbox, and CSS styling",
+        "badge": "Web",
+        "order": 6
       }
     ]
   },
   {
-    "id": "backend",
-    "title": "Backend & API Engineering",
-    "description": "High-throughput asynchronous server runtimes, RESTful endpoints, and robust database architectures.",
+    "id": "backend-databases",
+    "title": "Backend & Databases",
+    "description": "Server runtimes, RESTful APIs, relational and document databases, and structured MVC architecture.",
     "order": 2,
     "skills": [
       {
-        "name": "Node.js & Express.js",
-        "highlight": "REST API routing, middleware chaining, controller layers, async I/O",
+        "name": "Node.js",
+        "highlight": "Asynchronous JavaScript server runtime and scalable backend services",
+        "badge": "Runtime",
         "order": 1
       },
       {
-        "name": "PostgreSQL & Prisma ORM",
-        "highlight": "Relational data modeling, ACID transactions, type-safe migrations",
+        "name": "Express.js",
+        "highlight": "REST API routing, middleware integration, and request handling",
+        "badge": "Framework",
         "order": 2
       },
       {
-        "name": "MongoDB & Mongoose",
-        "highlight": "Document-based NoSQL storage, schema validation, aggregation pipelines",
+        "name": "PostgreSQL",
+        "highlight": "Relational data modeling, SQL queries, table relations, and constraints",
+        "badge": "Relational",
         "order": 3
       },
       {
-        "name": "MVC Architecture & Security",
-        "highlight": "Clean separation of concerns, JWT token authentication, Bcrypt password hashing",
+        "name": "Prisma",
+        "highlight": "Type-safe database ORM, schema modeling, and database migrations",
+        "badge": "ORM",
         "order": 4
+      },
+      {
+        "name": "MongoDB",
+        "highlight": "Document-based NoSQL database for flexible data structures in MERN applications",
+        "badge": "NoSQL",
+        "order": 5
+      },
+      {
+        "name": "MVC Architecture",
+        "highlight": "Clean separation of concerns across Models, Views, and Controllers",
+        "badge": "Architecture",
+        "order": 6
       }
     ]
   },
   {
-    "id": "cloud",
-    "title": "Cloud Architecture & DevOps (GCP & AWS)",
-    "description": "Multi-cloud architecture across AWS and Google Cloud Platform, automated CI/CD, and Terraform IaC.",
+    "id": "cloud-infrastructure",
+    "title": "Cloud & Infrastructure",
+    "description": "AWS cloud architecture, Google Cloud Platform deployments, Terraform IaC, and Git version control.",
     "order": 3,
     "skills": [
       {
-        "name": "AWS Architecture (Certified Practitioner)",
-        "highlight": "Amazon S3, EC2 instances, AWS Lambda serverless, IAM security, CloudFront CDN",
+        "name": "AWS Cloud Architecture",
+        "highlight": "AWS Certified Cloud Practitioner (CLF-C02) — Amazon EC2, S3, AWS Lambda, IAM security, and CloudFront",
+        "badge": "Certified",
         "order": 1
       },
       {
-        "name": "GCP Cloud Run & Cloud Build",
-        "highlight": "Serverless containerized microservices, automated CI/CD triggers, Artifact Registry",
+        "name": "GCP (Cloud Run & Cloud Build)",
+        "highlight": "Application deployment, serverless container execution with Cloud Run, and automated Cloud Build",
+        "badge": "Cloud",
         "order": 2
       },
       {
-        "name": "Terraform (IaC)",
-        "highlight": "Declarative multi-cloud infrastructure orchestration, reproducible environments",
+        "name": "Terraform",
+        "highlight": "Infrastructure as Code (IaC) for automated and reproducible cloud resource management",
+        "badge": "IaC",
         "order": 3
       },
       {
-        "name": "Docker & Git Workflows",
-        "highlight": "Containerized multi-stage builds, version control, branching strategies, Agile/Scrum",
+        "name": "Git",
+        "highlight": "Version control, branching workflows, pull requests, and collaborative code management",
+        "badge": "VCS",
         "order": 4
       }
     ]
   },
   {
-    "id": "ai-engineering",
-    "title": "AI Engineering & Systems",
-    "description": "Deep learning neural network architectures, computer vision diagnostics, and systems programming.",
+    "id": "languages-cms",
+    "title": "Languages & CMS",
+    "description": "Object-oriented and algorithmic programming languages, along with WordPress website development.",
     "order": 4,
     "skills": [
       {
-        "name": "Python & PyTorch",
-        "highlight": "Convolutional Neural Networks (CNNs), Torchvision transforms, deep learning vision",
+        "name": "Python",
+        "highlight": "Backend logic, scripting, algorithms, and data handling (Codebrave program)",
+        "badge": "Core",
         "order": 1
       },
       {
-        "name": "FastAPI Model Serving",
-        "highlight": "Sub-200ms asynchronous ML inference APIs, client-side canvas pre-processing",
+        "name": "C++",
+        "highlight": "Object-oriented programming, memory management, and computer engineering coursework",
+        "badge": "Systems",
         "order": 2
       },
       {
-        "name": "C++",
-        "highlight": "Object-oriented systems programming, memory management, algorithms & data structures",
+        "name": "Java",
+        "highlight": "Object-oriented design, strong typing, and structured software development",
+        "badge": "OOP",
         "order": 3
       },
       {
-        "name": "Java",
-        "highlight": "Object-oriented design patterns, multi-threading, structured enterprise architecture",
+        "name": "WordPress",
+        "highlight": "Website layout design, content organization, theme customization, and client delivery",
+        "badge": "CMS",
         "order": 4
       }
     ]

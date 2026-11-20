@@ -11,6 +11,8 @@ import coursesRaw from './courses.json';
 export interface SkillItem {
   name: string;
   highlight?: string;
+  badge?: string;
+  level?: string;
   order: number;
 }
 
